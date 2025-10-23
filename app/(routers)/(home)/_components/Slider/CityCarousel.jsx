@@ -8,7 +8,7 @@ const CityCarousel = () => {
  const [loading, setLoading] = useState(true);
  const [currentPage, setCurrentPage] = useState(1);
  const [totalPages, setTotalPages] = useState(1);
- const itemsPerPage = 3;
+ const itemsPerPage = 2;
 
  const fetchPracticalInfos = useCallback(async () => {
   try {
@@ -23,12 +23,10 @@ const CityCarousel = () => {
 
    const data = await response.json();
 
-   // ✅ Güvenli kontrol: data.data varsa kullan, yoksa boş dizi
    setPracticalInfos(data.data || []);
    setTotalPages(data.pagination?.totalPages || 1);
   } catch (error) {
    console.error('Veriler alınamadı:', error);
-   // ✅ Hata durumunda boş dizi ata
    setPracticalInfos([]);
    setTotalPages(1);
   } finally {
@@ -75,14 +73,15 @@ const CityCarousel = () => {
     </div>
    ) : (
     <>
-     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {practicalInfos.map((info, index) => (
        <CityCard
         key={info.id}
         image={info.image}
         title={info.title}
-        table={info.tableData}
         description={info.description}
+        afterDescription={info.afterDescription}
+        table={info.tableData}
         onPrev={index === 0 ? handlePrev : undefined}
         onNext={index === practicalInfos.length - 1 ? handleNext : undefined}
        />
