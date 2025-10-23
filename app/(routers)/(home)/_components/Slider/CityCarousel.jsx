@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import CityCard from './CityCard';
 import Pagination from './Pagination';
 
@@ -10,26 +10,35 @@ const CityCarousel = () => {
  const [totalPages, setTotalPages] = useState(1);
  const itemsPerPage = 3;
 
- useEffect(() => {
-  fetchPracticalInfos();
- }, [setCurrentPage]);
-
- const fetchPracticalInfos = async () => {
+ const fetchPracticalInfos = useCallback(async () => {
   try {
    setLoading(true);
    const response = await fetch(
     `/api/practical-info?page=${currentPage}&limit=${itemsPerPage}`
    );
+
+   if (!response.ok) {
+    throw new Error('API isteği başarısız');
+   }
+
    const data = await response.json();
 
-   setPracticalInfos(data.data);
-   setTotalPages(data.pagination.totalPages);
+   // ✅ Güvenli kontrol: data.data varsa kullan, yoksa boş dizi
+   setPracticalInfos(data.data || []);
+   setTotalPages(data.pagination?.totalPages || 1);
   } catch (error) {
    console.error('Veriler alınamadı:', error);
+   // ✅ Hata durumunda boş dizi ata
+   setPracticalInfos([]);
+   setTotalPages(1);
   } finally {
    setLoading(false);
   }
- };
+ }, [currentPage]);
+
+ useEffect(() => {
+  fetchPracticalInfos();
+ }, [fetchPracticalInfos]);
 
  const handlePageChange = (page) => setCurrentPage(page);
 
@@ -60,7 +69,7 @@ const CityCarousel = () => {
     Pratik Bilgiler
    </h2>
 
-   {practicalInfos.length === 0 ? (
+   {!practicalInfos || practicalInfos.length === 0 ? (
     <div className="text-center text-gray-600 dark:text-gray-400 py-12">
      Henüz pratik bilgi eklenmemiş.
     </div>

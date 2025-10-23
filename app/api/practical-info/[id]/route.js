@@ -1,63 +1,76 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@/app/generated/prisma";
+import prisma from "@/lib/prisma";
 
-const prisma = new PrismaClient();
-
-export async function GET(request) {
+export async function GET(request, { params }) {
   try {
-    const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get("page") || "1");
-    const limit = parseInt(searchParams.get("limit") || "10");
-    const category = searchParams.get("category");
+    const { id } = params;
 
-    const skip = (page - 1) * limit;
+    const practicalInfo = await prisma.practicalInfo.findUnique({
+      where: { id },
+    });
 
-    const where = category ? { category } : {};
+    if (!practicalInfo) {
+      return NextResponse.json(
+        { error: "Pratik bilgi bulunamadı" },
+        { status: 404 }
+      );
+    }
 
-    const [practicalInfos, total] = await Promise.all([
-      prisma.practicalInfo.findMany({
-        where,
-        skip,
-        take: limit,
-        orderBy: { createdAt: "desc" },
-      }),
-      prisma.practicalInfo.count({ where }),
-    ]);
-
+    return NextResponse.json(practicalInfo, { status: 200 });
+  } catch (error) {
+    console.error("Pratik bilgi alınamadı:", error);
     return NextResponse.json(
       {
-        data: practicalInfos,
-        pagination: {
-          page,
-          limit,
-          total,
-          totalPages: Math.ceil(total / limit),
-        },
+        error: "Pratik bilgi alınamadı",
+        details: error.message,
       },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.error("Pratik bilgiler alınamadı:", error);
-    return NextResponse.json(
-      { error: "Pratik bilgiler alınamadı" },
       { status: 500 }
     );
   }
 }
 
-export async function POST(request) {
+export async function PUT(request, { params }) {
   try {
+    const { id } = params;
     const body = await request.json();
 
-    const newPracticalInfo = await prisma.practicalInfo.create({
+    const updatedPracticalInfo = await prisma.practicalInfo.update({
+      where: { id },
       data: body,
     });
 
-    return NextResponse.json(newPracticalInfo, { status: 201 });
+    return NextResponse.json(updatedPracticalInfo, { status: 200 });
   } catch (error) {
-    console.error("Pratik bilgi eklenemedi:", error);
+    console.error("Pratik bilgi güncellenemedi:", error);
     return NextResponse.json(
-      { error: "Pratik bilgi eklenemedi" },
+      {
+        error: "Pratik bilgi güncellenemedi",
+        details: error.message,
+      },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request, { params }) {
+  try {
+    const { id } = params;
+
+    await prisma.practicalInfo.delete({
+      where: { id },
+    });
+
+    return NextResponse.json(
+      { message: "Pratik bilgi başarıyla silindi" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Pratik bilgi silinemedi:", error);
+    return NextResponse.json(
+      {
+        error: "Pratik bilgi silinemedi",
+        details: error.message,
+      },
       { status: 500 }
     );
   }
