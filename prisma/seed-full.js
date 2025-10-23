@@ -184,7 +184,7 @@ const practicalInfoData = [
   },
   {
     title: "Sigorta Primine Esas Aylık Taban ve Tavan Ücretler",
-    category: "SSK ve Sigorta Primleri",
+    category: "SGK ve Sigorta Primleri",
     hasTable: true,
     link: null,
     image: "/images/sgk.png",
@@ -200,7 +200,7 @@ const practicalInfoData = [
   {
     title:
       "Sigorta Primine Tabi Tutulmayacak Yemek Parası ile Çocuk ve Aile Zammı Tutarları",
-    category: "SSK ve Sigorta Primleri",
+    category: "SGK ve Sigorta Primleri",
     hasTable: true,
     image: "/images/sgk.png",
     link: "https://ismmmo.org.tr/dosya/5235/Mevzuat-Dosya/2.pdf",
@@ -244,7 +244,7 @@ const practicalInfoData = [
     image: "/images/sgk.png",
     link: "https://www.sgk.gov.tr/Content/Post/c7812ea8-5087-413f-aeb5-d3c1d153e11a/Isveren-Prim-Oranlari-2024-12-26-02-46-02",
     description:
-      "SSK prim oranları, Türkiye’de çalışanların sosyal güvenlik sistemi kapsamında ödenen sigorta primlerinin dağılımını belirleyen yüzdelik değerlerdir. Bu primler, hem işçi hem de işveren tarafından ödenir ve çalışanların emeklilik, sağlık, işsizlik ve diğer sosyal güvenlik haklarını karşılamak amacıyla Sosyal Güvenlik Kurumu’na (SGK) aktarılır.SSK primleri üç ana kategoriye ayrılır: Emeklilik (yaşlılık ve malullük), Sağlık ve İşsizlik. İşçi ve işveren payları ayrı ayrı belirlenmiştir.",
+      "SGK prim oranları, Türkiye’de çalışanların sosyal güvenlik sistemi kapsamında ödenen sigorta primlerinin dağılımını belirleyen yüzdelik değerlerdir. Bu primler, hem işçi hem de işveren tarafından ödenir ve çalışanların emeklilik, sağlık, işsizlik ve diğer sosyal güvenlik haklarını karşılamak amacıyla Sosyal Güvenlik Kurumu’na (SGK) aktarılır.SGK primleri üç ana kategoriye ayrılır: Emeklilik (yaşlılık ve malullük), Sağlık ve İşsizlik. İşçi ve işveren payları ayrı ayrı belirlenmiştir.",
     afterDescription: null,
     tableData: {
       headers: ["Prim Türü", "İşçi Payı (%)", "İşveren Payı (%)", "Toplam (%)"],
@@ -350,7 +350,7 @@ const practicalInfoData = [
   },
   {
     title: "İşsizlik Sigortası Prim Oranları",
-    category: "SSK ve Sigorta Primleri",
+    category: "SGK ve Sigorta Primleri",
     hasTable: true,
     link: null,
     image: "/images/sgk.png",
@@ -519,14 +519,11 @@ const practicalInfoData = [
     tableData: {
       headers: ["Gelir Dilimi", "Vergi Oranı"],
       rows: [
-        ["158.000 TL’ye kadar", "%15"],
-        ["330.000 TL’nin 158.000 TL’si için 23.700 TL, fazlası", "%20"],
-        ["800.000 TL’nin 330.000 TL’si için 58.100 TL, fazlası", "%27"],
-        ["4.300.000 TL’nin 800.000 TL’si için 185.000 TL, fazlası", "%35"],
-        [
-          "4.300.000 TL’den fazlasının 4.300.000 TL’si için 1.410.000 TL, fazlası",
-          "%40",
-        ],
+        ["İlk 158.000 TL'ye kadar", "%15"],
+        ["158.000 TL'yi aşan, 330.000 TL'ye kadar olan kısım", "%20"],
+        ["330.000 TL'yi aşan, 800.000 TL'ye kadar olan kısım", "%27"],
+        ["800.000 TL'yi aşan, 4.300.000 TL'ye kadar olan kısım", "%35"],
+        ["4.300.000 TL'den fazlası", "%40"],
       ],
     },
     year: currentYear,
@@ -591,27 +588,16 @@ const practicalInfoData = [
       "Veraset ve İntikal Vergisi, bir kişinin vefatı veya bir malın karşılıksız olarak el değiştirmesi durumunda, mal varlığı üzerinden devlete ödenen bir vergi türüdür. Türkiye’de bu vergi, hem veraset yoluyla intikaller (miras yoluyla geçişler) hem de ivazsız intikaller (bağış, hibe gibi karşılıksız geçişler) için uygulanır. Vergi oranları, miras bırakan ile mirasçı arasındaki yakınlık derecesine ve intikal eden malın değerine göre değişir.",
     afterDescription: null,
     tableData: {
-      tables: [
-        {
-          title: "Veraset Yoluyla İntikaller (Miras Yoluyla Geçiş)",
-          headers: ["Sıra", "Matrah (TL)", "Vergi Oranı (%)"],
-          rows: [
-            ["1", "İlk 2.400.000 TL", "10"],
-            ["2", "2.400.001 – 5.700.000 TL", "15"],
-            ["3", "5.700.001 – 12.000.000 TL", "20"],
-            ["4", "12.000.001 TL ve üzeri", "30"],
-          ],
-        },
-        {
-          title: "İvazsız İntikaller (Bağış, Hibe vb.)",
-          headers: ["Sıra", "Matrah (TL)", "Vergi Oranı (%)"],
-          rows: [
-            ["1", "İlk 2.400.000 TL", "15"],
-            ["2", "2.400.001 – 5.700.000 TL", "20"],
-            ["3", "5.700.001 – 12.000.000 TL", "25"],
-            ["4", "12.000.001 TL ve üzeri", "30"],
-          ],
-        },
+      headers: ["Tür", "Sıra", "Matrah (TL)", "Vergi Oranı (%)"],
+      rows: [
+        ["Veraset Yoluyla İntikaller", "1", "İlk 2.400.000 TL", "10"],
+        ["Veraset Yoluyla İntikaller", "2", "2.400.001 – 5.700.000 TL", "15"],
+        ["Veraset Yoluyla İntikaller", "3", "5.700.001 – 12.000.000 TL", "20"],
+        ["Veraset Yoluyla İntikaller", "4", "12.000.001 TL ve üzeri", "30"],
+        ["İvazsız İntikaller", "1", "İlk 2.400.000 TL", "15"],
+        ["İvazsız İntikaller", "2", "2.400.001 – 5.700.000 TL", "20"],
+        ["İvazsız İntikaller", "3", "5.700.001 – 12.000.000 TL", "25"],
+        ["İvazsız İntikaller", "4", "12.000.001 TL ve üzeri", "30"],
       ],
     },
     year: currentYear,
@@ -621,6 +607,7 @@ const practicalInfoData = [
     category: "Vergi Cezaları",
     hasTable: true,
     link: null,
+    image: "/images/ceza.jpg",
     description:
       "Vergi Usul Kanunu'na göre uygulanacak usulsüzlük cezaları, mükellef gruplarına ve usulsüzlük derecesine göre değişmektedir. 2025 yılı için güncel ceza tutarları aşağıdaki tabloda belirtilmiştir:",
     afterDescription:
@@ -648,7 +635,6 @@ const practicalInfoData = [
         ["Gelir vergisinden muaf esnaf", "2.100", "1.400"],
       ],
     },
-    image: "/images/ceza.jpg",
     year: currentYear,
   },
   {
@@ -698,8 +684,9 @@ const practicalInfoData = [
     image: "/images/sgk.png",
     link: "https://www.sgk.gov.tr/Content/Post/448403ad-84da-423f-beec-67543e81f6a3/Yururluk-Tarihlerine-Gore-Gecikme-Zammi-Oranlari-2025-09-23-11-20-32",
     description:
-      "SSK gecikme zammı oranları, Sosyal Sigortalar Kurumu primlerinin zamanında ödenmemesi durumunda borca eklenen faiz oranlarını ifade eder. Yani, işveren veya sigortalı prim ödemesini vadesinde gerçekleştirmezse, borç tutarına her ay bu oran üzerinden ek ödeme uygulanır. Bu oranlar, 5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu ile ilgili yönetmeliklerde belirlenmiştir. 2025 yılı itibarıyla SSK primleri için aylık gecikme zammı oranı yaklaşık %3 olarak uygulanmaktadır.",
-    afterDescription: null,
+      "SGK gecikme zammı oranları, Sosyal Sigortalar Kurumu primlerinin zamanında ödenmemesi durumunda borca eklenen faiz oranlarını ifade eder. Yani, işveren veya sigortalı prim ödemesini vadesinde gerçekleştirmezse, borç tutarına her ay bu oran üzerinden ek ödeme uygulanır. ",
+    afterDescription:
+      "Bu oranlar, 5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu ile ilgili yönetmeliklerde belirlenmiştir. 2025 yılı itibarıyla SGK primleri için aylık gecikme zammı oranı yaklaşık %3 olarak uygulanmaktadır.",
     tableData: null,
     year: currentYear,
   },
@@ -741,7 +728,7 @@ const practicalInfoData = [
     title: "Bildirim Süreleri ve İhbar Tazminatı Tutarları",
     category: "İş Kanunu ve Tazminatlar",
     hasTable: true,
-    link: "https://www.turmob.org.tr/arsiv/mbs/pratikBilgiler/24-ihbar_bildirim.pdf",
+    link: "/ihbar_bildirim.pdf",
     image: null,
     description:
       "Hizmet sözleşmesi sona erdirilirken dikkate alınacak bildirim süreleri ve ihbar tazminatı tutarları, iş hukukunda çalışan ile işveren arasındaki iş sözleşmesinin feshi sürecinde uygulanacak süreleri ve ödenecek tazminatları ifade eder. Yani, iş akdinin sona erdirilmesi durumunda hangi kurallara uyulacağı ve işçinin ne kadar süre önceden bilgilendirilmesi gerektiği ile işverenin veya işçinin ihbar süresine uymaması halinde ödeyeceği tazminat miktarları burada belirlenir.",
@@ -758,13 +745,13 @@ const practicalInfoData = [
     year: currentYear,
   },
   {
-    title: "Yurt İçi Üretici Fiyat Endeksi (Yİ-ÜFE)(2003=100)",
+    title: "Yurt İçi Üretici Fiyat Endeksi (Yİ-ÜFE) (2003=100)",
     category: "Enflasyon Endeksleri",
     hasTable: true,
     image: null,
     link: "https://data.tuik.gov.tr/Bulten/Index?p=Yurt-Ici-Uretici-Fiyat-Endeksi-Eylul-2025-53862",
     description:
-      "Üretici Fiyat Endeksi, üreticilerin ürettikleri mal ve hizmetlerin yurt içi satış fiyatlarında zaman içinde meydana gelen ortalama değişimi ölçen bir fiyat endeksidir. 2003 yılı, bu endeksin baz yılıdır.2003 yılında endeks değeri 100 olarak kabul edilmiştir. Sonraki yıllardaki değişimler bu baz yıla göre hesaplanır. ÜFE tarım, madencilik, imalat, elektrik, gaz ve su üretimi gibi üretim sektörlerini kapsar. Üretim sürecinde malın üretici tarafından satış fiyatı esas alınır (KDV, nakliye, bayi kârı vb. hariçtir). Aşağıda Yİ-ÜFE değişim oranları tablosu gösterilmiştir.",
+      "Üretici Fiyat Endeksi, üreticilerin ürettikleri mal ve hizmetlerin yurt içi satış fiyatlarında zaman içinde meydana gelen ortalama değişimi ölçen bir fiyat endeksidir. 2003 yılı, bu endeksin baz yılıdır. 2003 yılında endeks değeri 100 olarak kabul edilmiştir. Sonraki yıllardaki değişimler bu baz yıla göre hesaplanır. ÜFE tarım, madencilik, imalat, elektrik, gaz ve su üretimi gibi üretim sektörlerini kapsar. Üretim sürecinde malın üretici tarafından satış fiyatı esas alınır (KDV, nakliye, bayi kârı vb. hariçtir). Aşağıda Yİ-ÜFE değişim oranları tablosu gösterilmiştir.",
     afterDescription: null,
     tableData: {
       headers: ["", "Eylül 2025", "Eylül 2024", "Eylül 2023"],
@@ -793,13 +780,13 @@ const practicalInfoData = [
     year: currentYear,
   },
   {
-    title: "Yurt Dışı Üretici Fiyat Endeksi (YD-ÜFE)(2003=100)",
+    title: "Yurt Dışı Üretici Fiyat Endeksi (YD-ÜFE) (2003=100)",
     category: "Enflasyon Endeksleri",
     hasTable: true,
     image: null,
     link: "https://data.tuik.gov.tr/Bulten/Index?p=Yurt-Disi-Uretici-Fiyat-Endeksi-Eylul-2025-53858",
     description:
-      "Üretici Fiyat Endeksi, üreticilerin ürettikleri mal ve hizmetlerin yurt içi satış fiyatlarında zaman içinde meydana gelen ortalama değişimi ölçen bir fiyat endeksidir. 2003 yılı, bu endeksin baz yılıdır.2003 yılında endeks değeri 100 olarak kabul edilmiştir. Sonraki yıllardaki değişimler bu baz yıla göre hesaplanır. ÜFE tarım, madencilik, imalat, elektrik, gaz ve su üretimi gibi üretim sektörlerini kapsar. Üretim sürecinde malın üretici tarafından satış fiyatı esas alınır (KDV, nakliye, bayi kârı vb. hariçtir). Aşağıda YD-ÜFE değişim oranları tablosu gösterilmiştir.",
+      "Üretici Fiyat Endeksi, üreticilerin ürettikleri mal ve hizmetlerin yurt içi satış fiyatlarında zaman içinde meydana gelen ortalama değişimi ölçen bir fiyat endeksidir. 2003 yılı, bu endeksin baz yılıdır. 2003 yılında endeks değeri 100 olarak kabul edilmiştir. Sonraki yıllardaki değişimler bu baz yıla göre hesaplanır. ÜFE tarım, madencilik, imalat, elektrik, gaz ve su üretimi gibi üretim sektörlerini kapsar. Üretim sürecinde malın üretici tarafından satış fiyatı esas alınır (KDV, nakliye, bayi kârı vb. hariçtir). Aşağıda YD-ÜFE değişim oranları tablosu gösterilmiştir.",
     afterDescription: null,
     tableData: {
       headers: ["", "Eylül 2025", "Eylül 2024", "Eylül 2023"],
@@ -840,12 +827,12 @@ const practicalInfoData = [
     year: currentYear,
   },
   {
-    title: "Üretici Enflasyon Oranları(2003=100)",
+    title: "Üretici Enflasyon Oranları (2003=100)",
     category: "Enflasyon Endeksleri",
     hasTable: true,
     image: null,
     description:
-      "Türkiye'de Yurt İçi Üretici Fiyat Endeksi (Yİ-ÜFE), 2003 yılı baz alınarak hesaplanmaktadır. Bu endeks, üretici fiyatlarındaki değişimi ve dolayısıyla üretim maliyetlerindeki artışları gösterir.Aşağıda, 2025 yılına ait bazı aylık Yİ-ÜFE verileri özetlenmiştir:",
+      "Türkiye'de Yurt İçi Üretici Fiyat Endeksi (Yİ-ÜFE), 2003 yılı baz alınarak hesaplanmaktadır. Bu endeks, üretici fiyatlarındaki değişimi ve dolayısıyla üretim maliyetlerindeki artışları gösterir. Aşağıda, 2025 yılına ait bazı aylık Yİ-ÜFE verileri özetlenmiştir:",
     afterDescription: null,
     tableData: {
       headers: [
@@ -856,19 +843,19 @@ const practicalInfoData = [
       ],
       rows: [
         ["Ocak 2025", "-", "-", "-"],
-        ["Mart 2025", "%1,88", "%23,50", "%7,23"],
-        ["Nisan 2025", "%2,76", "-", "%10,19"],
+        ["Mart 2025", "1,88", "23,50", "7,23"],
+        ["Nisan 2025", "2,76", "-", "10,19"],
         ["Mayıs 2025", "-", "-", "-"],
-        ["Haziran 2025", "%2,46", "-", "%15,71"],
-        ["Temmuz 2025", "%1,73", "-", "%17,70"],
-        ["Ağustos 2025", "%2,48", "-", "%20,62"],
-        ["Eylül 2025", "%2,52", "-", "%23,66"],
+        ["Haziran 2025", "2,46", "-", "15,71"],
+        ["Temmuz 2025", "1,73", "-", "17,70"],
+        ["Ağustos 2025", "2,48", "-", "20,62"],
+        ["Eylül 2025", "2,52", "-", "23,66"],
       ],
     },
     year: currentYear,
   },
   {
-    title: "Tüketici Enflasyon Oranları(2003=100)",
+    title: "Tüketici Enflasyon Oranları (2003=100)",
     category: "Enflasyon Endeksleri",
     hasTable: true,
     image: null,
@@ -884,15 +871,15 @@ const practicalInfoData = [
         "Yıllık Aralık Ayına Göre Artış (%)",
       ],
       rows: [
-        ["Ocak 2025", "%5,03", "%42,12", "%5,03"],
-        ["Şubat 2025", "%2,27", "%39,05", "%7,42"],
-        ["Mart 2025", "%2,46", "%37,66", "%10,06"],
-        ["Nisan 2025", "%3,00", "%35,41", "%13,36"],
-        ["Mayıs 2025", "%1,53", "%33,29", "%15,71"],
-        ["Haziran 2025", "%1,37", "%31,67", "%16,67"],
-        ["Temmuz 2025", "%2,06", "%29,08", "%19,08"],
-        ["Ağustos 2025", "%2,04", "%27,50", "%21,50"],
-        ["Eylül 2025", "%3,23", "%25,43", "%23,66"],
+        ["Ocak 2025", "5,03", "42,12", "5,03"],
+        ["Şubat 2025", "2,27", "39,05", "7,42"],
+        ["Mart 2025", "2,46", "37,66", "%0,06"],
+        ["Nisan 2025", "3,00", "35,41", "13,36"],
+        ["Mayıs 2025", "1,53", "33,29", "15,71"],
+        ["Haziran 2025", "1,37", "31,67", "16,67"],
+        ["Temmuz 2025", "2,06", "29,08", "19,08"],
+        ["Ağustos 2025", "2,04", "27,50", "21,50"],
+        ["Eylül 2025", "3,23", "25,43", "23,66"],
       ],
     },
     year: currentYear,
@@ -910,7 +897,7 @@ const practicalInfoData = [
       headers: [
         "Sıra No",
         "Görev Unvanı / Kadro Derecesi",
-        "1/1/2025 - 31/12/2025 Döneminde Verilecek Günlük Tutarlar (TL)",
+        "Günlük Tutarlar (TL)",
       ],
       rows: [
         [
@@ -957,27 +944,17 @@ const practicalInfoData = [
       "Türkiye’de kamu görevlilerinin yurtdışına yapacakları görevli seyahatlerde ödenecek gündelikler, 6245 sayılı Harcırah Kanunu ve ilgili Cumhurbaşkanlığı kararlarıyla belirlenir. Yurtdışı gündelikleri, ülkenin risk durumu, yaşam maliyeti ve konaklama giderleri dikkate alınarak kademelendirilir. Aşağıda 2025 yılı için geçerli yurtdışı gündelikleri özetlenmiştir:",
     afterDescription: null,
     tableData: {
-      headers: [
-        "Sıra No",
-        "Ülke / Bölge Grubu",
-        "1/1/2025 – 31/12/2025 Gündelik (USD)",
-        "Açıklama",
-      ],
+      headers: ["Sıra No", "Ülke / Bölge Grubu", "Gündelik (USD)", "Açıklama"],
       rows: [
         [
           "1",
           "I. Grup Ülkeler",
-          "195 USD",
+          "195",
           "ABD, Almanya, İngiltere, Fransa gibi gelişmiş ülkeler",
         ],
-        [
-          "2",
-          "II. Grup Ülkeler",
-          "155 USD",
-          "Ortadoğu, Doğu Avrupa ülkeleri vb.",
-        ],
-        ["3", "III. Grup Ülkeler", "120 USD", "Asya, Afrika ülkeleri vb."],
-        ["4", "IV. Grup Ülkeler", "85 USD", "Yaşam maliyeti düşük ülkeler"],
+        ["2", "II. Grup Ülkeler", "155", "Ortadoğu, Doğu Avrupa ülkeleri vb."],
+        ["3", "III. Grup Ülkeler", "120", "Asya, Afrika ülkeleri vb."],
+        ["4", "IV. Grup Ülkeler", "85", "Yaşam maliyeti düşük ülkeler"],
       ],
     },
     year: currentYear,
@@ -989,24 +966,24 @@ const practicalInfoData = [
     image: "/images/yurtdisi.jpg",
     link: null,
     description:
-      "Türkiye’de yurtdışına çıkış yasağı, borçların ödenmemesi durumunda mahkemeler veya icra daireleri tarafından uygulanabilir. Borç miktarının alt sınırı, İcra ve İflas Kanunu ve ilgili uygulamalara göre belirlenir. 2025 yılı itibarıyla durum şu şekildedir:",
+      "Türkiye’de yurtdışına çıkış yasağı, borçların ödenmemesi durumunda mahkemeler veya icra daireleri tarafından uygulanabilir. Borç miktarının alt sınırı, İcra ve İflas Kanunu ve ilgili uygulamalara göre belirlenir. 2025 yılı itibarıyla borç miktarı durumu şu şekildedir:",
     afterDescription: null,
     tableData: {
-      headers: ["Tür", "Borç Miktarı (TL)", "Açıklama"],
+      headers: ["Tür", "Borç (TL)", "Açıklama"],
       rows: [
         [
           "İcra Takibi veya Ödeme Emirleri",
-          "30.000 TL ve üzeri",
+          "30.000 ve üzeri",
           "İcra takibi başlatılmış ve ödenmemiş borçlar için yurtdışına çıkış yasağı uygulanabilir.",
         ],
         [
           "Vergi Borçları",
-          "30.000 TL ve üzeri",
+          "30.000 ve üzeri",
           "Gelir İdaresi Başkanlığı tarafından tebliğ edilen ve ödenmemiş vergi borçları.",
         ],
         [
           "SGK Prim Borçları",
-          "30.000 TL ve üzeri",
+          "30.000 ve üzeri",
           "Sosyal Güvenlik Kurumu’nun tespit ettiği ve ödenmemiş prim borçları.",
         ],
       ],
@@ -1020,9 +997,8 @@ const practicalInfoData = [
     image: "/images/vergi.jpeg",
     link: null,
     description:
-      "“Yıllara göre mükellefin vergi yükü” ifadesi genellikle bir mükellefin, kazançlarına veya gelirlerine göre ödediği vergi oranları ve miktarlarının yıllar itibarıyla değişimini ifade eder. Türkiye’de bu, başta Gelir Vergisi, Kurumlar Vergisi ve Katma Değer Vergisi (KDV) üzerinden hesaplanır. ",
-    afterDescription:
-      "Aşağıda 2020–2025 dönemi için gelir vergisi yükü örnek tablo verilmiştir. Bu tablo, yıllık gelir üzerinden ödenen vergi ve efektif vergi oranını göstermektedir:",
+      "“Yıllara göre mükellefin vergi yükü” ifadesi genellikle bir mükellefin, kazançlarına veya gelirlerine göre ödediği vergi oranları ve miktarlarının yıllar itibarıyla değişimini ifade eder. Türkiye’de bu, başta Gelir Vergisi, Kurumlar Vergisi ve Katma Değer Vergisi (KDV) üzerinden hesaplanır.Aşağıda 2022–2025 dönemi için gelir vergisi yükü örnek tablo verilmiştir. Bu tablo, yıllık gelir üzerinden ödenen vergi ve efektif vergi oranını göstermektedir: ",
+    afterDescription: null,
     tableData: {
       headers: [
         "Yıl",
@@ -1031,18 +1007,6 @@ const practicalInfoData = [
         "Açıklama",
       ],
       rows: [
-        [
-          "2020",
-          "15 – 40",
-          "~22",
-          "Gelir vergisi dilimleri: 22.000 TL’ye kadar %15, 22.000-49.000 %20 vb.",
-        ],
-        [
-          "2021",
-          "15 – 40",
-          "~23",
-          "Artan enflasyon ve yeniden değerleme ile efektif vergi yükü artışı",
-        ],
         [
           "2022",
           "15 – 40",
@@ -1070,6 +1034,7 @@ const practicalInfoData = [
     title: "Vergi Kodları",
     category: "Vergi Kodları",
     hasTable: true,
+    image: "/images/vergi2.jpg",
     description:
       "Türkiye’de vergi uygulamaları, her bir vergi türünü tanımlayan vergi kodları (VKN veya resmi kodlar) ile takip edilir. Bu kodlar, hem mükelleflerin sınıflandırılmasında hem de beyanname ve ödeme işlemlerinde kullanılır. Aşağıda bazı temel vergi türleri ve kodları verilmiştir:",
     afterDescription: null,
@@ -1077,17 +1042,16 @@ const practicalInfoData = [
     tableData: {
       headers: ["Vergi Kodu", "Vergi Adı"],
       rows: [
-        ["0001", "YILLIK GELİR VERGİSİ"],
-        ["0002", "ZIRAİ KAZANÇ GELİR VERGİSİ"],
-        ["0003", "GELİR VERGİSİ S. (MUHTASAR)"],
-        ["0004", "GELİR GÖTÜRÜ TİCARİ KAZANÇ"],
+        ["0001", "Yıllık Gelir Vergisi"],
+        ["0002", "Zırai Kazanç Gelir Vergisi"],
+        ["0003", "Gelir Vergisi S. (MUHTASAR)"],
+        ["0004", "Gelir Götürü Ticari Kazanç"],
         [".", "."],
         [".", "."],
         [".", "."],
       ],
     },
     year: currentYear,
-    image: null,
   },
 ];
 

@@ -27,20 +27,20 @@ const CityCard = ({ image, title, description, afterDescription, table }) => {
    </div>
 
    {/* İlk açıklama */}
-   <div className="p-4 text-gray-700 text-sm leading-snug">
+   <div className="px-4 py-3 text-gray-700 text-sm leading-snug">
     <p>{description}</p>
    </div>
 
    {/* İkinci açıklama */}
    {afterDescription && (
-    <div className="p-4 pt-2 text-gray-700 text-sm leading-snug">
+    <div className="p-4 pt-0 text-gray-700 text-sm leading-snug">
      <p>{afterDescription}</p>
     </div>
    )}
 
    {/* Tablo  */}
    {table && (
-    <div className="overflow-x-auto px-4 pb-2">
+    <div className="overflow-x-auto px-4 pb-5">
      <table className="min-w-full border border-gray-300" style={{ fontSize: '0.7rem' }}>
       <thead className="bg-gray-100">
        <tr>
