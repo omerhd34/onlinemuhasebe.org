@@ -23,8 +23,14 @@ const CityCarousel = () => {
 
    const data = await response.json();
 
-   setPracticalInfos(data.data || []);
-   setTotalPages(data.pagination?.totalPages || 1);
+   if (data && Array.isArray(data.data)) {
+    setPracticalInfos(data.data);
+    const pages = data.pagination?.totalPages || 1;
+    setTotalPages(Math.max(1, Number(pages)));
+   } else {
+    setPracticalInfos([]);
+    setTotalPages(1);
+   }
   } catch (error) {
    console.error('Veriler alınamadı:', error);
    setPracticalInfos([]);
@@ -38,7 +44,12 @@ const CityCarousel = () => {
   fetchPracticalInfos();
  }, [fetchPracticalInfos]);
 
- const handlePageChange = (page) => setCurrentPage(page);
+ const handlePageChange = (page) => {
+  const newPage = Number(page);
+  if (newPage >= 1 && newPage <= totalPages) {
+   setCurrentPage(newPage);
+  }
+ };
 
  const handlePrev = () => {
   if (currentPage > 1) setCurrentPage(currentPage - 1);
@@ -74,7 +85,7 @@ const CityCarousel = () => {
    ) : (
     <>
      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {practicalInfos.map((info, index) => (
+      {practicalInfos.map((info) => (
        <CityCard
         key={info.id}
         image={info.image}
@@ -82,17 +93,17 @@ const CityCarousel = () => {
         description={info.description}
         afterDescription={info.afterDescription}
         table={info.tableData}
-        onPrev={index === 0 ? handlePrev : undefined}
-        onNext={index === practicalInfos.length - 1 ? handleNext : undefined}
        />
       ))}
      </div>
 
-     <Pagination
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={handlePageChange}
-     />
+     {totalPages > 1 && (
+      <Pagination
+       currentPage={currentPage}
+       totalPages={totalPages}
+       onPageChange={handlePageChange}
+      />
+     )}
     </>
    )}
   </div>
