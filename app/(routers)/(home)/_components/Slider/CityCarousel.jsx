@@ -1,16 +1,35 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CityCard from './CityCard';
 import Pagination from './Pagination';
-import { cities } from './cities';
 
 const CityCarousel = () => {
+ const [practicalInfos, setPracticalInfos] = useState([]);
+ const [loading, setLoading] = useState(true);
  const [currentPage, setCurrentPage] = useState(1);
+ const [totalPages, setTotalPages] = useState(1);
  const itemsPerPage = 3;
- const totalPages = Math.ceil(cities.length / itemsPerPage);
 
- const startIndex = (currentPage - 1) * itemsPerPage;
- const currentCities = cities.slice(startIndex, startIndex + itemsPerPage);
+ useEffect(() => {
+  fetchPracticalInfos();
+ }, [setCurrentPage]);
+
+ const fetchPracticalInfos = async () => {
+  try {
+   setLoading(true);
+   const response = await fetch(
+    `/api/practical-info?page=${currentPage}&limit=${itemsPerPage}`
+   );
+   const data = await response.json();
+
+   setPracticalInfos(data.data);
+   setTotalPages(data.pagination.totalPages);
+  } catch (error) {
+   console.error('Veriler alınamadı:', error);
+  } finally {
+   setLoading(false);
+  }
+ };
 
  const handlePageChange = (page) => setCurrentPage(page);
 
@@ -22,31 +41,52 @@ const CityCarousel = () => {
   if (currentPage < totalPages) setCurrentPage(currentPage + 1);
  };
 
+ if (loading) {
+  return (
+   <div className="max-w-6xl mx-auto px-4 py-12">
+    <h2 className="text-3xl font-bold text-center mb-10 text-gray-800 dark:text-gray-100">
+     Pratik Bilgiler
+    </h2>
+    <div className="flex justify-center items-center min-h-[400px]">
+     <div className="text-lg text-gray-600 dark:text-gray-400">Yükleniyor...</div>
+    </div>
+   </div>
+  );
+ }
+
  return (
   <div className="max-w-6xl mx-auto px-4 py-12">
-   <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">
+   <h2 className="text-3xl font-bold text-center mb-10 text-gray-800 dark:text-gray-100">
     Pratik Bilgiler
    </h2>
 
-   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {currentCities.map((city, index) => (
-     <CityCard
-      key={city.id}
-      image={city.image}
-      title={city.title}
-      table={city.table}
-      description={city.description}
-      onPrev={index === 0 ? handlePrev : undefined}
-      onNext={index === currentCities.length - 1 ? handleNext : undefined}
-     />
-    ))}
-   </div>
+   {practicalInfos.length === 0 ? (
+    <div className="text-center text-gray-600 dark:text-gray-400 py-12">
+     Henüz pratik bilgi eklenmemiş.
+    </div>
+   ) : (
+    <>
+     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {practicalInfos.map((info, index) => (
+       <CityCard
+        key={info.id}
+        image={info.image}
+        title={info.title}
+        table={info.tableData}
+        description={info.description}
+        onPrev={index === 0 ? handlePrev : undefined}
+        onNext={index === practicalInfos.length - 1 ? handleNext : undefined}
+       />
+      ))}
+     </div>
 
-   <Pagination
-    currentPage={currentPage}
-    totalPages={totalPages}
-    onPageChange={handlePageChange}
-   />
+     <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={handlePageChange}
+     />
+    </>
+   )}
   </div>
  );
 };
