@@ -1,8 +1,8 @@
-import CityCarousel from "./_components/Slider/CityCarousel";
+import CityCarousel from "./_components/CityCarousel";
 
 const PratikBilgiler = () => {
  return (
-  <div className="min-h-screen bg-gray-50">
+  <div className="min-h-screen bg-background">
    <CityCarousel />
   </div>
  );

@@ -8,7 +8,8 @@
       {
         "ignore": [
           "-webkit-text-size-adjust",
-          "field-sizing"
+          "field-sizing",
+          "field-sizing: content"
         ]
       }
     ]

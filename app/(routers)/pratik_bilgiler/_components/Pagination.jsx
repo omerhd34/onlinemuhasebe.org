@@ -50,9 +50,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
    <button
     onClick={() => onPageChange(Math.max(1, safeCurrentPage - 1))}
     disabled={safeCurrentPage === 1}
-    className={`px-3 py-1 rounded-md border text-sm transition ${safeCurrentPage === 1
-     ? 'opacity-50 cursor-not-allowed bg-gray-100'
-     : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+    className={`px-3 py-1 rounded-md border border-border text-sm transition ${safeCurrentPage === 1
+     ? 'opacity-50 cursor-not-allowed bg-muted'
+     : 'hover:bg-accent hover:text-accent-foreground'
      }`}
     aria-label="Önceki sayfa"
    >
@@ -64,7 +64,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
      return (
       <span
        key={item}
-       className="px-3 py-1 text-gray-500 dark:text-gray-400 select-none"
+       className="px-3 py-1 text-muted-foreground select-none"
       >
        ...
       </span>
@@ -79,8 +79,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       key={`page-${pageNumber}`}
       onClick={() => onPageChange(pageNumber)}
       className={`px-3 py-1 rounded-md text-sm font-medium border transition ${isActive
-       ? 'bg-gray-800 text-white border-gray-800 dark:bg-gray-200 dark:text-gray-900'
-       : 'bg-white hover:bg-gray-100 border-gray-300 dark:bg-gray-900 dark:hover:bg-gray-800 dark:border-gray-600'
+       ? 'bg-primary text-primary-foreground border-primary'
+       : 'bg-card hover:bg-accent border-border text-card-foreground'
        }`}
       aria-label={`Sayfa ${pageNumber}`}
       aria-current={isActive ? 'page' : undefined}
@@ -93,9 +93,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
    <button
     onClick={() => onPageChange(Math.min(safeTotalPages, safeCurrentPage + 1))}
     disabled={safeCurrentPage === safeTotalPages}
-    className={`px-3 py-1 rounded-md border text-sm transition ${safeCurrentPage === safeTotalPages
-     ? 'opacity-50 cursor-not-allowed bg-gray-100'
-     : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+    className={`px-3 py-1 rounded-md border border-border text-sm transition ${safeCurrentPage === safeTotalPages
+     ? 'opacity-50 cursor-not-allowed bg-muted'
+     : 'hover:bg-accent hover:text-accent-foreground'
      }`}
     aria-label="Sonraki sayfa"
    >

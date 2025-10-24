@@ -3,14 +3,10 @@ import nodemailer from "nodemailer";
 
 export async function POST(request) {
   try {
-    console.log("📩 API endpoint'e istek geldi");
     const body = await request.json();
     const { name, email, subject, message } = body;
 
-    console.log("📩 Form data:", { name, email, subject });
-
     if (!name || !email || !message) {
-      console.log("❌ Eksik alan");
       return NextResponse.json(
         { error: "Lütfen zorunlu alanları doldurun." },
         { status: 400 }
@@ -25,16 +21,7 @@ export async function POST(request) {
       to: process.env.EMAIL_TO,
     };
 
-    console.log("🔧 Email config:", {
-      host: emailConfig.host,
-      port: emailConfig.port,
-      user: emailConfig.user,
-      hasPass: !!emailConfig.pass,
-      to: emailConfig.to,
-    });
-
     if (!emailConfig.host || !emailConfig.user || !emailConfig.pass) {
-      console.error("❌ Email yapılandırması eksik!");
       return NextResponse.json(
         { error: "Email yapılandırması eksik." },
         { status: 500 }
@@ -73,22 +60,16 @@ export async function POST(request) {
 
     for (let i = 0; i < configs.length; i++) {
       try {
-        console.log(
-          `🔌 Konfigürasyon ${i + 1} deneniyor (Port: ${configs[i].port})...`
-        );
         const testTransporter = nodemailer.createTransport(configs[i]);
         await testTransporter.verify();
-        console.log(`✅ Konfigürasyon ${i + 1} başarılı!`);
         transporter = testTransporter;
         break;
       } catch (error) {
-        console.error(`❌ Konfigürasyon ${i + 1} başarısız:`, error.message);
         lastError = error;
       }
     }
 
     if (!transporter) {
-      console.error("❌ Hiçbir SMTP konfigürasyonu çalışmadı:", lastError);
       return NextResponse.json(
         {
           error:
@@ -154,11 +135,7 @@ export async function POST(request) {
       )}`,
     };
 
-    console.log("📧 Email gönderiliyor...");
     const info = await transporter.sendMail(mailOptions);
-
-    console.log("✅ Email başarıyla gönderildi!");
-    console.log("🆔 Message ID:", info.messageId);
 
     return NextResponse.json(
       {
@@ -169,7 +146,6 @@ export async function POST(request) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("❌ Hata:", error);
     return NextResponse.json(
       {
         error: "Mesaj gönderilirken bir hata oluştu.",

@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 const CityCard = ({ image, title, description, afterDescription, table }) => {
  return (
-  <div className="relative flex flex-col bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition transform ">
-   <div className="bg-gray-800 text-white px-4 py-3 text-center">
+  <div className="relative flex flex-col bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition transform border border-border w-full h-full min-h-[400px]">
+   <div className="bg-primary text-primary-foreground px-4 py-3 text-center">
     <h3 className="text-lg font-semibold">{title}</h3>
    </div>
    <div className="relative w-full h-52">
@@ -21,19 +21,19 @@ const CityCard = ({ image, title, description, afterDescription, table }) => {
      />
     ) : null}
 
-    <div className={`w-full h-full bg-gray-300 flex items-center justify-center ${image ? 'hidden' : ''}`}>
-     <span className="text-gray-500 text-sm">Resim yok</span>
+    <div className={`w-full h-full bg-muted flex items-center justify-center ${image ? 'hidden' : ''}`}>
+     <span className="text-muted-foreground text-sm">Resim yok</span>
     </div>
    </div>
 
    {/* İlk açıklama */}
-   <div className="px-4 py-3 text-gray-700 text-sm leading-snug">
+   <div className="px-4 py-3 text-card-foreground text-sm leading-snug">
     <p>{description}</p>
    </div>
 
    {/* İkinci açıklama */}
    {afterDescription && (
-    <div className="p-4 pt-0 text-gray-700 text-sm leading-snug">
+    <div className="p-4 pt-0 text-card-foreground text-sm leading-snug">
      <p>{afterDescription}</p>
     </div>
    )}
@@ -41,13 +41,13 @@ const CityCard = ({ image, title, description, afterDescription, table }) => {
    {/* Tablo  */}
    {table && (
     <div className="overflow-x-auto px-4 pb-5">
-     <table className="min-w-full border border-gray-300" style={{ fontSize: '0.7rem' }}>
-      <thead className="bg-gray-100">
+     <table className="min-w-full border border-border" style={{ fontSize: '0.7rem' }}>
+      <thead className="bg-muted">
        <tr>
         {table.headers.map((header, idx) => (
          <th
           key={idx}
-          className="px-1.5 py-1 text-left text-gray-600 border-b border-gray-300 font-semibold"
+          className="px-1.5 py-1 text-left text-muted-foreground border-b border-border font-semibold"
          >
           {header}
          </th>
@@ -56,11 +56,11 @@ const CityCard = ({ image, title, description, afterDescription, table }) => {
       </thead>
       <tbody>
        {table.rows.map((row, rowIndex) => (
-        <tr key={rowIndex} className="hover:bg-gray-50">
+        <tr key={rowIndex} className="hover:bg-accent">
          {row.map((cell, cellIndex) => (
           <td
            key={cellIndex}
-           className="px-1.5 py-1 border-b border-gray-300"
+           className="px-1.5 py-1 border-b border-border text-card-foreground"
           >
            {cell}
           </td>
