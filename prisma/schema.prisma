@@ -23,12 +23,12 @@ model PracticalInfo {
   updatedAt        DateTime @updatedAt
 }
 
-
 model Shortcut {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   url         String
-  icon        String
+  icon        String?  
+  imageUrl    String?
   description String
   order       Int      @default(0)
   isActive    Boolean  @default(true)
