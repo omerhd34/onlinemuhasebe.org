@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "seed": "node prisma/seed.js",
+    "seed:shortcuts": "node prisma/seed-shortcuts.js",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push"
   },
