@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react";
+
 export default function ContactPage() {
  const [formData, setFormData] = useState({
   name: "",
@@ -15,30 +16,53 @@ export default function ContactPage() {
  });
  const [loading, setLoading] = useState(false);
  const [submitted, setSubmitted] = useState(false);
+
  const handleChange = (e) => {
   setFormData({ ...formData, [e.target.name]: e.target.value });
  };
+
  const handleSubmit = async (e) => {
   e.preventDefault();
+
+  console.log("🚀 Form gönderiliyor...", formData);
   setLoading(true);
+
   try {
-   await fetch("/api/contact", {
+   console.log("📡 API'ye istek atılıyor...");
+
+   const response = await fetch("/api/contact", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+     "Content-Type": "application/json",
+    },
     body: JSON.stringify(formData),
    });
+
+   console.log("📥 Response alındı:", response.status, response.statusText);
+
+   const data = await response.json();
+   console.log("📦 Response data:", data);
+
+   if (!response.ok) {
+    throw new Error(data.error || data.details || "Bir hata oluştu");
+   }
+
    toast.success(
     "Mesaj gönderildi! Şahin Demir en kısa sürede sizinle iletişime geçecek."
    );
+
    setFormData({ name: "", email: "", subject: "", message: "" });
    setSubmitted(true);
    setTimeout(() => setSubmitted(false), 5000);
+
   } catch (error) {
-   toast.error("Mesaj gönderilemedi. Lütfen tekrar deneyin.");
+   console.error("❌ Form gönderme hatası:", error);
+   toast.error(`Mesaj gönderilemedi: ${error.message}`);
   } finally {
    setLoading(false);
   }
  };
+
  return (
   <div className="container mx-auto py-12 px-4 md:px-8">
    <div className="flex flex-col md:flex-row gap-12">
