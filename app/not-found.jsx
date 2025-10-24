@@ -1,15 +1,14 @@
 'use client';
-
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Home, ArrowLeft, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export default function NotFound() {
+export default function NotFoundPage() {
  const router = useRouter();
 
  return (
-  <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center px-4">
+  <div className="min-h-screen from-background to-muted/20 flex items-center justify-center px-4">
    <div className="max-w-2xl w-full text-center space-y-8">
     <div className="relative">
      <h1 className="text-[150px] md:text-[200px] font-bold text-primary/10 select-none">

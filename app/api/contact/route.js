@@ -12,10 +12,9 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST || "smtp.gmail.com",
-      port: process.env.EMAIL_PORT || 587,
+      host: process.env.EMAIL_HOST,
+      port: process.env.EMAIL_PORT,
       secure: false,
       auth: {
         user: process.env.EMAIL_USER,
@@ -23,7 +22,7 @@ export async function POST(request) {
       },
     });
 
-    const emailContent = `
+    const htmlContent = `
       <h2>Yeni İletişim Formu Mesajı</h2>
       <p><strong>Ad Soyad:</strong> ${name}</p>
       <p><strong>E-posta:</strong> ${email}</p>
@@ -31,14 +30,14 @@ export async function POST(request) {
       <p><strong>Mesaj:</strong></p>
       <p>${message}</p>
       <hr>
-      <p>Bu mesaj Şahin Demir Mali Müşavirlik web sitesi iletişim formundan gönderilmiştir.</p>
+      <p>Bu mesaj <b>Şahin Demir Mali Müşavirlik</b> web sitesindeki iletişim formundan gönderilmiştir.</p>
     `;
 
     const mailOptions = {
       from: `"${name}" <${process.env.EMAIL_USER}>`,
-      to: "sahin@onlinemuhasebe.org",
+      to: process.env.EMAIL_TO,
       subject: `İletişim Formu: ${subject || "Yeni Mesaj"}`,
-      html: emailContent,
+      html: htmlContent,
     };
 
     await transporter.sendMail(mailOptions);
