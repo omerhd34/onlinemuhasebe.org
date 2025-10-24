@@ -1,8 +1,12 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Home, ArrowLeft, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function NotFound() {
+ const router = useRouter();
 
  return (
   <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center px-4">
@@ -31,11 +35,14 @@ export default function NotFound() {
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
-     <Button size="lg" asChild variant="outline" className="w-full">
-      <Link href="javascript:history.back()">
-       <ArrowLeft className="mr-2 h-5 w-5" />
-       Geri Dön
-      </Link>
+     <Button
+      size="lg"
+      variant="outline"
+      className="w-full"
+      onClick={() => router.back()}
+     >
+      <ArrowLeft className="mr-2 h-5 w-5" />
+      Geri Dön
      </Button>
      <Button size="lg" asChild className="w-full">
       <Link href="/">
@@ -54,7 +61,7 @@ export default function NotFound() {
        <Link href="/pratik_bilgiler">Pratik Bilgiler</Link>
       </Button>
       <Button variant="ghost" size="sm" asChild>
-       <Link href="/hizmetler">Hizmetler</Link>
+       <Link href="/kisayol">Kısayollar</Link>
       </Button>
       <Button variant="ghost" size="sm" asChild>
        <Link href="/hakkimizda">Hakkımızda</Link>
