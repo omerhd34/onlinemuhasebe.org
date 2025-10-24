@@ -1,7 +1,7 @@
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
-import { ThemeProvider } from "../../components/theme-provider";
-import "../globals.css";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import { ThemeProvider } from "../components/theme-provider";
+import "./globals.css";
 
 export const metadata = {
   title: "Serbest Muhasebeci Mali Müşavir Şahin Demir",
