@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react';
 
 const navLinks = [
  { href: '/', label: 'Anasayfa' },
+ { href: '/pratik_bilgiler', label: 'Pratik Bilgiler' },
  { href: '/hakkimizda', label: 'Hakkımızda' },
  { href: '/hizmetler', label: 'Hizmetler' },
  { href: '/iletisim', label: 'İletişim' },
@@ -58,7 +59,7 @@ export default function Header() {
      ))}
     </nav>
 
-    {/* Sağ kısım (Tema + CTA) */}
+    {/* Sağ kısım */}
     <div className="hidden md:flex items-center gap-4">
      <Switch
       checked={theme === 'dark'}
