@@ -4,11 +4,19 @@ const prisma = new PrismaClient();
 
 const shortcutsData = [
   {
+    title: "E-Defter Girişi",
+    url: "https://edefter.gib.gov.tr/global/login",
+    icon: "BookOpen",
+    description: "Elektronik defter sistemi",
+    order: 1,
+    isActive: true,
+  },
+  {
     title: "Dijital Vergi Dairesi",
     url: "https://dijital.gib.gov.tr/",
     icon: "FileText",
     description: "Online vergi işlemleri",
-    order: 1,
+    order: 4,
     isActive: true,
   },
   {
@@ -25,14 +33,6 @@ const shortcutsData = [
     icon: "Users",
     description: "İstanbul SMMM Odası",
     order: 3,
-    isActive: true,
-  },
-  {
-    title: "E-Defter Girişi",
-    url: "https://edefter.gib.gov.tr/global/login",
-    icon: "BookOpen",
-    description: "Elektronik defter sistemi",
-    order: 4,
     isActive: true,
   },
   {
