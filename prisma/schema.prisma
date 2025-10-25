@@ -35,3 +35,51 @@ model Shortcut {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+
+
+// yeniler : 
+
+model Feature {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  icon        String
+  title       String
+  description String
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  icon        String
+  title       String
+  description String
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Value {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  icon        String
+  title       String
+  description String
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PageContent {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  page        String
+  section     String
+  key         String
+  content     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@unique([page, section, key])
+}
