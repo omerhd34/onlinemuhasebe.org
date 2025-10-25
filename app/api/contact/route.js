@@ -26,19 +26,10 @@ export async function POST(request) {
       pass: process.env.EMAIL_PASS,
       to: process.env.EMAIL_TO,
       host: process.env.EMAIL_HOST,
-      port: process.env.PORT,
+      port: parseInt(process.env.EMAIL_PORT),
     };
 
-    console.log("📧 Email Config Check:", {
-      user: emailConfig.user ? `✅ ${emailConfig.user}` : "❌ Yok",
-      pass: emailConfig.pass
-        ? `✅ ${emailConfig.pass.substring(0, 4)}...`
-        : "❌ Yok",
-      to: emailConfig.to ? `✅ ${emailConfig.to}` : "❌ Yok",
-    });
-
     if (!emailConfig.user || !emailConfig.pass || !emailConfig.to) {
-      console.error("❌ Email yapılandırması eksik!");
       return NextResponse.json(
         {
           error: "Email yapılandırması eksik.",
@@ -52,18 +43,17 @@ export async function POST(request) {
     const transporterConfig = {
       host: emailConfig.host,
       port: emailConfig.port,
-      secure: true,
+      secure: emailConfig.port === 465,
       auth: {
         user: emailConfig.user,
         pass: emailConfig.pass.replace(/\s/g, ""),
       },
       tls: {
         rejectUnauthorized: false,
-        minVersion: "TLSv1.2",
       },
-      connectionTimeout: 10000,
-      greetingTimeout: 10000,
-      socketTimeout: 10000,
+      connectionTimeout: 15000,
+      greetingTimeout: 15000,
+      socketTimeout: 15000,
       debug: process.env.NODE_ENV === "development",
     };
 
@@ -76,6 +66,7 @@ export async function POST(request) {
         {
           error: "Gmail sunucusuna bağlanılamadı.",
           details: verifyError.message,
+          hint: "Uygulama şifrenizi kontrol edin ve 2 adımlı doğrulamanın açık olduğundan emin olun.",
         },
         { status: 500 }
       );
@@ -265,10 +256,7 @@ Cevap vermek için direkt ${email} adresine mail atabilirsiniz.
       { status: 200 }
     );
   } catch (error) {
-    if (error.stack) console.error("Error stack:", error.stack);
-
     let errorDetails = error.message;
-
     if (
       error.message.includes("Invalid login") ||
       error.message.includes("Invalid credentials")
@@ -279,7 +267,9 @@ Cevap vermek için direkt ${email} adresine mail atabilirsiniz.
       errorDetails =
         "Gmail 2 Adımlı Doğrulama açık olmalı ve uygulama şifresi kullanılmalı.";
     } else if (error.message.includes("self-signed certificate")) {
-      errorDetails = "SSL sertifika hatası. Kod güncellendi.";
+      errorDetails = "SSL sertifika hatası.";
+    } else if (error.code === "ECONNECTION" || error.code === "ETIMEDOUT") {
+      errorDetails = "Gmail sunucusuna bağlantı zaman aşımına uğradı.";
     }
 
     return NextResponse.json(
@@ -287,6 +277,7 @@ Cevap vermek için direkt ${email} adresine mail atabilirsiniz.
         error: "Mesaj gönderilirken bir hata oluştu.",
         details: errorDetails,
         errorType: error.name,
+        errorCode: error.code,
       },
       { status: 500 }
     );
