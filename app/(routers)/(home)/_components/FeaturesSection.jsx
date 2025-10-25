@@ -13,7 +13,7 @@ export default function FeaturesSection() {
    <div className="text-center mb-12">
     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Neden Bizi Tercih Etmelisiniz?</h2>
     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-     Müşteri memnuniyeti odaklı yaklaşımımız ve profesyonel hizmetlerimizle fark yaratıyoruz
+     Müşteri memnuniyeti odaklı yaklaşımımız ve profesyonel hizmetlerimizle fark yaratıyoruz.
     </p>
    </div>
    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

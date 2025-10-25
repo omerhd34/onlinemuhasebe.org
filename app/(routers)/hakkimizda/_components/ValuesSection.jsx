@@ -10,6 +10,10 @@ const values = [
 ];
 
 export default function ValuesSection() {
+
+
+
+
  return (
   <section className="container mx-auto px-4 md:px-8 py-16">
    <div className="text-center mb-12">
