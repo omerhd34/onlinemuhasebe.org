@@ -1,13 +1,47 @@
-"use client"
-import { useState } from "react";
+"use client";
+import { useState, useEffect } from "react";
+
 export default function TeamSection() {
+ const [text1, setText1] = useState("");
+ const [text2, setText2] = useState("");
+ const [text3, setText3] = useState("");
+ const [loading, setLoading] = useState(true);
 
- const [text1, setText1] = useState("25 yılı aşkın süredir mali müşavirlik alanında faaliyet gösteren Şahin Demir, sektördeki derin bilgi birikimi ve deneyimiyle, yüzlerce işletmeye profesyonel danışmanlık hizmeti sunmuştur.");
- const [text2, setText2] = useState("Eskişehir Üniversitesi İktisat Fakültesi mezunu olan Şahin Demir, mezuniyetinin ardından önde gelen mali müşavirlik firmalarında çalışarak sektördeki tecrübesini artırmış ve 1998 yılında kendi bürosunu kurmuştur.");
- const [text3, setText3] = useState("Vergi mevzuatı, muhasebe standartları ve finansal raporlama konularında uzmanlaşmış olan Şahin Demir, müşterilerine sadece muhasebe hizmeti sunmakla kalmayıp, aynı zamanda işletmelerinin stratejik planlamasında da aktif rol almaktadır.");
+ useEffect(() => {
+  async function fetchContent() {
+   try {
+    const [text1Res, text2Res, text3Res] = await Promise.all([
+     fetch("/api/pageContent?page=about&section=team&key=text1"),
+     fetch("/api/pageContent?page=about&section=team&key=text2"),
+     fetch("/api/pageContent?page=about&section=team&key=text3"),
+    ]);
 
+    if (!text1Res.ok || !text2Res.ok || !text3Res.ok) {
+     throw new Error("İçerik alınamadı");
+    }
 
+    const text1Data = await text1Res.json();
+    const text2Data = await text2Res.json();
+    const text3Data = await text3Res.json();
+    setText1(text1Data?.content);
+    setText2(text2Data?.content);
+    setText3(text3Data?.content);
+   } catch (error) {
+    console.error("Content yüklenemedi:", error);
+   } finally {
+    setLoading(false);
+   }
+  }
+  fetchContent();
+ }, []);
 
+ if (loading) {
+  return (
+   <section className="container mx-auto px-4 md:px-8 py-16">
+    <div className="text-center text-muted-foreground">Yükleniyor...</div>
+   </section>
+  );
+ }
  return (
   <section className="container mx-auto px-4 md:px-8 py-16">
    <div className="max-w-4xl mx-auto">
@@ -24,7 +58,10 @@ export default function TeamSection() {
       <p className="font-semibold text-foreground">Üyelikler ve Sertifikalar:</p>
       <ul className="list-disc list-inside space-y-2 ml-4">
        <li>İstanbul Serbest Muhasebeci Mali Müşavirler Odası (İSMMO) Üyesi</li>
-       <li>TÜRMOB (Türkiye Serbest Muhasebeci Mali Müşavirler ve Yeminli Mali Müşavirler Odaları Birliği) Kayıtlı Üye</li>
+       <li>
+        TÜRMOB (Türkiye Serbest Muhasebeci Mali Müşavirler ve Yeminli Mali Müşavirler
+        Odaları Birliği) Kayıtlı Üye
+       </li>
        <li>Uluslararası Finansal Raporlama Standartları (UFRS) Sertifikalı</li>
        <li>Kurumsal Yönetim ve Risk Yönetimi Uzmanı</li>
       </ul>

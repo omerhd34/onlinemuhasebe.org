@@ -36,8 +36,6 @@ model Shortcut {
   updatedAt   DateTime @updatedAt
 }
 
-
-
 // yeniler : 
 
 model Feature {
@@ -82,4 +80,15 @@ model PageContent {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   @@unique([page, section, key])
+}
+
+model Timeline {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  year        String   
+  title       String   
+  description String   
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

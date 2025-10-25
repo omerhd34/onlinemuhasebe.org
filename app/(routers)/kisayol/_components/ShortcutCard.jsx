@@ -1,13 +1,14 @@
 "use client";
 import Image from "next/image";
 import * as Icons from "lucide-react";
+import Link from "next/link";
 
 export default function ShortcutCard({ shortcut }) {
  const Icon = Icons[shortcut.icon] || Icons.Link;
  const hasImage = shortcut.imageUrl && shortcut.imageUrl.trim() !== "";
 
  return (
-  <a
+  <Link
    href={shortcut.url}
    target="_blank"
    rel="noopener noreferrer"
@@ -46,6 +47,6 @@ export default function ShortcutCard({ shortcut }) {
     {shortcut.title}
    </h3>
    <p className="text-sm text-muted-foreground">{shortcut.description}</p>
-  </a>
+  </Link>
  );
 }

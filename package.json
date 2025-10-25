@@ -9,6 +9,12 @@
     "lint": "eslint",
     "seed": "node prisma/seed.js",
     "seed:shortcuts": "node prisma/seed-shortcuts.js",
+    "seed:features": "node prisma/seed-features.js",
+    "seed:services": "node prisma/seed-services.js",
+    "seed:values": "node prisma/seed-values.js",
+    "seed:pageContent": "node prisma/seed-pageContent.js",
+    "seed:timeline": "node prisma/seed-timeline.js",
+    "seed:all": "npm run seed && npm run seed:shortcuts && npm run seed:features && npm run seed:services && npm run seed:values && npm run seed:pageContent && npm run seed:timeline",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push"
   },

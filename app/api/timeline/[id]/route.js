@@ -5,23 +5,23 @@ export async function GET(request, { params }) {
   try {
     const { id } = await params;
 
-    const pageContent = await prisma.pageContent.findUnique({
+    const timeline = await prisma.timeline.findUnique({
       where: { id },
     });
 
-    if (!pageContent) {
+    if (!timeline) {
       return NextResponse.json(
-        { error: "Sayfa içeriği bulunamadı" },
+        { error: "Timeline kaydı bulunamadı" },
         { status: 404 }
       );
     }
 
-    return NextResponse.json(pageContent, { status: 200 });
+    return NextResponse.json(timeline, { status: 200 });
   } catch (error) {
-    console.error("Sayfa içeriği alınamadı:", error);
+    console.error("Timeline alınamadı:", error);
     return NextResponse.json(
       {
-        error: "Sayfa içeriği alınamadı",
+        error: "Timeline alınamadı",
         details: error.message,
       },
       { status: 500 }
@@ -34,17 +34,17 @@ export async function PUT(request, { params }) {
     const { id } = await params;
     const body = await request.json();
 
-    const updatedContent = await prisma.pageContent.update({
+    const updatedTimeline = await prisma.timeline.update({
       where: { id },
       data: body,
     });
 
-    return NextResponse.json(updatedContent, { status: 200 });
+    return NextResponse.json(updatedTimeline, { status: 200 });
   } catch (error) {
-    console.error("Sayfa içeriği güncellenemedi:", error);
+    console.error("Timeline güncellenemedi:", error);
     return NextResponse.json(
       {
-        error: "Sayfa içeriği güncellenemedi",
+        error: "Timeline güncellenemedi",
         details: error.message,
       },
       { status: 500 }
@@ -56,19 +56,19 @@ export async function DELETE(request, { params }) {
   try {
     const { id } = await params;
 
-    await prisma.pageContent.delete({
+    await prisma.timeline.delete({
       where: { id },
     });
 
     return NextResponse.json(
-      { message: "Sayfa içeriği başarıyla silindi" },
+      { message: "Timeline başarıyla silindi" },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Sayfa içeriği silinemedi:", error);
+    console.error("Timeline silinemedi:", error);
     return NextResponse.json(
       {
-        error: "Sayfa içeriği silinemedi",
+        error: "Timeline silinemedi",
         details: error.message,
       },
       { status: 500 }
