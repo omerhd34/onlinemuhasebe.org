@@ -13,71 +13,69 @@ export async function POST(request) {
       );
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Geçersiz email adresi." },
+        { status: 400 }
+      );
+    }
+
     const emailConfig = {
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
       to: process.env.EMAIL_TO,
+      host: process.env.EMAIL_HOST,
+      port: process.env.PORT,
     };
 
-    if (!emailConfig.host || !emailConfig.user || !emailConfig.pass) {
+    console.log("📧 Email Config Check:", {
+      user: emailConfig.user ? `✅ ${emailConfig.user}` : "❌ Yok",
+      pass: emailConfig.pass
+        ? `✅ ${emailConfig.pass.substring(0, 4)}...`
+        : "❌ Yok",
+      to: emailConfig.to ? `✅ ${emailConfig.to}` : "❌ Yok",
+    });
+
+    if (!emailConfig.user || !emailConfig.pass || !emailConfig.to) {
+      console.error("❌ Email yapılandırması eksik!");
       return NextResponse.json(
-        { error: "Email yapılandırması eksik." },
+        {
+          error: "Email yapılandırması eksik.",
+          details:
+            "EMAIL_USER, EMAIL_PASS veya EMAIL_TO environment değişkenleri eksik",
+        },
         { status: 500 }
       );
     }
 
-    const configs = [
-      {
-        host: "smtp.yandex.com",
-        port: 465,
-        secure: true,
-        auth: {
-          user: emailConfig.user,
-          pass: emailConfig.pass,
-        },
-        tls: {
-          rejectUnauthorized: false,
-        },
+    const transporterConfig = {
+      host: emailConfig.host,
+      port: emailConfig.port,
+      secure: true,
+      auth: {
+        user: emailConfig.user,
+        pass: emailConfig.pass.replace(/\s/g, ""),
       },
-      {
-        host: "smtp.yandex.com",
-        port: 587,
-        secure: false,
-        auth: {
-          user: emailConfig.user,
-          pass: emailConfig.pass,
-        },
-        tls: {
-          rejectUnauthorized: false,
-        },
+      tls: {
+        rejectUnauthorized: false,
+        minVersion: "TLSv1.2",
       },
-    ];
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 10000,
+      debug: process.env.NODE_ENV === "development",
+    };
 
-    let transporter = null;
-    let lastError = null;
+    const transporter = nodemailer.createTransport(transporterConfig);
 
-    for (let i = 0; i < configs.length; i++) {
-      try {
-        const testTransporter = nodemailer.createTransport(configs[i]);
-        await testTransporter.verify();
-        transporter = testTransporter;
-        break;
-      } catch (error) {
-        lastError = error;
-      }
-    }
-
-    if (!transporter) {
+    try {
+      await transporter.verify();
+    } catch (verifyError) {
       return NextResponse.json(
         {
-          error:
-            "Email sunucusuna bağlanılamadı. Lütfen daha sonra tekrar deneyin.",
-          details:
-            process.env.NODE_ENV === "development"
-              ? lastError?.message
-              : undefined,
+          error: "Gmail sunucusuna bağlanılamadı.",
+          details: verifyError.message,
         },
         { status: 500 }
       );
@@ -88,34 +86,144 @@ export async function POST(request) {
       <html>
       <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background-color: #2563eb; color: white; padding: 20px; text-align: center; border-radius: 5px 5px 0 0; }
-          .content { background-color: #f9fafb; padding: 20px; border: 1px solid #e5e7eb; }
-          .field { margin-bottom: 15px; }
-          .field-label { font-weight: bold; color: #1f2937; }
-          .field-value { margin-top: 5px; padding: 10px; background-color: white; border-left: 3px solid #2563eb; }
-          .footer { margin-top: 20px; padding: 15px; background-color: #f3f4f6; text-align: center; font-size: 12px; color: #6b7280; border-radius: 0 0 5px 5px; }
+          body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6; 
+            color: #333; 
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+          }
+          .container { 
+            max-width: 600px; 
+            margin: 20px auto; 
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+          }
+          .header { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; 
+            padding: 40px 20px; 
+            text-align: center;
+          }
+          .header h2 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+          }
+          .header .emoji {
+            font-size: 48px;
+            margin-bottom: 10px;
+          }
+          .content { 
+            padding: 40px 30px;
+          }
+          .field { 
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+          }
+          .field:last-child {
+            border-bottom: none;
+          }
+          .field-label { 
+            font-weight: 600; 
+            color: #4b5563;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+          }
+          .field-label .icon {
+            margin-right: 6px;
+            font-size: 16px;
+          }
+          .field-value { 
+            padding: 14px;
+            background-color: #f9fafb;
+            border-radius: 8px;
+            color: #1f2937;
+            word-wrap: break-word;
+            border-left: 3px solid #667eea;
+          }
+          .footer { 
+            padding: 30px;
+            background-color: #f9fafb;
+            text-align: center;
+            font-size: 13px;
+            color: #6b7280;
+            border-top: 1px solid #e5e7eb;
+          }
+          .footer p {
+            margin: 8px 0;
+          }
+          .footer strong {
+            color: #4b5563;
+          }
+          .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: #10b981;
+            color: white;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+          }
         </style>
       </head>
       <body>
         <div class="container">
-          <div class="header"><h2>Yeni İletişim Formu Mesajı</h2></div>
+          <div class="header">
+            <div class="emoji">📬</div>
+            <h2>Yeni İletişim Mesajı</h2>
+            <div class="badge">Web Formu</div>
+          </div>
           <div class="content">
-            <div class="field"><div class="field-label">Ad Soyad:</div><div class="field-value">${name}</div></div>
-            <div class="field"><div class="field-label">E-posta:</div><div class="field-value">${email}</div></div>
-            <div class="field"><div class="field-label">Konu:</div><div class="field-value">${
-              subject || "Belirtilmemiş"
-            }</div></div>
-            <div class="field"><div class="field-label">Mesaj:</div><div class="field-value">${message.replace(
-              /\n/g,
-              "<br>"
-            )}</div></div>
+            <div class="field">
+              <div class="field-label">
+                <span class="icon">👤</span> Ad Soyad
+              </div>
+              <div class="field-value">${name}</div>
+            </div>
+            <div class="field">
+              <div class="field-label">
+                <span class="icon">📧</span> E-posta Adresi
+              </div>
+              <div class="field-value"><a href="mailto:${email}" style="color: #667eea; text-decoration: none;">${email}</a></div>
+            </div>
+            <div class="field">
+              <div class="field-label">
+                <span class="icon">📝</span> Konu
+              </div>
+              <div class="field-value">${subject || "Belirtilmemiş"}</div>
+            </div>
+            <div class="field">
+              <div class="field-label">
+                <span class="icon">💬</span> Mesaj İçeriği
+              </div>
+              <div class="field-value">${message.replace(/\n/g, "<br>")}</div>
+            </div>
           </div>
           <div class="footer">
-            <p>Bu mesaj <b>Şahin Demir Mali Müşavirlik</b> web sitesindeki iletişim formundan gönderilmiştir.</p>
-            <p>Gönderilme Tarihi: ${new Date().toLocaleString("tr-TR")}</p>
+            <p><strong>⚡ Şahin Demir Mali Müşavirlik</strong></p>
+            <p>Bu mesaj web sitenizdeki iletişim formundan gönderilmiştir.</p>
+            <p style="margin-top: 15px;">
+              📅 <strong>Gönderim Tarihi:</strong><br>
+              ${new Date().toLocaleString("tr-TR", {
+                timeZone: "Europe/Istanbul",
+                dateStyle: "full",
+                timeStyle: "medium",
+              })}
+            </p>
           </div>
         </div>
       </body>
@@ -123,16 +231,26 @@ export async function POST(request) {
     `;
 
     const mailOptions = {
-      from: `"${name} (Web Formu)" <${emailConfig.user}>`,
+      from: `"${name} - Web Formu" <${emailConfig.user}>`,
       to: emailConfig.to,
       replyTo: email,
-      subject: `İletişim Formu: ${subject || "Yeni Mesaj"}`,
+      subject: `🔔 Yeni Mesaj: ${subject || name}`,
       html: htmlContent,
-      text: `Ad Soyad: ${name}\nE-posta: ${email}\nKonu: ${
-        subject || "Belirtilmemiş"
-      }\n\nMesaj:\n${message}\n\n---\nBu mesaj Şahin Demir Mali Müşavirlik web sitesinden gönderilmiştir.\nTarih: ${new Date().toLocaleString(
-        "tr-TR"
-      )}`,
+      text: `
+ŞAHİN DEMİR MALİ MÜŞAVİRLİK - YENİ İLETİŞİM MESAJI
+
+Ad Soyad: ${name}
+E-posta: ${email}
+Konu: ${subject || "Belirtilmemiş"}
+
+Mesaj:
+${message}
+
+---
+Bu mesaj web sitenizdeki iletişim formundan gönderilmiştir.
+Tarih: ${new Date().toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" })}
+Cevap vermek için direkt ${email} adresine mail atabilirsiniz.
+      `.trim(),
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -140,17 +258,35 @@ export async function POST(request) {
     return NextResponse.json(
       {
         success: true,
-        message: "Mesajınız başarıyla gönderildi.",
+        message:
+          "Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapılacaktır.",
         messageId: info.messageId,
       },
       { status: 200 }
     );
   } catch (error) {
+    if (error.stack) console.error("Error stack:", error.stack);
+
+    let errorDetails = error.message;
+
+    if (
+      error.message.includes("Invalid login") ||
+      error.message.includes("Invalid credentials")
+    ) {
+      errorDetails =
+        "Gmail giriş bilgileri hatalı. Uygulama şifresini kontrol edin.";
+    } else if (error.message.includes("Username and Password not accepted")) {
+      errorDetails =
+        "Gmail 2 Adımlı Doğrulama açık olmalı ve uygulama şifresi kullanılmalı.";
+    } else if (error.message.includes("self-signed certificate")) {
+      errorDetails = "SSL sertifika hatası. Kod güncellendi.";
+    }
+
     return NextResponse.json(
       {
         error: "Mesaj gönderilirken bir hata oluştu.",
-        details:
-          process.env.NODE_ENV === "development" ? error.message : undefined,
+        details: errorDetails,
+        errorType: error.name,
       },
       { status: 500 }
     );
