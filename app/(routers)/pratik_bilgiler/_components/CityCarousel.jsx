@@ -1,116 +1,74 @@
 "use client";
-import { useState, useEffect, useCallback } from 'react';
-import CityCard from './CityCard';
-import Pagination from './Pagination';
+import { useState, useEffect } from "react";
+import CityCard from "./CityCard";
 
 const CityCarousel = () => {
  const [practicalInfos, setPracticalInfos] = useState([]);
  const [loading, setLoading] = useState(true);
- const [currentPage, setCurrentPage] = useState(1);
- const [totalPages, setTotalPages] = useState(1);
- const itemsPerPage = 2;
-
- const fetchPracticalInfos = useCallback(async () => {
-  try {
-   setLoading(true);
-   const response = await fetch(
-    `/api/practical-info?page=${currentPage}&limit=${itemsPerPage}`
-   );
-
-   if (!response.ok) {
-    throw new Error('API isteği başarısız');
-   }
-
-   const data = await response.json();
-
-   if (data && Array.isArray(data.data)) {
-    setPracticalInfos(data.data);
-    const pages = data.pagination?.totalPages || 1;
-    setTotalPages(Math.max(1, Number(pages)));
-   } else {
-    setPracticalInfos([]);
-    setTotalPages(1);
-   }
-  } catch (error) {
-   console.error('Veriler alınamadı:', error);
-   setPracticalInfos([]);
-   setTotalPages(1);
-  } finally {
-   setLoading(false);
-  }
- }, [currentPage]);
 
  useEffect(() => {
+  const fetchPracticalInfos = async () => {
+   try {
+    setLoading(true);
+    const response = await fetch("/api/practical-info");
+    if (!response.ok) throw new Error("API isteği başarısız");
+
+    const data = await response.json();
+    setPracticalInfos(Array.isArray(data.data) ? data.data : []);
+   } catch (error) {
+    console.error("Veriler alınamadı:", error);
+    setPracticalInfos([]);
+   } finally {
+    setLoading(false);
+   }
+  };
+
   fetchPracticalInfos();
- }, [fetchPracticalInfos]);
-
- const handlePageChange = (page) => {
-  const newPage = Number(page);
-  if (newPage >= 1 && newPage <= totalPages) {
-   setCurrentPage(newPage);
-  }
- };
-
- const handlePrev = () => {
-  if (currentPage > 1) setCurrentPage(currentPage - 1);
- };
-
- const handleNext = () => {
-  if (currentPage < totalPages) setCurrentPage(currentPage + 1);
- };
+ }, []);
 
  if (loading) {
   return (
-   <div className="max-w-6xl mx-auto px-4 py-12">
-    <h2 className="text-4xl font-bold text-center mb-4 text-gray-800 dark:text-gray-100">
-     Pratik Bilgiler
+   <div className="max-w-6xl mx-auto px-4 py-16 text-center">
+    <h2 className="text-4xl font-bold mb-4 text-foreground">
+     Mesleki Pratik Bilgiler
     </h2>
-    <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-10">
-     Şehirler ve yaşam hakkında faydalı bilgilere hızlıca ulaşın.
+    <p className="text-muted-foreground mb-10">
+     Bilgiler yükleniyor, lütfen bekleyin...
     </p>
-    <div className="flex justify-center items-center min-h-[400px]">
-     <div className="text-lg text-gray-600 dark:text-gray-400">Yükleniyor...</div>
+    <div className="flex justify-center items-center">
+     <div className="animate-spin rounded-full h-10 w-10 border-4 border-primary border-t-transparent" />
     </div>
    </div>
   );
  }
 
  return (
-  <div className="max-w-6xl mx-auto px-4 py-12">
-   <h2 className="text-4xl font-bold text-center mb-4 text-gray-800 dark:text-gray-100">
-    Pratik Bilgiler
+  <div className="max-w-6xl mx-auto px-4 py-16">
+   <h2 className="text-4xl font-bold text-center mb-4 text-foreground">
+    Mesleki Pratik Bilgiler
    </h2>
-   <p className="text-lg text-center text-gray-600 dark:text-gray-400 mb-10">
-    Şehirler ve yaşam hakkında faydalı bilgilere hızlıca ulaşın.
+   <p className="text-lg text-center text-muted-foreground mb-12">
+    Günlük iş hayatında yardımcı olabilecek mesleki pratik bilgiler
    </p>
 
-   {!practicalInfos || practicalInfos.length === 0 ? (
-    <div className="text-center text-gray-600 dark:text-gray-400 py-12">
+   {!practicalInfos.length ? (
+    <div className="text-center text-muted-foreground py-20">
      Henüz pratik bilgi eklenmemiş.
     </div>
    ) : (
-    <>
-     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {practicalInfos.map((info) => (
-       <CityCard
-        key={info.id}
-        image={info.image}
-        title={info.title}
-        description={info.description}
-        afterDescription={info.afterDescription}
-        table={info.tableData}
-       />
-      ))}
-     </div>
-
-     {totalPages > 1 && (
-      <Pagination
-       currentPage={currentPage}
-       totalPages={totalPages}
-       onPageChange={handlePageChange}
+    <div className="grid gap-8 ">
+     {practicalInfos.map((info) => (
+      <CityCard
+       key={info.id}
+       image={info.image}
+       title={info.title}
+       description={info.description}
+       afterDescription={info.afterDescription}
+       table={info.tableData}
+       link={info.link}
       />
-     )}
-    </>
+     ))}
+    </div>
    )}
   </div>
  );

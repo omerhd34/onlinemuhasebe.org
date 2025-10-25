@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 export default function HeroSection() {
  const [text1, setText1] = useState("");
  const [loading, setLoading] = useState(true);
+ const [error, setError] = useState(null);
 
  useEffect(() => {
   async function fetchContent() {
@@ -14,11 +15,25 @@ export default function HeroSection() {
     const response = await fetch(
      "/api/pageContent?page=home&section=hero&key=subtitle"
     );
-    if (!response.ok) throw new Error("İçerik alınamadı");
+
+    if (!response.ok) {
+     const errorData = await response.text();
+     console.error("HeroSection: API Error:", errorData);
+     throw new Error(`İçerik alınamadı: ${response.status}`);
+    }
+
     const data = await response.json();
-    setText1(data?.content);
+
+    // Veriyi kontrol et ve set et
+    if (data) {
+     const content = data.content || data[0]?.content || "Varsayılan içerik yüklenemedi";
+     setText1(content);
+    } else {
+     setText1("İçerik bulunamadı");
+    }
    } catch (error) {
-    console.error("Content yüklenemedi:", error);
+    setError(error.message);
+    setText1("İçerik yüklenirken bir hata oluştu");
    } finally {
     setLoading(false);
    }
@@ -34,8 +49,19 @@ export default function HeroSection() {
      <span className="text-primary font-extrabold">Mali Müşavirlik</span>
     </h1>
     <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-     {loading ? "Yükleniyor..." : text1}
+     {loading ? (
+      <span className="inline-block animate-pulse">Yükleniyor...</span>
+     ) : error ? (
+      <span className="text-destructive text-sm">Hata: {error}</span>
+     ) : (
+      text1
+     )}
     </p>
+    {!loading && !text1 && (
+     <p className="text-sm text-muted-foreground">
+      Debug: APIden veri alınamadı. Lütfen konsolu kontrol edin.
+     </p>
+    )}
     <div className="flex flex-col sm:flex-row gap-4 justify-center">
      <Button asChild size="lg" className="text-lg h-14">
       <Link href="/iletisim">

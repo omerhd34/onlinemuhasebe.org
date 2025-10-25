@@ -6,23 +6,42 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const page = searchParams.get("page");
     const section = searchParams.get("section");
+    const key = searchParams.get("key");
 
     let where = {};
     if (page) where.page = page;
     if (section) where.section = section;
+    if (key) where.key = key;
 
     const contents = await prisma.pageContent.findMany({
       where,
       orderBy: { createdAt: "desc" },
     });
 
+    // Eğer key parametresi varsa ve sonuç varsa, tek bir obje dön
+    if (key && contents.length > 0) {
+      return NextResponse.json(contents[0], { status: 200 });
+    }
+
+    // Eğer key parametresi varsa ama sonuç yoksa, uyarı ver
+    if (key && contents.length === 0) {
+      console.warn("No content found for:", { page, section, key });
+      return NextResponse.json(
+        {
+          error: "İçerik bulunamadı",
+          query: { page, section, key },
+        },
+        { status: 404 }
+      );
+    }
+
     return NextResponse.json(contents, { status: 200 });
   } catch (error) {
-    console.error("Page contents alınamadı:", error);
     return NextResponse.json(
       {
         error: "Page contents alınamadı",
         details: error.message,
+        stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
       },
       { status: 500 }
     );
@@ -35,9 +54,9 @@ export async function POST(request) {
     const newContent = await prisma.pageContent.create({
       data: body,
     });
+
     return NextResponse.json(newContent, { status: 201 });
   } catch (error) {
-    console.error("Page content eklenemedi:", error);
     return NextResponse.json(
       {
         error: "Page content eklenemedi",
@@ -67,7 +86,9 @@ export async function PUT(request) {
 
     return NextResponse.json(updatedContent, { status: 200 });
   } catch (error) {
-    console.error("Page content güncellenemedi:", error);
+    console.error("=== PageContent PUT Error ===");
+    console.error("Error:", error.message);
+
     return NextResponse.json(
       {
         error: "Page content güncellenemedi",

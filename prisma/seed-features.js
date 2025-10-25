@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 const featuresData = [
   {
-    title: "25+ Yıl Deneyim",
+    title: "30+ Yıl Deneyim",
     description: "Mali müşavirlik alanında uzun yıllara dayanan tecrübe",
     icon: "CheckCircle",
     order: 0,

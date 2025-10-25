@@ -7,13 +7,23 @@ const practicalInfoData = [
   {
     title: "Demirbaş ve Amortisman Sınırı",
     category: "Amortisman",
-    hasTable: false,
+    hasTable: true,
     image: "/images/amortisman.jpg",
     link: null,
     description:
-      "Demirbaş, bir işletmenin faaliyetlerinde kullanılan, fiziksel olarak var olan ve genellikle bir yıldan fazla kullanım ömrü olan varlıklardır. Amortisman, bir varlığın zamanla değer kaybetmesini ifade eder. İşletmeler, demirbaşların maliyetini, varlıkların ekonomik ömrü boyunca yıllık olarak gider olarak kaydederler. Bu, varlığın kullanım süresi boyunca maliyetin yayılmasını sağlar. Amortisman sınırı, belirli bir tutarın altındaki demirbaşların amortismanının doğrudan gider olarak kaydedilebileceği anlamına gelir. Türkiye'de bu sınır, Gelir İdaresi Başkanlığı tarafından her yıl belirlenir. Demirbaş ve amortisman sınırı 2025 yılı için 9900 TL olarak belirlenmiştir.",
+      "Demirbaş, bir işletmenin faaliyetlerinde kullanılan, fiziksel olarak var olan ve genellikle bir yıldan fazla kullanım ömrü olan varlıklardır. Amortisman, bir varlığın zamanla değer kaybetmesini ifade eder. İşletmeler, demirbaşların maliyetini, varlıkların ekonomik ömrü boyunca yıllık olarak gider olarak kaydederler. Bu, varlığın kullanım süresi boyunca maliyetin yayılmasını sağlar. Amortisman sınırı, belirli bir tutarın altındaki demirbaşların amortismanının doğrudan gider olarak kaydedilebileceği anlamına gelir. Türkiye'de bu sınır, Gelir İdaresi Başkanlığı tarafından her yıl belirlenir. Yıllara Göre Demirbaş ve Amortisman Sınırları aşağıdaki tabloda gösterilmiştir.",
     afterDescription: null,
-    tableData: null,
+    tableData: {
+      headers: ["Yıllar", "Tutar(₺)"],
+      rows: [
+        ["2025", "9.900,00"],
+        ["2024", "6.900,00"],
+        ["2023", "4.400,00"],
+        ["2022", "2.000,00"],
+        ["2021", "1.500,00"],
+        ["2020", "1.400,00"],
+      ],
+    },
     year: currentYear,
   },
   {
@@ -27,35 +37,45 @@ const practicalInfoData = [
     tableData: {
       headers: [
         "Vergi Türü",
-        "Normal Belediyelerde",
-        "Büyükşehir Belediyelerinde",
+        "Normal Belediyelerde(%)",
+        "Büyükşehir Belediyelerinde(%)",
       ],
       rows: [
-        ["Mesken Vergisi", "%0,2", "%0,4"],
-        ["İşyeri Vergisi", "%0,4", "%0,8"],
-        ["Arsa Vergisi", "%0,6", "%1,2"],
+        ["Mesken Vergisi", "0,2", "0,4"],
+        ["İşyeri Vergisi", "0,4", "0,8"],
+        ["Arsa Vergisi", "0,6", "1,2"],
       ],
     },
-    image: null,
+    image: "/images/ismmmo.png",
     year: currentYear,
   },
   {
     title: "Vergiden Müstesna Yemek Bedeli",
     category: "Vergiden Müstesna Yemek Bedeli",
-    hasTable: false,
+    hasTable: true,
+    image: "/images/vergi3.jpg",
     description:
-      "2025 yılı için vergiden müstesna yemek bedeli 240 TL olarak Gelir Vergisi 329 Seri Nolu Genel Tebliğinde açıklandı. Vergiden Müstesna Yemek Bedeli, işveren tarafından yemek verilmesi halinde, çalışanlara günlük uygun görülen tutarlar vergiden istisna tutulmuştur. 2025 yılı için 240 TL 'nin üzerinde yemek ödemesi yapılması halinde bu Müstesna tutarını aşan tutar kadar ki kısım vergiye tabi kabul edilmektedir. ",
+      "2025 yılı için vergiden müstesna yemek bedeli 240₺ olarak Gelir Vergisi 329 Seri Nolu Genel Tebliğinde açıklandı. Vergiden Müstesna Yemek Bedeli, işveren tarafından yemek verilmesi halinde, çalışanlara günlük uygun görülen tutarlar vergiden istisna tutulmuştur. 2025 yılı için 240₺'nin üzerinde yemek ödemesi yapılması halinde bu Müstesna tutarını aşan tutar kadar ki kısım vergiye tabi kabul edilmektedir. ",
     afterDescription: null,
     link: null,
-    tableData: null,
-    image: null,
+    tableData: {
+      headers: ["Yıl", "Fiyat(₺)"],
+      rows: [
+        ["2025", "240,00"],
+        ["2024", "170,00"],
+        ["2023", "110,00"],
+        ["2022", "51,00"],
+        ["2021", "34,00"],
+        ["2020", "25,00"],
+      ],
+    },
     year: currentYear,
   },
   {
     title: "Emlak Vergisi Değeri Yıllık Değişim Oranları",
     category: "Emlak Vergileri",
     hasTable: true,
-    image: null,
+    image: "/images/turmob.png",
     link: null,
     description:
       "Emlak vergisi, sanayi, ticaret ve inşaat gibi birçok sektörü dolaylı fakat güçlü biçimde etkileyen önemli bir mali unsurdur. Özellikle Türkiye gibi arsa değerlerinin yüksek, büyükşehir baskısının yoğun olduğu ülkelerde; bu vergi türü hem bireysel yatırım kararlarını hem de sektörel stratejileri doğrudan şekillendirebilmektedir. Türkiye sınırları içerisinde yer alan arsa, arazi, iş yeri ve konutlar, ilgili belediyelerde kayıtlı emlak vergisine esas değerleri üzerinden binde 1 ile binde 6 arasında değişen oranlarda emlak vergisine tabidir.",
@@ -80,10 +100,10 @@ const practicalInfoData = [
     title: "Fatura Kesme ve Düzenleme Sınırı",
     category: "Fatura Kesme ve Düzenleme Sınırı",
     hasTable: false,
-    image: null,
+    image: "/images/turmob.png",
     link: "https://www.turmob.org.tr/sirkuler/detailPdf/4281524b-d8bd-447e-a754-a91b65afee3d/2025-yilinda-fatura-duzenleme-tutari-siniri-9-900-tl-dir-",
     description:
-      "Fatura kesme ve düzenleme sınırı, Gelir Vergisi ve Katma Değer Vergisi (KDV) mevzuatına göre belirlenen ve küçük işletmeler ile serbest meslek sahiplerinin belirli bir ciroya kadar fatura yerine serbest meslek makbuzu veya perakende satış fişi düzenleyebilmesini sağlayan tutardır. 2025 yılı için bu sınır 9900 TL olarak açıklanmıştır.",
+      "Fatura kesme ve düzenleme sınırı, Gelir Vergisi ve Katma Değer Vergisi(KDV) mevzuatına göre belirlenen ve küçük işletmeler ile serbest meslek sahiplerinin belirli bir ciroya kadar fatura yerine serbest meslek makbuzu veya perakende satış fişi düzenleyebilmesini sağlayan tutardır. 2025 yılı için bu sınır 9900₺ olarak açıklanmıştır.",
     afterDescription: null,
     tableData: null,
     year: currentYear,
@@ -108,62 +128,11 @@ const practicalInfoData = [
       "Tevkifata ve İstisnaya Konu Olmayan Menkul ve GMSİ İlişkin Beyan Sınırları",
     hasTable: false,
     link: null,
+    image: "/images/earsiv.jpg",
     description:
-      "Tevkifata ve istisnaya konu olmayan menkul ve gayrimenkul sermaye iratlarına ilişkin beyan sınırı, vergi mevzuatında, tevkifata tabi tutulmamış ve istisna kapsamında olmayan faiz, kira ve benzeri gelirlerin toplamının hangi miktara kadar beyan edilmesine gerek olmadığını belirler. Yani bu sınırın altında gelir elde edenler için gelir vergisi beyannamesi vermek zorunlu değildir. 2025 yılı Türkiye uygulaması: Bu sınır 18.000 TL olarak belirlenmiştir. Eğer gelirleriniz bu tutarı aşarsa, beyanname vermeniz gerekir.",
+      "Tevkifata ve istisnaya konu olmayan menkul ve gayrimenkul sermaye iratlarına ilişkin beyan sınırı, vergi mevzuatında, tevkifata tabi tutulmamış ve istisna kapsamında olmayan faiz, kira ve benzeri gelirlerin toplamının hangi miktara kadar beyan edilmesine gerek olmadığını belirler. Yani bu sınırın altında gelir elde edenler için gelir vergisi beyannamesi vermek zorunlu değildir. 2025 yılı Türkiye uygulaması: Bu sınır 18.000₺ olarak belirlenmiştir. Eğer gelirleriniz bu tutarı aşarsa, beyanname vermeniz gerekir.",
     afterDescription: null,
     tableData: null,
-    year: currentYear,
-    image: null,
-  },
-  {
-    title: "Arizi Kazançlar İstisna Tutarları",
-    category: "Arizi Kazançlar İstisna Tutarları",
-    hasTable: false,
-    link: null,
-    description:
-      "Arizi kazançlar, Gelir Vergisi mevzuatında düzenli olmayan, tek seferlik veya beklenmedik kazançlar anlamına gelir; örneğin hobi olarak yapılan işlerden elde edilen gelir, tesadüfi satış kazançları veya bazı ikramiyeler arizi kazanç sayılır. Arizi kazançlar istisna tutarı ise, bu tür kazançların belirli bir sınırın altında olması durumunda gelir vergisinden muaf tutulmasını ifade eder. Türkiyede 2025 yılı için bu istisna tutarı 280.000 TL olarak belirlenmiştir; yani kazanç bu miktarı aşmıyorsa vergiye tabi değildir.",
-    afterDescription: null,
-    tableData: null,
-    year: currentYear,
-    image: null,
-  },
-  {
-    title: "Reeskont ve Avans İşlemlerinde Uygulanan İskonto ve Faiz Oranları",
-    category:
-      "Reeskont ve Avans İşlemlerinde Uygulanan İskonto ve Faiz Oranları",
-    hasTable: false,
-    link: "https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Temel+Faaliyetler/Para+Politikasi/Reeskont+ve+Avans+Faiz+Oranlari",
-    description:
-      "Reeskont, iskonto edilmiş yani bedel karşılığı el değiştirmiş kıymetlerin, yeniden bedel karşılığında el değiştirmesi işlemidir. Avans ise senet ve diğer teminatlar karşılığında bankalar tarafından firmalara sağlanan kısa vadeli finansman imkânını ifade eder. Türkiye Cumhuriyet Merkez Bankası (TCMB), reeskont ve avans işlemlerinde uygulanacak iskonto ve faiz oranlarını belirlemekte olup, bu oranlar Merkez Bankası'nın para politikası çerçevesinde ekonomik koşullara göre düzenli olarak güncellenmektedir. En son güncelleme 17 Eylül 2025 tarihinde yapılmış olup, güncel oranlar şöyle belirlenmiştir:",
-    afterDescription: "Reeskont Faiz Oranı: %41,25 ve Avans Faiz Oranı: %42,25",
-    tableData: null,
-    year: currentYear,
-    image: null,
-  },
-  {
-    title: "Çıraklar İçin Aylık Asgari Ücret Tutarları",
-    category: "İş Kanunu ve Ücretler",
-    hasTable: true,
-    image: null,
-    link: null,
-    description:
-      "2025 yılı itibarıyla Türkiye'de çıraklar için belirlenen maaşlar, mesleki eğitim merkezlerinde okuyan öğrencilerin sınıf düzeyine göre değişiklik göstermektedir. İşte güncel bilgiler:",
-    afterDescription: null,
-    tableData: {
-      headers: ["Sınıf/Seviye", "Oran", "Tutar"],
-      rows: [
-        [
-          "9, 10 ve 11. Sınıf Çıraklar",
-          "Net asgari ücretin %30'u",
-          "6.631,40 TL",
-        ],
-        [
-          "12. Sınıf Kalfa Öğrencileri",
-          "Net asgari ücretin %50'si",
-          "11.052,33 TL",
-        ],
-      ],
-    },
     year: currentYear,
   },
   {
@@ -176,7 +145,7 @@ const practicalInfoData = [
       "Sigorta Primine Esas Aylık Taban ve Tavan Ücretler, Türkiye'de sosyal güvenlik primlerinin hesaplanmasında kullanılan alt ve üst sınırları ifade eder. Bu sınırlar, 5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu'na göre belirlenir ve her yıl güncellenir.",
     afterDescription: null,
     tableData: {
-      headers: ["Açıklama", "Tutar (TL)"],
+      headers: ["Açıklama", "Tutar(₺)"],
       rows: [
         ["Aylık Taban Ücret", "26.005,50"],
         ["Aylık Tavan Ücret", "195.041,40"],
@@ -198,26 +167,21 @@ const practicalInfoData = [
       headers: [
         "Ödeme Türü",
         "İstisna Oranı",
-        "Aylık İstisna Tutarı (₺)",
+        "Aylık İstisna Tutarı(₺)",
         "Açıklama",
       ],
       rows: [
         [
-          "Yemek Parası (Günlük)",
+          "Yemek Parası(Günlük)",
           "—",
-          "158,00 TL × Fiilen Çalışılan Gün Sayısı",
+          "158,00 ₺ × Fiilen Çalışılan Gün Sayısı",
           "Nakit veya yemek kartı ile yapılan ödemelerde geçerlidir.",
         ],
+        ["Çocuk Zammı(Aylık)", "%2", "520,11 ₺", "Bir çocuk için geçerlidir."],
         [
-          "Çocuk Zammı (Aylık)",
-          "%2",
-          "520,11 TL",
-          "Bir çocuk için geçerlidir.",
-        ],
-        [
-          "Aile Zammı (Aylık)",
+          "Aile Zammı(Aylık)",
           "%10",
-          "2.600,55 TL",
+          "2.600,55 ₺",
           "Sigortalıya yapılan aile yardımıdır.",
         ],
       ],
@@ -234,7 +198,7 @@ const practicalInfoData = [
       "SGK prim oranları, Türkiye'de çalışanların sosyal güvenlik sistemi kapsamında ödenen sigorta primlerinin dağılımını belirleyen yüzdelik değerlerdir. Bu primler, hem işçi hem de işveren tarafından ödenir ve çalışanların emeklilik, sağlık, işsizlik ve diğer sosyal güvenlik haklarını karşılamak amacıyla Sosyal Güvenlik Kurumu'na (SGK) aktarılır.SGK primleri üç ana kategoriye ayrılır: Emeklilik (yaşlılık ve malullük), Sağlık ve İşsizlik. İşçi ve işveren payları ayrı ayrı belirlenmiştir.",
     afterDescription: null,
     tableData: {
-      headers: ["Prim Türü", "İşçi Payı (%)", "İşveren Payı (%)", "Toplam (%)"],
+      headers: ["Prim Türü", "İşçi Payı(%)", "İşveren Payı(%)", "Toplam(%)"],
       rows: [
         ["Malullük, Yaşlılık, Ölüm", "9", "11", "20"],
         ["Genel Sağlık Sigortası", "5", "7,5", "12,5"],
@@ -245,32 +209,20 @@ const practicalInfoData = [
     year: currentYear,
   },
   {
-    title: "4857 Sayılı İş Kanunu'na Göre Uygulanacak Para Cezaları",
-    category: "İş Kanunu ve Cezaları",
-    hasTable: false,
-    link: "https://www.csgb.gov.tr/Media/1ztby3gm/4857-sayili-is-kanunu-2025-yili-idari-para-cezalari.pdf",
-    image: null,
-    description:
-      "4857 sayılı İş Kanunu'na göre işveren ve çalışanlar açısından belirlenen para cezaları, iş sağlığı ve güvenliği, çalışma koşulları ve işçi haklarının korunması amacıyla uygulanır. 2025 itibarıyla bazı temel cezalar şöyle özetlenebilir:",
-    afterDescription: null,
-    tableData: null,
-    year: currentYear,
-  },
-  {
     title: "Vergiden Müstesna Harcırah Tavanı",
     category: "Vergi İstisnaları",
     hasTable: true,
     link: null,
-    image: null,
+    image: "/images/turmob.png",
     description:
       "Vergiden Müstesna Harcırah Tavanı, kamu görevlilerine veya özel sektörde çalışan personele yapılan yolluk (harcırah) ödemelerinin, gelir vergisinden muaf tutulabilecek azami tutarını ifade eder. Yani, bir çalışana seyahat, geçici görev, toplantı vb. nedenlerle ödenen gündelik, konaklama, ulaşım gibi gider karşılıklarının belirli bir kısmı vergiden istisnadır; ancak bu tutar bir tavan ile sınırlıdır.",
     afterDescription: null,
     tableData: {
       headers: ["Ülke", "Gündelik Tutarı"],
       rows: [
-        ["Türkiye", "686 TL"],
-        ["ABD", "182 USD"],
-        ["Fransa", "160 EUR"],
+        ["Türkiye", "686 ₺"],
+        ["ABD", "182 $"],
+        ["Fransa", "160 €"],
         ["İngiltere", "115 GBP"],
       ],
     },
@@ -280,14 +232,14 @@ const practicalInfoData = [
     title: "Kıdem Tazminatı Tavanı",
     category: "İş Kanunu ve Tazminatlar",
     hasTable: true,
-    image: null,
+    image: "/images/sgk2.png",
     link: "https://www.csgb.gov.tr/%C4%B1statistikler/calisma-hayati-%C4%B1statistikleri/kidem-tazminati-tavan-miktari/",
     description:
       "Kıdem tazminatı tavanı, işçinin işten ayrılması veya iş sözleşmesinin sona ermesi durumunda, işverenin ödemekle yükümlü olduğu kıdem tazminatının yasal olarak belirlenmiş maksimum miktarıdır. Yani çalışanın çalıştığı süre ve brüt ücreti ne olursa olsun, ödenecek kıdem tazminatı bu tavanı aşamaz. Tavan, her yıl Çalışma ve Sosyal Güvenlik Bakanlığı tarafından güncellenir ve işçinin bir yıllık kıdemi üzerinden hesaplanan azami tutarı belirler.",
     afterDescription:
-      "Türkiye'de 2025 yılı kıdem tazminatı tavanı iki dönem için belirlenmiştir. 1 Temmuz 2025'ten sonra işten ayrılan bir çalışan için, bir yıl üzerinden ödenecek en yüksek kıdem tazminatı 53.919,68 TL'dir. Bu tutarın üzerindeki kısmı ödenmez, tavan olarak kabul edilir. Türkiye'de kıdem tazminatı çalışanın brüt maaşı üzerinden ve her tam yıl için 30 günlük ücreti üzerinden hesaplanır. Ama tavan tutarı aşılamaz.",
+      "Türkiye'de 2025 yılı kıdem tazminatı tavanı iki dönem için belirlenmiştir. 1 Temmuz 2025'ten sonra işten ayrılan bir çalışan için, bir yıl üzerinden ödenecek en yüksek kıdem tazminatı 53.919,68₺'dir. Bu tutarın üzerindeki kısmı ödenmez, tavan olarak kabul edilir. Türkiye'de kıdem tazminatı çalışanın brüt maaşı üzerinden ve her tam yıl için 30 günlük ücreti üzerinden hesaplanır. Ama tavan tutarı aşılamaz.",
     tableData: {
-      headers: ["Dönem", "Tavan Tutar (TL)"],
+      headers: ["Dönem", "Tavan Tutar(₺))"],
       rows: [
         ["1 Ocak – 30 Haziran 2025", "46.655,43"],
         ["1 Temmuz – 31 Aralık 2025", "53.919,68"],
@@ -299,7 +251,7 @@ const practicalInfoData = [
     title: "Geçici Vergi Oranları",
     category: "Vergi Oranları",
     hasTable: true,
-    image: null,
+    image: "/images/turmob.png",
     link: null,
     description:
       "Geçici vergi, Türkiye'de kurumlar ve bazı gelir vergisi mükellefleri için yıl içinde elde edilen kazanç üzerinden ara dönemlerde ödenen bir vergidir. Amaç, yıl sonu vergi yükünü dengelemek ve devletin nakit akışını sağlamak. Genellikle üçer aylık dönemler için hesaplanır ve yıl sonunda ödenecek gelir veya kurumlar vergisinden mahsup edilir. Türkiye'de 2025 Geçici Vergi Oranları: Gelir Vergisi mükellefleri için: Gelir vergisi oranları geçici vergiye aynen uygulanır.",
@@ -341,10 +293,10 @@ const practicalInfoData = [
     title: "Vergiden Müstesna Çocuk Yardımı",
     category: "Vergi İstisnaları",
     hasTable: false,
-    image: null,
+    image: "/images/turmob.png",
     link: null,
     description:
-      "Vergiden müstesna çocuk yardımı, çalışanlara ödenen çocuk yardımı ödemelerinin belirli bir kısmının gelir vergisine tabi olmaması demektir. Yani işverenin çalışanına ödediği çocuk yardımı, belirlenen sınırların altında ise gelir vergisinden muaf tutulur. Bu sayede çalışanlar bu yardımı tam olarak alabilir, vergi kesintisi yapılmaz. Türkiye'de uygulama genellikle Gelir Vergisi Kanunu'nun ilgili maddelerine göre belirlenir ve her yıl asgari ücret veya devletin belirlediği tutarlara göre güncellenir. 2025 yılı sonuna kadar bu tutar 292,55 TL'dir.",
+      "Vergiden müstesna çocuk yardımı, çalışanlara ödenen çocuk yardımı ödemelerinin belirli bir kısmının gelir vergisine tabi olmaması demektir. Yani işverenin çalışanına ödediği çocuk yardımı, belirlenen sınırların altında ise gelir vergisinden muaf tutulur. Bu sayede çalışanlar bu yardımı tam olarak alabilir, vergi kesintisi yapılmaz. Türkiye'de uygulama genellikle Gelir Vergisi Kanunu'nun ilgili maddelerine göre belirlenir ve her yıl asgari ücret veya devletin belirlediği tutarlara göre güncellenir. 2025 yılı sonuna kadar bu tutar 292,55₺'dir.",
     afterDescription: null,
     tableData: null,
     year: currentYear,
@@ -362,12 +314,12 @@ const practicalInfoData = [
       headers: [
         "Engellilik Derecesi",
         "Çalışma Gücü Kaybı Oranı",
-        "Aylık İndirim Tutarı (TL)",
+        "Aylık İndirim Tutarı(₺)",
       ],
       rows: [
-        ["Birinci Derece", "%80 ve üzeri", "9.900 TL"],
-        ["İkinci Derece", "%60 - %79", "5.700 TL"],
-        ["Üçüncü Derece", "%40 - %59", "2.400 TL"],
+        ["Birinci Derece", "%80 ve üzeri", "9.900"],
+        ["İkinci Derece", "%60 - %79", "5.700"],
+        ["Üçüncü Derece", "%40 - %59", "2.400"],
       ],
     },
     year: currentYear,
@@ -376,7 +328,7 @@ const practicalInfoData = [
     title: "Beyannamelerini İmzalatmak Zorunda Olanlar & Olmayanlar",
     category: "Vergi Beyannameleri",
     hasTable: true,
-    image: null,
+    image: "/images/turmob.png",
     link: "https://www.turmob.org.tr/ekutuphane/Read/2d083560-d369-445a-be56-352f864df702",
     description:
       "Beyannamelerini imzalatmak zorunda olmayanlar, genellikle tek gelir kaynağı olan ve basit gelir elde eden gerçek kişi mükelleflerdir; bu kişiler beyannameyi kendileri imzalayabilir. Beyannamelerini imzalatmak zorunda olanlar ise birden fazla gelir kaynağı olan, gelir veya işletme hacmi belirli sınırları aşan mükellefler ile kurumlar vergisi mükellefleri ve özel denetim kapsamındakilerdir; bu kişiler mali müşavir aracılığıyla imzalatmak zorundadır.",
@@ -391,38 +343,38 @@ const practicalInfoData = [
       rows: [
         [
           "Kurumlar vergisi mükellefleri",
-          "63.786.000 TL'yi aşmayan",
-          "127.540.000 TL'yi aşmayan",
+          "63.786.000₺'yi aşmayan",
+          "127.540.000₺'yi aşmayan",
           "Yıllık gelir ve kurumlar vergisi beyannameleri, muhtasar beyannameler ve KDV beyannameleri",
         ],
         [
           "Ticari, zirai ve mesleki kazanç nedeniyle gerçek usulde vergilendirilen gelir vergisi mükellefleri",
-          "63.786.000 TL'yi aşmayan",
-          "127.540.000 TL'yi aşmayan",
+          "63.786.000₺'yi aşmayan",
+          "127.540.000₺'yi aşmayan",
           "Yıllık gelir ve kurumlar vergisi beyannameleri, muhtasar beyannameler ve KDV beyannameleri",
         ],
         [
           "Serbest meslek faaliyetinde bulunanlar",
-          "1.488.000 TL'yi aşmayan",
+          "1.488.000₺'yi aşmayan",
           "-",
           "Yıllık gelir ve kurumlar vergisi beyannameleri",
         ],
         [
           "II. sınıf tacirlerden alım satım veya imalat faaliyetinde bulunanlar",
           "-",
-          "2.138.000 TL'yi aşmayan",
+          "2.138.000₺'yi aşmayan",
           "Yıllık gelir ve kurumlar vergisi beyannameleri",
         ],
         [
           "II. sınıf tacirlerden yukarıda yazılı olanlar dışındaki işlerle uğraşanlar",
           "-",
-          "1.078.000 TL'yi aşmayan",
+          "1.078.000₺'yi aşmayan",
           "Yıllık gelir ve kurumlar vergisi beyannameleri",
         ],
         [
           "Zirai kazancı işletme hesabı esasına göre tespit edilen çiftçiler",
           "-",
-          "2.138.000 TL'yi aşmayan",
+          "2.138.000₺'yi aşmayan",
           "Yıllık gelir ve kurumlar vergisi beyannameleri",
         ],
         [
@@ -457,16 +409,13 @@ const practicalInfoData = [
       "Ücretlere uygulanacak Gelir Vergisi Tarifesi, Türkiye'de gelir vergisinin oranlarını belirler ve genellikle artan oranlı bir sistemdir. Bu sistemde gelir arttıkça vergi oranı da yükselir. 2025 yılı için ücretlere uygulanacak gelir vergisi tarifesi şu şekildedir:",
     afterDescription: null,
     tableData: {
-      headers: ["Gelir Dilim(TL)", "Vergi Oranı"],
+      headers: ["Gelir Dilim(₺)", "Vergi Oran(%)"],
       rows: [
-        ["158.000 TL'ye kadar", "%15"],
-        ["330.000 TL'nin 158.000 TL'si için 23.700 TL, fazlası", "%20"],
-        ["1.200.000 TL'nin 330.000 TL'si için 58.100 TL, fazlası", "%27"],
-        ["4.300.000 TL'nin 1.200.000 TL'si için 293.000 TL, fazlası", "%35"],
-        [
-          "4.300.000 TL'den fazlasının 4.300.000 TL'si için 1.378.000 TL, fazlası",
-          "%40",
-        ],
+        ["158.000'e kadar", "15"],
+        ["330.000'in 158.000'i için 23.700, fazlası", "20"],
+        ["1.200.000'ün 330.000'i için 58.100, fazlası", "27"],
+        ["4.300.000'ün 1.200.000'ü için 293.000, fazlası", "35"],
+        ["4.300.000'ün fazlasının 4.300.000'ü için 1.378.000, fazlası", "40"],
       ],
     },
     year: currentYear,
@@ -481,13 +430,13 @@ const practicalInfoData = [
       "Ücret dışındaki gelirler için Türkiye'de uygulanan Gelir Vergisi Tarifesi, yıllık gelir üzerinden artan oranlı bir sistemle hesaplanır ve ücret gelirlerinden farklı olarak her gelir türüne uygulanır (serbest meslek, kira, menkul sermaye iradı, ticari kazanç vb.). 2025 yılı için tarifesi şu şekildedir:",
     afterDescription: null,
     tableData: {
-      headers: ["Gelir Dilimi", "Vergi Oranı"],
+      headers: ["Gelir Dilimi(₺)", "Vergi Oranı(%)"],
       rows: [
-        ["İlk 158.000 TL'ye kadar", "%15"],
-        ["158.000 TL'yi aşan, 330.000 TL'ye kadar olan kısım", "%20"],
-        ["330.000 TL'yi aşan, 800.000 TL'ye kadar olan kısım", "%27"],
-        ["800.000 TL'yi aşan, 4.300.000 TL'ye kadar olan kısım", "%35"],
-        ["4.300.000 TL'den fazlası", "%40"],
+        ["İlk 158.000'e kadar", "15"],
+        ["158.000'i aşan, 330.000'e kadar olan kısım", "20"],
+        ["330.000'i aşan, 800.000'e kadar olan kısım", "27"],
+        ["800.000'i aşan, 4.300.000'e kadar olan kısım", "35"],
+        ["4.300.000'den fazlası", "40"],
       ],
     },
     year: currentYear,
@@ -496,10 +445,10 @@ const practicalInfoData = [
     title: "Yeniden Değerleme Oranları",
     category: "Vergi Oranları",
     hasTable: false,
-    image: null,
+    image: "/images/turmob.png",
     link: "https://webdosya.csb.gov.tr/db/yerelyonetimler/icerikler/yillara-gore-yeniden-degerleme-oranlari-20250107084524.pdf",
     description:
-      "Yeniden değerleme oranı, mali değerlerin veya borç-alacakların enflasyon ve fiyat değişiklikleri nedeniyle güncellenmesini sağlayan orandır. Türkiye'de her yıl Gelir İdaresi Başkanlığı (GİB) tarafından Resmî Gazete'de ilan edilir ve vergi, harç, ceza gibi mali kalemlerde uygulanır. 2025 yılı için belirlenen yeniden değerleme oranı %43,93'dür. Bu oran, borç, alacak, vergi ve harçların değerinin %43,93 artırılabileceği anlamına gelir.",
+      "Yeniden değerleme oranı, mali değerlerin veya borç-alacakların enflasyon ve fiyat değişiklikleri nedeniyle güncellenmesini sağlayan orandır. Türkiye'de her yıl Gelir İdaresi Başkanlığı(GİB) tarafından Resmî Gazete'de ilan edilir ve vergi, harç, ceza gibi mali kalemlerde uygulanır. 2025 yılı için belirlenen yeniden değerleme oranı %43,93'dür. Bu oran, borç, alacak, vergi ve harçların değerinin %43,93 artırılabileceği anlamına gelir.",
     afterDescription: null,
     tableData: null,
     year: currentYear,
@@ -508,13 +457,13 @@ const practicalInfoData = [
     title: "Ücretlerde Damga Vergisi Nispetleri",
     category: "Vergi Oranları",
     hasTable: true,
-    image: null,
+    image: "/images/turmob.png",
     link: null,
     description:
       "Ücretlerde damga vergisi nispeti, çalışanlara ödenen ücretler üzerinden kesilecek damga vergisinin oranını ifade eder. Yani, brüt ücretin ne kadarının damga vergisi olarak alınacağını belirleyen katsayıdır.",
     afterDescription: null,
     tableData: {
-      headers: ["Damga Vergisine Tabi Kalem", "Yeni Tutar (TL)"],
+      headers: ["Damga Vergisine Tabi Kalem", "Yeni Tutar(₺)"],
       rows: [
         [
           "a) Yabancı memleketlerden gelen posta gönderilerinin gümrüklenmesi için postanelerce gümrüklere verilen liste beyannamelerde yazılı her gönderi maddesi",
@@ -552,16 +501,16 @@ const practicalInfoData = [
       "Veraset ve İntikal Vergisi, bir kişinin vefatı veya bir malın karşılıksız olarak el değiştirmesi durumunda, mal varlığı üzerinden devlete ödenen bir vergi türüdür. Türkiye'de bu vergi, hem veraset yoluyla intikaller (miras yoluyla geçişler) hem de ivazsız intikaller (bağış, hibe gibi karşılıksız geçişler) için uygulanır. Vergi oranları, miras bırakan ile mirasçı arasındaki yakınlık derecesine ve intikal eden malın değerine göre değişir.",
     afterDescription: null,
     tableData: {
-      headers: ["Tür", "Sıra", "Matrah (TL)", "Vergi Oranı (%)"],
+      headers: ["Tür", "Sıra", "Matrah(₺)", "Vergi Oranı(%)"],
       rows: [
-        ["Veraset Yoluyla İntikaller", "1", "İlk 2.400.000 TL", "10"],
-        ["Veraset Yoluyla İntikaller", "2", "2.400.001 – 5.700.000 TL", "15"],
-        ["Veraset Yoluyla İntikaller", "3", "5.700.001 – 12.000.000 TL", "20"],
-        ["Veraset Yoluyla İntikaller", "4", "12.000.001 TL ve üzeri", "30"],
-        ["İvazsız İntikaller", "1", "İlk 2.400.000 TL", "15"],
-        ["İvazsız İntikaller", "2", "2.400.001 – 5.700.000 TL", "20"],
-        ["İvazsız İntikaller", "3", "5.700.001 – 12.000.000 TL", "25"],
-        ["İvazsız İntikaller", "4", "12.000.001 TL ve üzeri", "30"],
+        ["Veraset Yoluyla İntikaller", "1", "İlk 2.400.000", "10"],
+        ["Veraset Yoluyla İntikaller", "2", "2.400.001 – 5.700.000", "15"],
+        ["Veraset Yoluyla İntikaller", "3", "5.700.001 – 12.000.000", "20"],
+        ["Veraset Yoluyla İntikaller", "4", "12.000.001 ve üzeri", "30"],
+        ["İvazsız İntikaller", "1", "İlk 2.400.000", "15"],
+        ["İvazsız İntikaller", "2", "2.400.001 – 5.700.000", "20"],
+        ["İvazsız İntikaller", "3", "5.700.001 – 12.000.000", "25"],
+        ["İvazsız İntikaller", "4", "12.000.001 ve üzeri", "30"],
       ],
     },
     year: currentYear,
@@ -571,7 +520,7 @@ const practicalInfoData = [
     category: "Vergi Cezaları",
     hasTable: true,
     link: null,
-    image: "/images/ceza.jpg",
+    image: null,
     description:
       "Vergi Usul Kanunu'na göre uygulanacak usulsüzlük cezaları, mükellef gruplarına ve usulsüzlük derecesine göre değişmektedir. 2025 yılı için güncel ceza tutarları aşağıdaki tabloda belirtilmiştir:",
     afterDescription:
@@ -579,8 +528,8 @@ const practicalInfoData = [
     tableData: {
       headers: [
         "Mükellef Grupları",
-        "Birinci Derece Usulsüzlükler (TL)",
-        "İkinci Derece Usulsüzlükler (TL)",
+        "Birinci Derece Usulsüzlükler(₺)",
+        "İkinci Derece Usulsüzlükler(₺)",
       ],
       rows: [
         ["Sermaye Şirketleri", "28.000", "14.000"],
@@ -605,13 +554,13 @@ const practicalInfoData = [
     title: "Gecikme Zammı Oranları",
     category: "Faiz Oranları",
     hasTable: true,
-    image: null,
+    image: "null",
     link: null,
     description:
       "2025 yılı itibarıyla Türkiye'de uygulanan gecikme zammı oranları, belirli dönemlere göre değişiklik göstermektedir. Aşağıda, 2025 yılı için geçerli olan gecikme zammı oranları ve ilgili hesaplama yöntemleri özetlenmiştir:",
     afterDescription: null,
     tableData: {
-      headers: ["Ay", "Aylık Gecikme Zammı Oranı (%)"],
+      headers: ["Ay", "Aylık Gecikme Zammı Oranı(%)"],
       rows: [
         ["Ocak", "3,08"],
         ["Şubat", "3,04"],
@@ -632,7 +581,7 @@ const practicalInfoData = [
     title: "Tecil Faizi Oranları",
     category: "Faiz Oranları",
     hasTable: false,
-    image: null,
+    image: "/images/turmob.png",
     link: null,
     description:
       "Tecil faizi oranı, vergi veya diğer kamu alacaklarının ödemesi vadesinde yapılamadığında, borcun taksitlendirilmesi veya ödemesinin ertelenmesi (tecil) durumunda uygulanan faiz oranıdır. Yani borçlu, ödemeyi ertelediğinde veya taksitlendirdiğinde, borç tutarına bu oran üzerinden faiz eklenir. 21 Mayıs 2024 ve sonrası için tecil faizi oranı %48'dir. ",
@@ -655,23 +604,11 @@ const practicalInfoData = [
     year: currentYear,
   },
   {
-    title: "Yatırım İndirimi Uygulaması",
-    category: "Vergi Teşvikleri",
-    hasTable: false,
-    image: null,
-    link: null,
-    description:
-      "Yatırım İndirimi, 193 sayılı Gelir Vergisi Kanunu'nun Geçici 61. maddesi kapsamında, işletmelerin belirli yatırım harcamalarının gelir veya kurumlar vergisi matrahından indirilmesine olanak tanıyan bir vergi teşvikidir. Bu uygulama, üretim kapasitesinin artırılması, istihdamın desteklenmesi ve ekonomik kalkınmanın teşvik edilmesi amacıyla kullanılır.",
-    afterDescription: `Uygulama Kapsamı: Yatırım Konuları: Makine, teçhizat, bina, tesis, altyapı gibi üretimle doğrudan ilişkili harcamalar. Uygulama Süresi: Yatırımın yapıldığı takvim yılı ve izleyen 5 yıl. İndirim Oranı: Yatırım tutarının %40'ı oranında.`,
-    tableData: null,
-    year: currentYear,
-  },
-  {
     title: "Yıllık Ücretli İzinler",
     category: "İş Kanunu",
     hasTable: true,
     link: null,
-    image: null,
+    image: "/images/sgk2.png",
     description:
       "Yıllık ücretli izin, işçilerin belirli bir süre çalıştıktan sonra ücretli olarak dinlenme hakkını kullanmasıdır. Türkiye'de bu hak, 4857 sayılı İş Kanunu ile düzenlenmiştir ve işçinin kıdemine göre değişir. Amaç, çalışanların iş verimliliğini artırmak ve sağlıklı bir iş yaşam dengesi sağlamaktır. İşçinin aynı işyerinde çalıştığı süreye göre yıllık ücretli izin süreleri aşağıdaki tabloda gösterilmiştir.",
     afterDescription: null,
@@ -693,7 +630,7 @@ const practicalInfoData = [
     category: "İş Kanunu ve Tazminatlar",
     hasTable: true,
     link: "/ihbar_bildirim.pdf",
-    image: null,
+    image: "/images/turmob.png",
     description:
       "Hizmet sözleşmesi sona erdirilirken dikkate alınacak bildirim süreleri ve ihbar tazminatı tutarları, iş hukukunda çalışan ile işveren arasındaki iş sözleşmesinin feshi sürecinde uygulanacak süreleri ve ödenecek tazminatları ifade eder. Yani, iş akdinin sona erdirilmesi durumunda hangi kurallara uyulacağı ve işçinin ne kadar süre önceden bilgilendirilmesi gerektiği ile işverenin veya işçinin ihbar süresine uymaması halinde ödeyeceği tazminat miktarları burada belirlenir.",
     afterDescription: null,
@@ -712,7 +649,7 @@ const practicalInfoData = [
     title: "Yurt İçi Üretici Fiyat Endeksi (Yİ-ÜFE) (2003=100)",
     category: "Enflasyon Endeksleri",
     hasTable: true,
-    image: null,
+    image: "/images/tuik.jpg",
     link: "https://data.tuik.gov.tr/Bulten/Index?p=Yurt-Ici-Uretici-Fiyat-Endeksi-Eylul-2025-53862",
     description:
       "Üretici Fiyat Endeksi, üreticilerin ürettikleri mal ve hizmetlerin yurt içi satış fiyatlarında zaman içinde meydana gelen ortalama değişimi ölçen bir fiyat endeksidir. 2003 yılı, bu endeksin baz yılıdır. 2003 yılında endeks değeri 100 olarak kabul edilmiştir. Sonraki yıllardaki değişimler bu baz yıla göre hesaplanır. ÜFE tarım, madencilik, imalat, elektrik, gaz ve su üretimi gibi üretim sektörlerini kapsar. Üretim sürecinde malın üretici tarafından satış fiyatı esas alınır (KDV, nakliye, bayi kârı vb. hariçtir). Aşağıda Yİ-ÜFE değişim oranları tablosu gösterilmiştir.",
@@ -747,7 +684,7 @@ const practicalInfoData = [
     title: "Yurt Dışı Üretici Fiyat Endeksi (YD-ÜFE) (2003=100)",
     category: "Enflasyon Endeksleri",
     hasTable: true,
-    image: null,
+    image: "/images/tuik.jpg",
     link: "https://data.tuik.gov.tr/Bulten/Index?p=Yurt-Disi-Uretici-Fiyat-Endeksi-Eylul-2025-53858",
     description:
       "Üretici Fiyat Endeksi, üreticilerin ürettikleri mal ve hizmetlerin yurt içi satış fiyatlarında zaman içinde meydana gelen ortalama değişimi ölçen bir fiyat endeksidir. 2003 yılı, bu endeksin baz yılıdır. 2003 yılında endeks değeri 100 olarak kabul edilmiştir. Sonraki yıllardaki değişimler bu baz yıla göre hesaplanır. ÜFE tarım, madencilik, imalat, elektrik, gaz ve su üretimi gibi üretim sektörlerini kapsar. Üretim sürecinde malın üretici tarafından satış fiyatı esas alınır (KDV, nakliye, bayi kârı vb. hariçtir). Aşağıda YD-ÜFE değişim oranları tablosu gösterilmiştir.",
@@ -782,7 +719,7 @@ const practicalInfoData = [
     title: "Toptan Eşya Fiyat Endeksi (1994=100)",
     category: "Enflasyon Endeksleri",
     hasTable: false,
-    image: "/images/tefe.png",
+    image: "/images/tuik.jpg",
     link: null,
     description:
       "Toptan Eşya Fiyat Endeksi (TEFE) (1994=100), Türkiye'de üretici fiyat hareketlerini izlemek amacıyla kullanılan eski bir fiyat endeksidir.1994 yılı bu endeksin baz yılıdır. 1994'te endeks 100 kabul edilmiştir. Toptan Eşya Fiyat Endeksi (TEFE – 1994=100) serisinde, 2025 yılı Ekim ayı değeri 333.596,08 olarak görülmektedir.",
@@ -794,16 +731,16 @@ const practicalInfoData = [
     title: "Üretici Enflasyon Oranları (2003=100)",
     category: "Enflasyon Endeksleri",
     hasTable: true,
-    image: null,
+    image: "/images/tuik.jpg",
     description:
       "Türkiye'de Yurt İçi Üretici Fiyat Endeksi (Yİ-ÜFE), 2003 yılı baz alınarak hesaplanmaktadır. Bu endeks, üretici fiyatlarındaki değişimi ve dolayısıyla üretim maliyetlerindeki artışları gösterir. Aşağıda, 2025 yılına ait bazı aylık Yİ-ÜFE verileri özetlenmiştir:",
     afterDescription: null,
     tableData: {
       headers: [
         "Ay",
-        "Aylık Artış (%)",
-        "Yıllık Artış (%)",
-        "Yıllık Aralık Ayına Göre Artış (%)",
+        "Aylık Artış(%)",
+        "Yıllık Artış(%)",
+        "Yıllık Aralık Ayına Göre Artış(%)",
       ],
       rows: [
         ["Ocak 2025", "-", "-", "-"],
@@ -822,7 +759,7 @@ const practicalInfoData = [
     title: "Tüketici Enflasyon Oranları (2003=100)",
     category: "Enflasyon Endeksleri",
     hasTable: true,
-    image: null,
+    image: "/images/tuik.jpg",
     link: null,
     description:
       "Türkiye'de Tüketici Fiyat Endeksi (TÜFE), 2003 yılı baz alınarak hesaplanmaktadır. Aşağıda, 2025 yılına ait bazı aylık TÜFE verileri özetlenmiştir:",
@@ -830,9 +767,9 @@ const practicalInfoData = [
     tableData: {
       headers: [
         "Ay",
-        "Aylık Artış (%)",
-        "Yıllık Artış (%)",
-        "Yıllık Aralık Ayına Göre Artış (%)",
+        "Aylık Artış(%)",
+        "Yıllık Artış(%)",
+        "Yıllık Aralık Ayına Göre Artış(%)",
       ],
       rows: [
         ["Ocak 2025", "5,03", "42,12", "5,03"],
@@ -852,7 +789,7 @@ const practicalInfoData = [
     title: "KKTC'ye Yapılacak Yolculuklarda Verilecek Gündelikler",
     category: "Harcırahlar",
     hasTable: true,
-    image: "/images/kktc.jpg",
+    image: "/images/kktc.png",
     link: "https://ms.hmb.gov.tr/uploads/2025/01/2025-KKTC-ve-Yurtdisi-Gund.pdf",
     description:
       "Yurt dışı gündelikleriyle ilgili Cumhurbaşkanı Kararı 11 Ocak 2025 tarihli Resmî Gazetede yayımlanarak yürürlüğe girmiştir. Bu Kararla, yurt dışı seyahatler nedeniyle verilen gündeliklerin gelir vergisinden müstesna tutulacak kısmı da belirlenmiş olmaktadır.",
@@ -861,17 +798,13 @@ const practicalInfoData = [
       headers: [
         "Sıra No",
         "Görev Unvanı / Kadro Derecesi",
-        "Günlük Tutarlar (TL)",
+        "Günlük Tutarlar(₺)",
       ],
       rows: [
-        [
-          "1",
-          "Türkiye Büyük Millet Meclisi Başkanı, Cumhurbaşkanı Yardımcıları",
-          "1.766,00",
-        ],
+        ["1", "TBMM Başkanı, Cumhurbaşkanı Yardımcıları", "1.766,00"],
         [
           "2",
-          "Anayasa Mahkemesi Başkanı, Bakanlar, Genelkurmay Başkanı, Milletvekilleri, Kuvvet Komutanları, Jandarma Genel Komutanı, Sahil Güvenlik Komutanı, Cumhurbaşkanlığı Genel Sekreteri, T.B.M.M. Genel Sekreteri, Orgeneraller, Oramiraller, Yargıtay, Danıştay, Uyuşmazlık Mahkemesi ve Sayıştay Başkanları, Yargıtay Cumhuriyet Başsavcısı, Danıştay Başsavcısı, Bakan Yardımcıları, Kamu Başdenetçisi",
+          "Anayasa Mahkemesi Başkanı, Bakanlar, Genelkurmay Başkanı, Milletvekilleri, Kuvvet Komutanları, Jandarma Genel Komutanı, Sahil Güvenlik Komutanı, Cumhurbaşkanlığı Genel Sekreteri, TBMM Genel Sekreteri, Orgeneraller, Oramiraller, Yargıtay, Danıştay, Uyuşmazlık Mahkemesi ve Sayıştay Başkanları, Yargıtay Cumhuriyet Başsavcısı, Danıştay Başsavcısı, Bakan Yardımcıları, Kamu Başdenetçisi",
           "1.470,00",
         ],
         [
@@ -902,13 +835,13 @@ const practicalInfoData = [
     title: "Yurtdışı Gündelikleri",
     category: "Harcırahlar",
     hasTable: true,
-    image: "/images/yurtdisi2.webp",
+    image: "/images/yurtdisi2.jpg",
     link: null,
     description:
       "Türkiye'de kamu görevlilerinin yurtdışına yapacakları görevli seyahatlerde ödenecek gündelikler, 6245 sayılı Harcırah Kanunu ve ilgili Cumhurbaşkanlığı kararlarıyla belirlenir. Yurtdışı gündelikleri, ülkenin risk durumu, yaşam maliyeti ve konaklama giderleri dikkate alınarak kademelendirilir. Aşağıda 2025 yılı için geçerli yurtdışı gündelikleri özetlenmiştir:",
     afterDescription: null,
     tableData: {
-      headers: ["Sıra No", "Ülke / Bölge Grubu", "Gündelik (USD)", "Açıklama"],
+      headers: ["Sıra No", "Ülke / Bölge Grubu", "Gündelik($)", "Açıklama"],
       rows: [
         [
           "1",
@@ -933,7 +866,7 @@ const practicalInfoData = [
       "Türkiye'de yurtdışına çıkış yasağı, borçların ödenmemesi durumunda mahkemeler veya icra daireleri tarafından uygulanabilir. Borç miktarının alt sınırı, İcra ve İflas Kanunu ve ilgili uygulamalara göre belirlenir. 2025 yılı itibarıyla borç miktarı durumu şu şekildedir:",
     afterDescription: null,
     tableData: {
-      headers: ["Tür", "Borç (TL)", "Açıklama"],
+      headers: ["Tür", "Borç(₺)", "Açıklama"],
       rows: [
         [
           "İcra Takibi veya Ödeme Emirleri",
@@ -961,13 +894,13 @@ const practicalInfoData = [
     image: "/images/vergi.jpeg",
     link: null,
     description:
-      "Yıllara göre mükellefin vergi yükü ifadesi genellikle bir mükellefin, kazançlarına veya gelirlerine göre ödediği vergi oranları ve miktarlarının yıllar itibarıyla değişimini ifade eder. Türkiye'de bu, başta Gelir Vergisi, Kurumlar Vergisi ve Katma Değer Vergisi (KDV) üzerinden hesaplanır.Aşağıda 2022–2025 dönemi için gelir vergisi yükü örnek tablo verilmiştir. Bu tablo, yıllık gelir üzerinden ödenen vergi ve efektif vergi oranını göstermektedir: ",
+      "Yıllara göre mükellefin vergi yükü ifadesi genellikle bir mükellefin, kazançlarına veya gelirlerine göre ödediği vergi oranları ve miktarlarının yıllar itibarıyla değişimini ifade eder. Türkiye'de bu, başta Gelir Vergisi, Kurumlar Vergisi ve Katma Değer Vergisi(KDV) üzerinden hesaplanır.Aşağıda 2022–2025 dönemi için gelir vergisi yükü örnek tablo verilmiştir. Bu tablo, yıllık gelir üzerinden ödenen vergi ve efektif vergi oranını göstermektedir: ",
     afterDescription: null,
     tableData: {
       headers: [
         "Yıl",
-        "Gelir Vergisi Tarifesi (%)",
-        "Ortalama Vergi Yükü (%)",
+        "Gelir Vergisi Tarifesi(%)",
+        "Ortalama Vergi Yükü(%)",
         "Açıklama",
       ],
       rows: [
@@ -1000,7 +933,7 @@ const practicalInfoData = [
     hasTable: true,
     image: "/images/vergi2.jpg",
     description:
-      "Türkiye'de vergi uygulamaları, her bir vergi türünü tanımlayan vergi kodları (VKN veya resmi kodlar) ile takip edilir. Bu kodlar, hem mükelleflerin sınıflandırılmasında hem de beyanname ve ödeme işlemlerinde kullanılır. Aşağıda bazı temel vergi türleri ve kodları verilmiştir:",
+      "Vergi kodları, bir ülkenin vergi sistemi içinde mükelleflerin (bireyler veya işletmeler) hangi tür vergilere tabi olduklarını, bu vergilerin nasıl uygulanacağını ve vergi işlemlerinin doğru bir şekilde kaydedilmesini belirlemek için kullanılan standartlaştırılmış kodlardır. Vergi kodları genellikle muhasebe, e-fatura, e-defter, ERP sistemleri ve vergi beyannamelerinde kullanılır. Aşağıda bazı temel vergi türleri ve kodları verilmiştir:",
     afterDescription: null,
     link: "https://intvrg.gib.gov.tr/vergi_turleri_tr.html",
     tableData: {
@@ -1008,7 +941,7 @@ const practicalInfoData = [
       rows: [
         ["0001", "Yıllık Gelir Vergisi"],
         ["0002", "Zırai Kazanç Gelir Vergisi"],
-        ["0003", "Gelir Vergisi S. (MUHTASAR)"],
+        ["0003", "Gelir Vergisi Stopaj(MUHTASAR)"],
         ["0004", "Gelir Götürü Ticari Kazanç"],
         ["...", "..."],
       ],

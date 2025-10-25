@@ -3,7 +3,6 @@ const { PrismaClient } = require("../app/generated/prisma");
 const prisma = new PrismaClient();
 
 const pageContentData = [
-  // Home Page
   {
     page: "home",
     section: "hero",
@@ -32,14 +31,7 @@ const pageContentData = [
     section: "hero",
     key: "description",
     content:
-      "2010 yılından bu yana, Türkiye'nin önde gelen mali müşavirlik firmalarından biri olarak, işletmelerin finansal başarısına katkıda bulunuyoruz. Profesyonel ekibimiz ve yenilikçi yaklaşımımızla, her büyüklükteki işletmeye özel çözümler sunuyoruz.",
-  },
-  {
-    page: "about",
-    section: "vision",
-    key: "description",
-    content:
-      "Türkiye'nin en güvenilir ve tercih edilen mali müşavirlik firması olmak. İnovasyon ve teknolojiye yatırım yaparak, sektörde öncü bir konumda bulunmak ve müşterilerimize en ileri düzeyde hizmet sunmak.",
+      "1995 yılından bu yana, Türkiye'nin önde gelen mali müşavirlik firmalarından biri olarak, işletmelerin finansal başarısına katkıda bulunuyoruz. Profesyonel ekibimiz ve yenilikçi yaklaşımımızla, her büyüklükteki işletmeye özel çözümler sunuyoruz.",
   },
   {
     page: "about",
@@ -60,7 +52,7 @@ const pageContentData = [
     section: "team",
     key: "text2",
     content:
-      "Eskişehir Üniversitesi İktisat Fakültesi mezunu olan Şahin Demir, mezuniyetinin ardından önde gelen mali müşavirlik firmalarında çalışarak sektördeki tecrübesini artırmış ve 1998 yılında kendi bürosunu kurmuştur.",
+      "Eskişehir Üniversitesi İşletme Fakültesi mezunu olan Şahin Demir, mezuniyetinin ardından önde gelen mali müşavirlik firmalarında çalışarak sektördeki tecrübesini artırmış ve 1998 yılında kendi bürosunu kurmuştur.",
   },
   {
     page: "about",

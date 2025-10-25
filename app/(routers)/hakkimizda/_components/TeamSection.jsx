@@ -62,7 +62,6 @@ export default function TeamSection() {
         TÜRMOB (Türkiye Serbest Muhasebeci Mali Müşavirler ve Yeminli Mali Müşavirler
         Odaları Birliği) Kayıtlı Üye
        </li>
-       <li>Uluslararası Finansal Raporlama Standartları (UFRS) Sertifikalı</li>
        <li>Kurumsal Yönetim ve Risk Yönetimi Uzmanı</li>
       </ul>
      </div>

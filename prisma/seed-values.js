@@ -20,10 +20,10 @@ const valuesData = [
     isActive: true,
   },
   {
-    title: "Müşteri Memnuniyeti",
+    title: "Misyonumuz",
     description:
-      "Müşterilerimizin başarısı bizim başarımızdır. Onların hedeflerine ulaşmaları için çalışıyoruz.",
-    icon: "Heart",
+      "İşletmelerin mali süreçlerini en iyi şekilde yöneterek, onların büyümesine ve başarısına katkıda bulunmak. Müşterilerimize güvenilir, kaliteli ve hızlı hizmet sunarak, iş dünyasında vazgeçilmez bir partner olmak.",
+    icon: "Target",
     order: 2,
     isActive: true,
   },

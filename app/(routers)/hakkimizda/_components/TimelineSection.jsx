@@ -40,37 +40,68 @@ export default function TimelineSection() {
      Yolculuğumuz
     </h2>
     <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-     1998 yılından bu yana mali müşavirlik alanında attığımız önemli adımlar
+     1995 yılından bu yana mali müşavirlik alanında attığımız önemli adımlar
     </p>
    </div>
+
    <div className="max-w-5xl mx-auto">
     <div className="relative">
-     <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 transform md:-translate-x-1/2"></div>
+     <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 transform -translate-x-1/2 hidden md:block"></div>
 
      <div className="space-y-12">
-      {timeline.map((item, index) => (
-       <div
-        key={item.id || index}
-        className={`relative flex items-center ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-         } flex-row`}
-       >
-        <div className="shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-sm z-10 md:absolute md:left-1/2 md:transform md:-translate-x-1/2 shadow-lg">
-         {item.year}
-        </div>
+      {timeline.map((item, index) => {
+       const isEven = index % 2 === 0;
 
+       return (
         <div
-         className={`flex-1 ml-6 md:ml-0 ${index % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16 md:text-left"
-          }`}
+         key={item.id || index}
+         className="relative"
         >
-         <div className="bg-card p-6 rounded-xl shadow-lg border border-border hover:shadow-xl hover:border-primary/50 transition-all duration-300">
-          <h3 className="text-xl font-bold mb-2 text-card-foreground">
-           {item.title}
-          </h3>
-          <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+         <div className="md:hidden flex items-start gap-4">
+          <div className="shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-sm shadow-lg">
+           {item.year}
+          </div>
+
+          <div className="flex-1">
+           <div className="bg-card p-6 rounded-xl shadow-lg border border-border hover:shadow-xl hover:border-primary/50 transition-all duration-300">
+            <h3 className="text-xl font-bold mb-2 text-card-foreground">
+             {item.title}
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+             {item.description}
+            </p>
+           </div>
+          </div>
+         </div>
+
+         <div className="hidden md:block">
+          <div className="relative flex items-center justify-center">
+           {/* Yıl badge - her zaman ortada */}
+           <div className="absolute left-1/2 transform -translate-x-1/2 w-20 h-20 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-base shadow-xl z-10 border-4 border-background">
+            {item.year}
+           </div>
+
+           <div
+            className={`w-5/12 ${isEven ? "mr-auto" : "ml-auto"
+             }`}
+           >
+            <div
+             className={`bg-card p-8 rounded-xl shadow-lg border border-border hover:shadow-xl hover:border-primary/50 transition-all duration-300 ${isEven ? "text-right" : "text-left"
+              }`}
+            >
+             <h3 className="text-xl font-bold mb-3 text-card-foreground">
+              {item.title}
+             </h3>
+             <p className="text-muted-foreground leading-relaxed">
+              {item.description}
+             </p>
+            </div>
+           </div>
+          </div>
          </div>
         </div>
-       </div>
-      ))}
+       );
+      })}
      </div>
     </div>
    </div>

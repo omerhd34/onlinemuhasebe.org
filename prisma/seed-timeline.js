@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 const timelineData = [
   {
-    year: "1998",
+    year: "1995",
     title: "Kuruluş",
     description:
       "Şahin Demir Mali Müşavirlik, Şahin Demir tarafından İstanbul'da kuruldu.",

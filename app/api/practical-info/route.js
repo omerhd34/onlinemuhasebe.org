@@ -4,35 +4,15 @@ import prisma from "@/lib/prisma";
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get("page") || "1");
-    const limit = parseInt(searchParams.get("limit") || "10");
     const category = searchParams.get("category");
-
-    const skip = (page - 1) * limit;
     const where = category ? { category } : {};
 
-    const [practicalInfos, total] = await Promise.all([
-      prisma.practicalInfo.findMany({
-        where,
-        skip,
-        take: limit,
-        orderBy: { createdAt: "desc" },
-      }),
-      prisma.practicalInfo.count({ where }),
-    ]);
+    const practicalInfos = await prisma.practicalInfo.findMany({
+      where,
+      orderBy: { createdAt: "desc" },
+    });
 
-    return NextResponse.json(
-      {
-        data: practicalInfos,
-        pagination: {
-          page,
-          limit,
-          total,
-          totalPages: Math.ceil(total / limit),
-        },
-      },
-      { status: 200 }
-    );
+    return NextResponse.json({ data: practicalInfos }, { status: 200 });
   } catch (error) {
     console.error("Pratik bilgiler alınamadı:", error);
     return NextResponse.json(
