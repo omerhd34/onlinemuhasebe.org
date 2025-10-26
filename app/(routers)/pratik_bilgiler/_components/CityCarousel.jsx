@@ -60,6 +60,7 @@ const CityCarousel = () => {
      {practicalInfos.map((info, index) => (
       <CityCard
        key={info.id}
+       id={info.id}
        image={info.image}
        title={info.title}
        description={info.description}

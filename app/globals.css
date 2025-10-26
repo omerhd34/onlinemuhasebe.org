@@ -120,4 +120,19 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Arama sonucu highlight animasyonu */
+  @keyframes highlight-flash {
+    0%,
+    100% {
+      background-color: transparent;
+    }
+    50% {
+      background-color: hsl(var(--primary) / 0.2);
+    }
+  }
+
+  .highlight-flash {
+    animation: highlight-flash 2s ease-in-out;
+  }
 }

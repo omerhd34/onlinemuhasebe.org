@@ -2,9 +2,12 @@
 import Link from 'next/link';
 import { FaLocationArrow } from "react-icons/fa";
 
-const CityCard = ({ title, description, afterDescription, table, link, order }) => {
+const CityCard = ({ title, description, afterDescription, table, link, order, id }) => {
  return (
-  <div className="relative flex flex-col bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-border w-full">
+  <div
+   id={`pratik-bilgi-${id}`}
+   className="relative flex flex-col bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-border w-full scroll-mt-24"
+  >
    <div className="bg-primary text-primary-foreground px-5 py-4 flex justify-between items-center relative">
     <div className="flex items-center gap-4">
      <div className="relative w-14 h-14 bg-linear-to-br from-primary-foreground/20 to-primary-foreground/5 rounded-xl overflow-hidden shadow-lg shrink-0 flex items-center justify-center backdrop-blur-sm border border-primary-foreground/30">
