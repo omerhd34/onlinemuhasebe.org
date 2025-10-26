@@ -42,13 +42,13 @@ const CityCard = ({ image, title, description, afterDescription, table, link }) 
 
    {table && (
     <div className="overflow-x-auto p-5 pt-0">
-     <table className="min-w-full border border-border rounded-md">
+     <table className="min-w-full border-2 rounded-md dark:border-gray-500">
       <thead className="bg-muted/50 text-muted-foreground text-xs uppercase tracking-wider">
        <tr>
         {table.headers.map((header, idx) => (
          <th
           key={idx}
-          className="px-2 py-2 text-left border-b border-border font-medium"
+          className="px-2 py-2 text-left border-b-2 border-border font-medium dark:border-gray-500"
          >
           {header}
          </th>
@@ -61,7 +61,7 @@ const CityCard = ({ image, title, description, afterDescription, table, link }) 
          {row.map((cell, cellIndex) => (
           <td
            key={cellIndex}
-           className="px-2 py-1 border-b border-border text-card-foreground"
+           className="px-2 py-1 border-b-2 border-border text-card-foreground dark:border-gray-500"
           >
            {cell}
           </td>

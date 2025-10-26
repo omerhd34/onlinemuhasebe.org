@@ -931,7 +931,7 @@ const practicalInfoData = [
     title: "Vergi Kodları",
     category: "Vergi Kodları",
     hasTable: true,
-    image: "/images/vergi2.jpg",
+    image: "/images/earsiv.jpg",
     description:
       "Vergi kodları, bir ülkenin vergi sistemi içinde mükelleflerin (bireyler veya işletmeler) hangi tür vergilere tabi olduklarını, bu vergilerin nasıl uygulanacağını ve vergi işlemlerinin doğru bir şekilde kaydedilmesini belirlemek için kullanılan standartlaştırılmış kodlardır. Vergi kodları genellikle muhasebe, e-fatura, e-defter, ERP sistemleri ve vergi beyannamelerinde kullanılır. Aşağıda bazı temel vergi türleri ve kodları verilmiştir:",
     afterDescription: null,
