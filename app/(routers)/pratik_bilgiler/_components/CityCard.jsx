@@ -1,77 +1,79 @@
 'use client';
-import Image from 'next/image';
 import Link from 'next/link';
 import { FaLocationArrow } from "react-icons/fa";
 
 const CityCard = ({ image, title, description, afterDescription, table, link }) => {
  return (
-  <div className="relative flex flex-col bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-border w-full h-full">
-   <div className="bg-primary text-primary-foreground px-5 py-3 flex justify-center items-center">
-    <h3 className="text-lg font-semibold tracking-wide text-center">{title}</h3>
+  <div className="relative flex flex-col bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-border w-full">
+   <div className="bg-primary text-primary-foreground px-5 py-4 flex justify-between items-center relative">
+    <div className="flex items-center gap-4">
+     <div className="relative w-12 h-12 bg-linear-to-br from-muted to-muted/50 rounded-lg overflow-hidden shadow-md border-2 border-primary-foreground/20 shrink-0">
+      1
+     </div>
+     <h3 className="text-xl font-semibold tracking-wide">{title}</h3>
+    </div>
     {link && (
-     <Link href={link} target="_blank" className="ml-2 absolute right-5">
-      <FaLocationArrow className="w-5 h-5 text-primary-foreground hover:text-primary transition-colors" />
+     <Link href={link} target="_blank" className="hover:scale-110 transition-transform">
+      <FaLocationArrow className="w-5 h-5 text-primary-foreground hover:text-white transition-colors" />
      </Link>
     )}
    </div>
 
-   <div className={`relative w-full ${image ? 'bg-muted h-40' : 'h-0'}`}>
-    {image && (
-     <Image
-      src={image}
-      alt={title}
-      fill
-      className="object-cover transition-transform duration-500"
-      onError={(e) => {
-       e.currentTarget.style.display = 'none';
-      }}
-     />
+   <div className="p-6">
+    <div className="text-card-foreground text-base leading-relaxed space-y-3">
+     <p className="text-justify">{description}</p>
+
+     {afterDescription && (
+      <div className="mt-4 p-4 bg-primary/5 border-l-4 border-primary rounded-r-lg">
+       <p className="font-semibold text-primary">{afterDescription}</p>
+      </div>
+     )}
+    </div>
+
+    {table && (
+     <div className="mt-6">
+      <div className="mb-3 flex items-center gap-2">
+       <div className="h-1 w-12 bg-primary rounded-full"></div>
+       <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+        Tablo
+       </span>
+      </div>
+      <div className="overflow-x-auto rounded-lg border-2 border-border">
+       <table className="min-w-full">
+        <thead className="bg-primary/10">
+         <tr>
+          {table.headers.map((header, idx) => (
+           <th
+            key={idx}
+            className="px-4 py-3 text-left text-xs font-bold text-primary uppercase tracking-wider border-b-2 border-border"
+           >
+            {header}
+           </th>
+          ))}
+         </tr>
+        </thead>
+        <tbody className="bg-card divide-y divide-border">
+         {table.rows.map((row, rowIndex) => (
+          <tr
+           key={rowIndex}
+           className="hover:bg-muted/30 transition-colors"
+          >
+           {row.map((cell, cellIndex) => (
+            <td
+             key={cellIndex}
+             className="px-4 py-3 text-sm text-card-foreground whitespace-normal"
+            >
+             {cell}
+            </td>
+           ))}
+          </tr>
+         ))}
+        </tbody>
+       </table>
+      </div>
+     </div>
     )}
    </div>
-
-
-   <div className="px-5 py-2 text-card-foreground text-sm leading-relaxed">
-    <p>{description}</p>
-   </div>
-
-   {afterDescription && (
-    <div className="px-5 pb-2 font-bold text-card-foreground text-sm text-center leading-relaxed">
-     <p>{afterDescription}</p>
-    </div>
-   )}
-
-   {table && (
-    <div className="overflow-x-auto p-5 pt-0">
-     <table className="min-w-full border-2 rounded-md dark:border-gray-500">
-      <thead className="bg-muted/50 text-muted-foreground text-xs uppercase tracking-wider">
-       <tr>
-        {table.headers.map((header, idx) => (
-         <th
-          key={idx}
-          className="px-2 py-2 text-left border-b-2 border-r-2 border-border font-medium dark:border-gray-500 last:border-r-0"
-         >
-          {header}
-         </th>
-        ))}
-       </tr>
-      </thead>
-      <tbody className="text-sm">
-       {table.rows.map((row, rowIndex) => (
-        <tr key={rowIndex} className="hover:bg-accent/50 transition-colors">
-         {row.map((cell, cellIndex) => (
-          <td
-           key={cellIndex}
-           className="px-2 py-1 border-b-2 border-r-2 border-border text-card-foreground dark:border-gray-500 last:border-r-0"
-          >
-           {cell}
-          </td>
-         ))}
-        </tr>
-       ))}
-      </tbody>
-     </table>
-    </div>
-   )}
   </div>
  );
 };

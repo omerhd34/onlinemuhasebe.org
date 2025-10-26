@@ -16,7 +16,6 @@ model PracticalInfo {
   description      String
   afterDescription String?
   tableData        Json?
-  image            String?
   year             Int      
   link             String?
   createdAt        DateTime @default(now())
@@ -35,8 +34,6 @@ model Shortcut {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
-
-// yeniler : 
 
 model Feature {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
