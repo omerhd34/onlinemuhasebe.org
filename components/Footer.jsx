@@ -9,7 +9,7 @@ export default function Footer() {
  return (
   <footer className="w-full border-t border-border bg-card mt-16">
    <div className="container mx-auto py-10 px-4 md:px-8">
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-30 max-w-7xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-x-30 gap-y-10 max-w-7xl mx-auto">
      <div className="text-left">
       <h3 className="font-semibold mb-3 text-lg text-card-foreground">Serbest Muhasebeci Mali Müşavir</h3>
       <p className="text-sm text-muted-foreground">

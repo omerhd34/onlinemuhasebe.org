@@ -5,13 +5,13 @@ import TimelineSection from "./_components/TimelineSection";
 import ValuesSection from "./_components/ValuesSection";
 
 export default function AboutPage() {
-  return (
-    <div className="min-h-screen bg-background">
-      <HeroSection />
-      <ValuesSection />
-      <TimelineSection />
-      <TeamSection />
-      <CTASection />
-    </div>
-  );
+ return (
+  <div className="min-h-screen bg-background">
+   <HeroSection />
+   <ValuesSection />
+   <TimelineSection />
+   <TeamSection />
+   <CTASection />
+  </div>
+ );
 }

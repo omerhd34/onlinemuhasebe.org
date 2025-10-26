@@ -8,7 +8,6 @@ const practicalInfoData = [
     title: "Demirbaş ve Amortisman Sınırı",
     category: "Amortisman",
     hasTable: true,
-
     link: null,
     description:
       "Demirbaş, bir işletmenin faaliyetlerinde kullanılan, fiziksel olarak var olan ve genellikle bir yıldan fazla kullanım ömrü olan varlıklardır. Amortisman, bir varlığın zamanla değer kaybetmesini ifade eder. İşletmeler, demirbaşların maliyetini, varlıkların ekonomik ömrü boyunca yıllık olarak gider olarak kaydederler. Bu, varlığın kullanım süresi boyunca maliyetin yayılmasını sağlar. Amortisman sınırı, belirli bir tutarın altındaki demirbaşların amortismanının doğrudan gider olarak kaydedilebileceği anlamına gelir. Türkiye'de bu sınır, Gelir İdaresi Başkanlığı tarafından her yıl belirlenir. Yıllara Göre Demirbaş ve Amortisman Sınırları aşağıdaki tabloda gösterilmiştir.",

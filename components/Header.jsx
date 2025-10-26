@@ -1,13 +1,29 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
-
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Home, Info, Lightbulb, Link as LinkIcon, Mail, Sun, Moon, Search } from 'lucide-react';
+import {
+ Sheet,
+ SheetContent,
+ SheetTrigger,
+ SheetHeader,
+ SheetTitle,
+} from '@/components/ui/sheet';
+import {
+ Menu,
+ Home,
+ Info,
+ Lightbulb,
+ Link as LinkIcon,
+ Mail,
+ Sun,
+ Moon,
+ Search,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SearchModal from './SearchModal';
 
 const navLinks = [
@@ -18,51 +34,58 @@ const navLinks = [
  { href: '/iletisim', label: 'İletişim', icon: Mail },
 ];
 
-const ThemeToggle = () => {
+const Logo = () => (
+ <div className="flex items-center space-x-2 text-xl sm:text-2xl font-bold tracking-tight text-primary transition-all duration-300">
+  <span>Şahin DEMİR</span>
+ </div>
+);
+
+const ThemeToggle = ({ className }) => {
  const { theme, setTheme } = useTheme();
- return (
-  <button
-   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-   className="relative w-14 h-8 bg-gray-200 dark:bg-gray-700 rounded-full p-1 flex items-center transition-colors"
-  >
-   <span
-    className={cn(
-     'absolute w-6 h-6 bg-white rounded-full shadow-md transform transition-transform flex items-center justify-center',
-     theme === 'dark' ? 'translate-x-6' : 'translate-x-0'
-    )}
-   >
-    {theme === 'dark' ? <Moon className="w-4 h-4 text-gray-800" /> : <Sun className="w-4 h-4 text-yellow-400" />}
-   </span>
-  </button>
- );
-};
-
-export default function Header() {
- const pathname = usePathname();
- const [mounted] = useState(true);
- const [searchOpen, setSearchOpen] = useState(false);
-
+ const [mounted, setMounted] = useState(false);
+ useEffect(() => setMounted(true), []);
  if (!mounted) return null;
 
  return (
+  <Button
+   variant="ghost"
+   size="icon"
+   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+   className={cn('hover:bg-primary/10 transition-colors', className)}
+   aria-label="Tema Değiştir"
+  >
+   {theme === 'dark' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+  </Button>
+ );
+};
+
+const getCurrentYear = () => new Date().getFullYear();
+
+export default function Header() {
+ const pathname = usePathname();
+ const [searchOpen, setSearchOpen] = useState(false);
+ const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+ return (
   <>
-   <header className="w-full border-b border-border bg-card/95 backdrop-blur-md sticky top-0 z-50">
-    <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
+   <header className="w-full border-b border-border bg-background/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+    <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-14 sm:h-16">
      {/* Logo */}
-     <Link href="/" className="text-xl font-semibold">
-      <span className="text-primary">Şahin Demir </span>
-      <span className="text-foreground">Mali Müşavir</span>
+     <Link href="/" className="shrink-0">
+      <Logo />
      </Link>
 
      {/* Masaüstü Menü */}
-     <nav className="hidden md:flex items-center space-x-8">
+     <nav className="hidden lg:flex items-center space-x-1">
       {navLinks.map((link) => (
        <Link
         key={link.href}
         href={link.href}
         className={cn(
-         'text-base font-medium transition-colors hover:text-primary flex items-center gap-1',
-         pathname === link.href ? 'text-primary' : 'text-muted-foreground'
+         'text-sm font-medium transition-all duration-200 hover:text-primary px-3 py-2 rounded-md flex items-center gap-2',
+         pathname === link.href
+          ? 'text-primary bg-primary/10'
+          : 'text-muted-foreground hover:bg-muted/50'
         )}
        >
         <link.icon className="w-4 h-4" />
@@ -71,65 +94,98 @@ export default function Header() {
       ))}
      </nav>
 
-     {/* Sağ kısım */}
-     <div className="hidden md:flex items-center gap-3">
+     {/* Sağ ikonlar */}
+     <div className="flex items-center gap-1 sm:gap-2">
       <Button
        variant="ghost"
        size="icon"
        onClick={() => setSearchOpen(true)}
-       className="hover:bg-primary/10"
+       className="hover:bg-primary/10 transition-colors"
+       aria-label="Arama"
       >
        <Search className="h-5 w-5" />
       </Button>
+
       <ThemeToggle />
-      <Button asChild>
+
+      <Button asChild className="hidden md:inline-flex ml-1">
        <Link href="/iletisim">Danışma Al</Link>
       </Button>
-     </div>
 
-     {/* Mobil Menü */}
-     <div className="md:hidden flex items-center gap-2">
-      <Button
-       variant="ghost"
-       size="icon"
-       onClick={() => setSearchOpen(true)}
-       className="hover:bg-primary/10"
-      >
-       <Search className="h-5 w-5" />
-      </Button>
-      <ThemeToggle />
-      <Sheet>
-       <SheetTrigger asChild>
-        <Button variant="outline" size="icon">
+      {/* Hamburger */}
+      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+       <SheetTrigger asChild className="lg:hidden">
+        <Button variant="outline" size="icon" aria-label="Menü Aç">
          <Menu className="h-5 w-5" />
         </Button>
        </SheetTrigger>
-       <SheetContent side="right" className="p-6 bg-card text-card-foreground">
-        <nav className="flex flex-col gap-4 mt-6">
-         {navLinks.map((link) => (
-          <Link
-           key={link.href}
-           href={link.href}
-           className={cn(
-            'text-lg font-medium transition-colors hover:text-primary flex items-center gap-2',
-            pathname === link.href ? 'text-primary' : 'text-muted-foreground'
-           )}
+
+       <SheetContent
+        side="right"
+        className="p-6 bg-background text-foreground w-[85vw] max-w-sm sm:w-[350px] flex flex-col justify-between"
+       >
+        <div>
+         <SheetHeader className="mb-6">
+          <SheetTitle className="sr-only">Menü</SheetTitle>
+          <div className="flex justify-start items-center">
+           <Logo />
+          </div>
+         </SheetHeader>
+
+         <nav className="flex flex-col gap-1">
+          {navLinks.map((link) => (
+           <Link
+            key={link.href}
+            href={link.href}
+            onClick={() => setIsSheetOpen(false)}
+            className={cn(
+             'text-base font-medium transition-all duration-200 flex items-center gap-3 p-3 rounded-md hover:pl-4',
+             pathname === link.href
+              ? 'text-primary bg-primary/10'
+              : 'text-foreground hover:bg-muted/50'
+            )}
+           >
+            <link.icon className="w-5 h-5" />
+            {link.label}
+           </Link>
+          ))}
+         </nav>
+
+         {/* Arama & Tema butonları */}
+         <div className="flex justify-center gap-3 mt-6">
+          <Button
+           variant="outline"
+           size="icon"
+           onClick={() => {
+            setSearchOpen(true);
+            setIsSheetOpen(false);
+           }}
+           aria-label="Arama"
           >
-           <link.icon className="w-5 h-5" />
-           {link.label}
-          </Link>
-         ))}
-         <Button asChild className="mt-4 w-full">
+           <Search className="h-5 w-5" />
+          </Button>
+
+          <ThemeToggle />
+         </div>
+
+         <Button
+          asChild
+          className="mt-6 w-full"
+          onClick={() => setIsSheetOpen(false)}
+         >
           <Link href="/iletisim">Danışma Al</Link>
          </Button>
-        </nav>
+        </div>
+
+        <div className="mt-8 border-t pt-4 text-center text-sm text-muted-foreground">
+         © {getCurrentYear()}
+        </div>
        </SheetContent>
       </Sheet>
      </div>
     </div>
    </header>
 
-   {/* Arama Modal */}
    <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
   </>
  );
