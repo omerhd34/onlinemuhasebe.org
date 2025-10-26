@@ -57,7 +57,7 @@ const CityCarousel = () => {
     </div>
    ) : (
     <div className="grid gap-8 ">
-     {practicalInfos.map((info) => (
+     {practicalInfos.map((info, index) => (
       <CityCard
        key={info.id}
        image={info.image}
@@ -66,6 +66,7 @@ const CityCarousel = () => {
        afterDescription={info.afterDescription}
        table={info.tableData}
        link={info.link}
+       order={index + 1}
       />
      ))}
     </div>

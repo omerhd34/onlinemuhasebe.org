@@ -2,13 +2,14 @@
 import Link from 'next/link';
 import { FaLocationArrow } from "react-icons/fa";
 
-const CityCard = ({ image, title, description, afterDescription, table, link }) => {
+const CityCard = ({ title, description, afterDescription, table, link, order }) => {
  return (
   <div className="relative flex flex-col bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-border w-full">
    <div className="bg-primary text-primary-foreground px-5 py-4 flex justify-between items-center relative">
     <div className="flex items-center gap-4">
-     <div className="relative w-12 h-12 bg-linear-to-br from-muted to-muted/50 rounded-lg overflow-hidden shadow-md border-2 border-primary-foreground/20 shrink-0">
-      1
+     <div className="relative w-14 h-14 bg-linear-to-br from-primary-foreground/20 to-primary-foreground/5 rounded-xl overflow-hidden shadow-lg shrink-0 flex items-center justify-center backdrop-blur-sm border border-primary-foreground/30">
+      <div className="absolute inset-0 bg-linear-to-br from-white/10 to-transparent"></div>
+      <span className="relative text-2xl font-extrabold text-primary-foreground drop-shadow-lg">{order}</span>
      </div>
      <h3 className="text-xl font-semibold tracking-wide">{title}</h3>
     </div>
