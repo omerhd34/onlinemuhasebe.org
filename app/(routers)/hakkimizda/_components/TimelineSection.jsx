@@ -55,7 +55,8 @@ export default function TimelineSection() {
        return (
         <div
          key={item.id || index}
-         className="relative"
+         id={`timeline-${item.id}`}
+         className="relative scroll-mt-24"
         >
          <div className="md:hidden flex items-start gap-4">
           <div className="shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-sm shadow-lg">

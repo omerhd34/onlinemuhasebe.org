@@ -13,9 +13,13 @@ export async function GET(request) {
       );
     }
 
-    const searchTerm = query.trim().toLowerCase();
+    const searchTerm = query.trim().toLocaleLowerCase("tr");
 
-    // Tüm verileri al ve client-side filtrele
+    const matchesSearch = (text) => {
+      if (!text) return false;
+      return text.toLocaleLowerCase("tr").includes(searchTerm);
+    };
+
     const [
       practicalInfos,
       services,
@@ -34,13 +38,6 @@ export async function GET(request) {
       prisma.timeline.findMany({ where: { isActive: true } }),
     ]);
 
-    // Client-side filtering fonksiyonu
-    const matchesSearch = (text) => {
-      if (!text) return false;
-      return text.toLowerCase().includes(searchTerm);
-    };
-
-    // Filtreleme
     const filteredPracticalInfos = practicalInfos.filter(
       (item) =>
         matchesSearch(item.title) ||
@@ -72,7 +69,6 @@ export async function GET(request) {
       (item) => matchesSearch(item.title) || matchesSearch(item.description)
     );
 
-    // Sonuçları formatla
     const results = [
       ...filteredPracticalInfos.map((item) => ({
         id: item.id,
@@ -112,7 +108,7 @@ export async function GET(request) {
         description: item.description,
         type: "Kısayol",
         url: "/kisayol",
-        section: `kisayol-${item.id}`, // 👈 Section ID eklendi
+        section: `kisayol-${item.id}`,
       })),
       ...filteredTimeline.map((item) => ({
         id: item.id,
@@ -120,7 +116,7 @@ export async function GET(request) {
         description: item.description,
         type: "Tarihçe",
         url: "/hakkimizda",
-        section: "timeline",
+        section: `timeline-${item.id}`,
       })),
       ...filteredPageContents.map((item) => ({
         id: item.id,

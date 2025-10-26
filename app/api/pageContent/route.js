@@ -18,12 +18,10 @@ export async function GET(request) {
       orderBy: { createdAt: "desc" },
     });
 
-    // Eğer key parametresi varsa ve sonuç varsa, tek bir obje dön
     if (key && contents.length > 0) {
       return NextResponse.json(contents[0], { status: 200 });
     }
 
-    // Eğer key parametresi varsa ama sonuç yoksa, uyarı ver
     if (key && contents.length === 0) {
       console.warn("No content found for:", { page, section, key });
       return NextResponse.json(

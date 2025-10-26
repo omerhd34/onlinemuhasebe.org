@@ -53,11 +53,17 @@ export default function SearchModal({ isOpen, onClose }) {
   return () => clearTimeout(debounceTimer);
  }, [query, handleSearch]);
 
- const handleResultClick = (result) => {
-  // Modal'ı kapat
+ // handleClose'u useCallback ile sabitle: onClose prop'u değişirse güncellensin
+ const handleClose = useCallback(() => {
   onClose();
   setQuery("");
   setResults([]);
+  setError(null);
+ }, [onClose]);
+
+ const handleResultClick = (result) => {
+  // Modal'ı kapat
+  handleClose();
 
   // Eğer section varsa
   if (result.section) {
@@ -95,13 +101,6 @@ export default function SearchModal({ isOpen, onClose }) {
   }
  };
 
- const handleClose = () => {
-  onClose();
-  setQuery("");
-  setResults([]);
-  setError(null);
- };
-
  useEffect(() => {
   const handleEscape = (e) => {
    if (e.key === "Escape") {
@@ -111,14 +110,16 @@ export default function SearchModal({ isOpen, onClose }) {
 
   if (isOpen) {
    document.addEventListener("keydown", handleEscape);
+   // body overflow kontrolünü sadece modal açıldığında uygula
    document.body.style.overflow = "hidden";
   }
 
   return () => {
    document.removeEventListener("keydown", handleEscape);
+   // modal kapansın veya component unmount olsun overflow'u geri al
    document.body.style.overflow = "unset";
   };
- }, [isOpen]);
+ }, [isOpen, handleClose]);
 
  if (!isOpen) return null;
 
@@ -215,9 +216,7 @@ export default function SearchModal({ isOpen, onClose }) {
       <div className="p-8 text-center text-muted-foreground">
        <Search className="w-12 h-12 mx-auto mb-3 opacity-50" />
        <p className="text-lg">Aramaya başlayın</p>
-       <p className="text-sm mt-2">
-        Site içeriğinde arama yapmak için yukarıya yazın
-       </p>
+       <p className="text-sm mt-2">Site içeriğinde arama yapmak için yukarıya yazın</p>
       </div>
      )}
     </div>
@@ -226,12 +225,10 @@ export default function SearchModal({ isOpen, onClose }) {
     <div className="flex items-center justify-between p-3 border-t border-border bg-muted/30 text-xs text-muted-foreground">
      <div className="flex items-center gap-4">
       <span>
-       <kbd className="px-2 py-1 bg-background rounded border">↵</kbd>{" "}
-       Seç
+       <kbd className="px-2 py-1 bg-background rounded border">↵</kbd> Seç
       </span>
       <span>
-       <kbd className="px-2 py-1 bg-background rounded border">Esc</kbd>{" "}
-       Kapat
+       <kbd className="px-2 py-1 bg-background rounded border">Esc</kbd> Kapat
       </span>
      </div>
     </div>

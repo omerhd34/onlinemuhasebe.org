@@ -16,7 +16,7 @@ export default function ShortcutCard({ shortcut }) {
     href={shortcut.url}
     target="_blank"
     rel="noopener noreferrer"
-    className="group bg-card rounded-lg shadow-md hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-border hover:border-primary hover:-translate-y-1 block"
+    className="group bg-card rounded-lg shadow-md hover:shadow-xl transition-all duration-300 p-6 flex flex-col items-center text-center border border-border hover:border-primary hover:-translate-y-1"
    >
     <div className="mb-4 w-20 h-20 flex items-center justify-center">
      {hasImage ? (

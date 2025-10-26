@@ -13,7 +13,7 @@
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
+  --color-popover-foreground: var(--popover-foregr ound);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -43,8 +43,6 @@
 
 :root {
   --radius: 0.625rem;
-
-  /* Light mode colors - Açık tema renkleri */
   --background: oklch(0.98 0 0);
   --foreground: oklch(0.15 0 0);
   --card: oklch(1 0 0);
@@ -79,7 +77,6 @@
 }
 
 .dark {
-  /* Dark mode colors - Koyu tema renkleri */
   --background: oklch(0.12 0 0);
   --foreground: oklch(0.95 0 0);
   --card: oklch(0.15 0 0);
@@ -121,7 +118,6 @@
     @apply bg-background text-foreground;
   }
 
-  /* Arama sonucu highlight animasyonu */
   @keyframes highlight-flash {
     0%,
     100% {
