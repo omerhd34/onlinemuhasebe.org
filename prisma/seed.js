@@ -78,9 +78,8 @@ const practicalInfoData = [
     image: "/images/turmob.png",
     link: null,
     description:
-      "Emlak vergisi, sanayi, ticaret ve inşaat gibi birçok sektörü dolaylı fakat güçlü biçimde etkileyen önemli bir mali unsurdur. Özellikle Türkiye gibi arsa değerlerinin yüksek, büyükşehir baskısının yoğun olduğu ülkelerde; bu vergi türü hem bireysel yatırım kararlarını hem de sektörel stratejileri doğrudan şekillendirebilmektedir. Türkiye sınırları içerisinde yer alan arsa, arazi, iş yeri ve konutlar, ilgili belediyelerde kayıtlı emlak vergisine esas değerleri üzerinden binde 1 ile binde 6 arasında değişen oranlarda emlak vergisine tabidir.",
-    afterDescription:
-      "Bu vergiye esas alınan değer, Emlak Vergisi Kanunu'nun 29. maddesinde tanımlanan vergi değeridir. Her yıl bu değer, yeniden değerleme oranının yarısı kadar artırılarak uygulanır. Söz konusu hesaplama, taşınmazın bulunduğu belediyeler tarafından yapılmaktadır.",
+      "Emlak vergisi, sanayi, ticaret ve inşaat gibi birçok sektörü dolaylı fakat güçlü biçimde etkileyen önemli bir mali unsurdur. Özellikle Türkiye gibi arsa değerlerinin yüksek, büyükşehir baskısının yoğun olduğu ülkelerde; bu vergi türü hem bireysel yatırım kararlarını hem de sektörel stratejileri doğrudan şekillendirebilmektedir. Türkiye sınırları içerisinde yer alan arsa, arazi, iş yeri ve konutlar, ilgili belediyelerde kayıtlı emlak vergisine esas değerleri üzerinden binde 1 ile binde 6 arasında değişen oranlarda emlak vergisine tabidir. Bu vergiye esas alınan değer, Emlak Vergisi Kanunu'nun 29. maddesinde tanımlanan vergi değeridir. Her yıl bu değer, yeniden değerleme oranının yarısı kadar artırılarak uygulanır. Söz konusu hesaplama, taşınmazın bulunduğu belediyeler tarafından yapılmaktadır.",
+    afterDescription: null,
     tableData: {
       headers: [
         "Emlak Türü",
@@ -115,9 +114,8 @@ const practicalInfoData = [
     link: null,
     image: null,
     description:
-      "Bazı Menkul Sermaye İratlarına Uygulanan İndirim Oranları, kişilerin sahip olduğu menkul kıymetlerden elde ettiği gelirler (faiz, temettü, tahvil gibi) üzerinden vergilendirme yapılırken uygulanabilen indirimleri ifade eder. Bu oranlar sayesinde, belirli menkul sermaye gelirlerinin tamamı yerine yalnızca bir kısmı vergiye tabi tutulur. Amaç, yatırım ve tasarrufu teşvik etmek ve çifte vergilendirmeyi önlemektir.",
-    afterDescription:
-      "2025 yılı itibarıyla Türkiye'de menkul sermaye iratlarına uygulanan indirim oranları, Gelir Vergisi Kanunu'na göre belirlenmiştir. Bu indirim oranları, enflasyondan arındırılmış gelir hesaplamasında kullanılır ve vergi matrahının düşürülmesine olanak tanır. 2025 yılı için enflasyondan arındırma amacıyla uygulanan indirim oranı %123,64 olarak belirlenmiştir. Bu oran, 2024 yılında elde edilen menkul sermaye iratlarının enflasyondan arındırılmasında kullanılır ve vergi matrahının hesaplanmasında dikkate alınır.",
+      "Bazı Menkul Sermaye İratlarına Uygulanan İndirim Oranları, kişilerin sahip olduğu menkul kıymetlerden elde ettiği gelirler (faiz, temettü, tahvil gibi) üzerinden vergilendirme yapılırken uygulanabilen indirimleri ifade eder. Bu oranlar sayesinde, belirli menkul sermaye gelirlerinin tamamı yerine yalnızca bir kısmı vergiye tabi tutulur. Amaç, yatırım ve tasarrufu teşvik etmek ve çifte vergilendirmeyi önlemektir. 2025 yılı itibarıyla Türkiye'de menkul sermaye iratlarına uygulanan indirim oranları, Gelir Vergisi Kanunu'na göre belirlenmiştir. Bu indirim oranları, enflasyondan arındırılmış gelir hesaplamasında kullanılır ve vergi matrahının düşürülmesine olanak tanır. 2025 yılı için enflasyondan arındırma amacıyla uygulanan indirim oranı %123,64 olarak belirlenmiştir. Bu oran, 2024 yılında elde edilen menkul sermaye iratlarının enflasyondan arındırılmasında kullanılır ve vergi matrahının hesaplanmasında dikkate alınır.",
+    afterDescription: null,
     tableData: null,
     year: currentYear,
   },
@@ -235,9 +233,8 @@ const practicalInfoData = [
     image: "/images/sgk2.png",
     link: "https://www.csgb.gov.tr/%C4%B1statistikler/calisma-hayati-%C4%B1statistikleri/kidem-tazminati-tavan-miktari/",
     description:
-      "Kıdem tazminatı tavanı, işçinin işten ayrılması veya iş sözleşmesinin sona ermesi durumunda, işverenin ödemekle yükümlü olduğu kıdem tazminatının yasal olarak belirlenmiş maksimum miktarıdır. Yani çalışanın çalıştığı süre ve brüt ücreti ne olursa olsun, ödenecek kıdem tazminatı bu tavanı aşamaz. Tavan, her yıl Çalışma ve Sosyal Güvenlik Bakanlığı tarafından güncellenir ve işçinin bir yıllık kıdemi üzerinden hesaplanan azami tutarı belirler.",
-    afterDescription:
-      "Türkiye'de 2025 yılı kıdem tazminatı tavanı iki dönem için belirlenmiştir. 1 Temmuz 2025'ten sonra işten ayrılan bir çalışan için, bir yıl üzerinden ödenecek en yüksek kıdem tazminatı 53.919,68₺'dir. Bu tutarın üzerindeki kısmı ödenmez, tavan olarak kabul edilir. Türkiye'de kıdem tazminatı çalışanın brüt maaşı üzerinden ve her tam yıl için 30 günlük ücreti üzerinden hesaplanır. Ama tavan tutarı aşılamaz.",
+      "Kıdem tazminatı tavanı, işçinin işten ayrılması veya iş sözleşmesinin sona ermesi durumunda, işverenin ödemekle yükümlü olduğu kıdem tazminatının yasal olarak belirlenmiş maksimum miktarıdır. Yani çalışanın çalıştığı süre ve brüt ücreti ne olursa olsun, ödenecek kıdem tazminatı bu tavanı aşamaz. Tavan, her yıl Çalışma ve Sosyal Güvenlik Bakanlığı tarafından güncellenir ve işçinin bir yıllık kıdemi üzerinden hesaplanan azami tutarı belirler. Türkiye'de 2025 yılı kıdem tazminatı tavanı iki dönem için belirlenmiştir. 1 Temmuz 2025'ten sonra işten ayrılan bir çalışan için, bir yıl üzerinden ödenecek en yüksek kıdem tazminatı 53.919,68₺'dir. Bu tutarın üzerindeki kısmı ödenmez, tavan olarak kabul edilir. Türkiye'de kıdem tazminatı çalışanın brüt maaşı üzerinden ve her tam yıl için 30 günlük ücreti üzerinden hesaplanır. Ama tavan tutarı aşılamaz.",
+    afterDescription: null,
     tableData: {
       headers: ["Dönem", "Tavan Tutar(₺))"],
       rows: [
@@ -254,9 +251,8 @@ const practicalInfoData = [
     image: "/images/turmob.png",
     link: null,
     description:
-      "Geçici vergi, Türkiye'de kurumlar ve bazı gelir vergisi mükellefleri için yıl içinde elde edilen kazanç üzerinden ara dönemlerde ödenen bir vergidir. Amaç, yıl sonu vergi yükünü dengelemek ve devletin nakit akışını sağlamak. Genellikle üçer aylık dönemler için hesaplanır ve yıl sonunda ödenecek gelir veya kurumlar vergisinden mahsup edilir. Türkiye'de 2025 Geçici Vergi Oranları: Gelir Vergisi mükellefleri için: Gelir vergisi oranları geçici vergiye aynen uygulanır.",
-    afterDescription:
-      "Türkiye'de gelir vergisi oranları 15%, 20%, 27%, 35% ve 40% dilimlere göre kademelidir. Ancak geçici vergi hesaplamasında genellikle ortalama gelir üzerinden %20 civarı uygulanabilir. Kurumlar Vergisi mükellefleri için: Kurumlar vergisi oranı %25 olarak uygulanır. Geçici vergi de kurum kazançları üzerinden %25 oranında üçer aylık dönemlerde ödenir. Özetle: Geçici vergi, ara ödeme vergisi ve Türkiye'de gelir vergisi dilimlerine veya kurumlar vergisi oranına göre hesaplanır.",
+      "Geçici vergi, Türkiye'de kurumlar ve bazı gelir vergisi mükellefleri için yıl içinde elde edilen kazanç üzerinden ara dönemlerde ödenen bir vergidir. Amaç, yıl sonu vergi yükünü dengelemek ve devletin nakit akışını sağlamak. Genellikle üçer aylık dönemler için hesaplanır ve yıl sonunda ödenecek gelir veya kurumlar vergisinden mahsup edilir. Türkiye'de 2025 Geçici Vergi Oranları: Gelir Vergisi mükellefleri için: Gelir vergisi oranları geçici vergiye aynen uygulanır. Türkiye'de gelir vergisi oranları 15%, 20%, 27%, 35% ve 40% dilimlere göre kademelidir. Ancak geçici vergi hesaplamasında genellikle ortalama gelir üzerinden %20 civarı uygulanabilir. Kurumlar Vergisi mükellefleri için: Kurumlar vergisi oranı %25 olarak uygulanır. Geçici vergi de kurum kazançları üzerinden %25 oranında üçer aylık dönemlerde ödenir. Özetle: Geçici vergi, ara ödeme vergisi ve Türkiye'de gelir vergisi dilimlerine veya kurumlar vergisi oranına göre hesaplanır.",
+    afterDescription: null,
     tableData: {
       headers: [
         "Yıl",
@@ -336,45 +332,45 @@ const practicalInfoData = [
     tableData: {
       headers: [
         "Mükellef Türü",
-        "Aktif Toplamı",
-        "Net Satışlar Toplamı",
+        "Aktif Toplamı(₺)",
+        "Net Satışlar Toplamı(₺)",
         "Beyanname İmzalatılma Zorunluluğu",
       ],
       rows: [
         [
           "Kurumlar vergisi mükellefleri",
-          "63.786.000₺'yi aşmayan",
-          "127.540.000₺'yi aşmayan",
+          "63.786.000'i aşmayan",
+          "127.540.000'i aşmayan",
           "Yıllık gelir ve kurumlar vergisi beyannameleri, muhtasar beyannameler ve KDV beyannameleri",
         ],
         [
           "Ticari, zirai ve mesleki kazanç nedeniyle gerçek usulde vergilendirilen gelir vergisi mükellefleri",
-          "63.786.000₺'yi aşmayan",
-          "127.540.000₺'yi aşmayan",
+          "63.786.000'i aşmayan",
+          "127.540.000'i aşmayan",
           "Yıllık gelir ve kurumlar vergisi beyannameleri, muhtasar beyannameler ve KDV beyannameleri",
         ],
         [
           "Serbest meslek faaliyetinde bulunanlar",
-          "1.488.000₺'yi aşmayan",
+          "1.488.000'i aşmayan",
           "-",
           "Yıllık gelir ve kurumlar vergisi beyannameleri",
         ],
         [
           "II. sınıf tacirlerden alım satım veya imalat faaliyetinde bulunanlar",
           "-",
-          "2.138.000₺'yi aşmayan",
+          "2.138.000'i aşmayan",
           "Yıllık gelir ve kurumlar vergisi beyannameleri",
         ],
         [
           "II. sınıf tacirlerden yukarıda yazılı olanlar dışındaki işlerle uğraşanlar",
           "-",
-          "1.078.000₺'yi aşmayan",
+          "1.078.000'i aşmayan",
           "Yıllık gelir ve kurumlar vergisi beyannameleri",
         ],
         [
           "Zirai kazancı işletme hesabı esasına göre tespit edilen çiftçiler",
           "-",
-          "2.138.000₺'yi aşmayan",
+          "2.138.000'i aşmayan",
           "Yıllık gelir ve kurumlar vergisi beyannameleri",
         ],
         [
@@ -522,9 +518,8 @@ const practicalInfoData = [
     link: null,
     image: null,
     description:
-      "Vergi Usul Kanunu'na göre uygulanacak usulsüzlük cezaları, mükellef gruplarına ve usulsüzlük derecesine göre değişmektedir. 2025 yılı için güncel ceza tutarları aşağıdaki tabloda belirtilmiştir:",
-    afterDescription:
-      "Bu ceza tutarları her yıl yeniden değerleme oranında artırılmaktadır. Usulsüzlük cezaları, defter ve belgelerin usulüne uygun tutulmaması, muhafaza edilmemesi veya ibraz edilmemesi halinde uygulanır.",
+      "Vergi Usul Kanunu'na göre uygulanacak usulsüzlük cezaları, mükellef gruplarına ve usulsüzlük derecesine göre değişmektedir. Bu ceza tutarları her yıl yeniden değerleme oranında artırılmaktadır. Usulsüzlük cezaları, defter ve belgelerin usulüne uygun tutulmaması, muhafaza edilmemesi veya ibraz edilmemesi halinde uygulanır. 2025 yılı için güncel ceza tutarları aşağıdaki tabloda belirtilmiştir: ",
+    afterDescription: null,
     tableData: {
       headers: [
         "Mükellef Grupları",
@@ -560,7 +555,7 @@ const practicalInfoData = [
       "2025 yılı itibarıyla Türkiye'de uygulanan gecikme zammı oranları, belirli dönemlere göre değişiklik göstermektedir. Aşağıda, 2025 yılı için geçerli olan gecikme zammı oranları ve ilgili hesaplama yöntemleri özetlenmiştir:",
     afterDescription: null,
     tableData: {
-      headers: ["Ay", "Aylık Gecikme Zammı Oranı(%)"],
+      headers: ["Ay(2025)", "Aylık Gecikme Zammı Oranı(%)"],
       rows: [
         ["Ocak", "3,08"],
         ["Şubat", "3,04"],
@@ -597,9 +592,8 @@ const practicalInfoData = [
     image: "/images/sgk.png",
     link: "https://www.sgk.gov.tr/Content/Post/448403ad-84da-423f-beec-67543e81f6a3/Yururluk-Tarihlerine-Gore-Gecikme-Zammi-Oranlari-2025-09-23-11-20-32",
     description:
-      "SGK gecikme zammı oranları, Sosyal Sigortalar Kurumu primlerinin zamanında ödenmemesi durumunda borca eklenen faiz oranlarını ifade eder. Yani, işveren veya sigortalı prim ödemesini vadesinde gerçekleştirmezse, borç tutarına her ay bu oran üzerinden ek ödeme uygulanır. ",
-    afterDescription:
-      "Bu oranlar, 5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu ile ilgili yönetmeliklerde belirlenmiştir. 2025 yılı itibarıyla SGK primleri için aylık gecikme zammı oranı yaklaşık %3 olarak uygulanmaktadır.",
+      "SGK gecikme zammı oranları, Sosyal Sigortalar Kurumu primlerinin zamanında ödenmemesi durumunda borca eklenen faiz oranlarını ifade eder. Yani, işveren veya sigortalı prim ödemesini vadesinde gerçekleştirmezse, borç tutarına her ay bu oran üzerinden ek ödeme uygulanır. Bu oranlar, 5510 sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu ile ilgili yönetmeliklerde belirlenmiştir. 2025 yılı itibarıyla SGK primleri için aylık gecikme zammı oranı yaklaşık %3 olarak uygulanmaktadır. ",
+    afterDescription: null,
     tableData: null,
     year: currentYear,
   },
@@ -655,7 +649,7 @@ const practicalInfoData = [
       "Üretici Fiyat Endeksi, üreticilerin ürettikleri mal ve hizmetlerin yurt içi satış fiyatlarında zaman içinde meydana gelen ortalama değişimi ölçen bir fiyat endeksidir. 2003 yılı, bu endeksin baz yılıdır. 2003 yılında endeks değeri 100 olarak kabul edilmiştir. Sonraki yıllardaki değişimler bu baz yıla göre hesaplanır. ÜFE tarım, madencilik, imalat, elektrik, gaz ve su üretimi gibi üretim sektörlerini kapsar. Üretim sürecinde malın üretici tarafından satış fiyatı esas alınır (KDV, nakliye, bayi kârı vb. hariçtir). Aşağıda Yİ-ÜFE değişim oranları tablosu gösterilmiştir.",
     afterDescription: null,
     tableData: {
-      headers: ["", "Eylül 2025", "Eylül 2024", "Eylül 2023"],
+      headers: ["Açıklama", "Eylül 2025", "Eylül 2024", "Eylül 2023"],
       rows: [
         ["Bir önceki aya göre değişim oranı", "2,52", "1,37", "3,40"],
         [
@@ -670,12 +664,7 @@ const practicalInfoData = [
           "33,09",
           "47,44",
         ],
-        [
-          "On iki aylık ortalamalara göre değişim oranı",
-          "25,83",
-          "44,81",
-          "65,55",
-        ],
+        ["12 aylık ortalamalara göre değişim oranı", "25,83", "44,81", "65,55"],
       ],
     },
     year: currentYear,
@@ -690,7 +679,7 @@ const practicalInfoData = [
       "Üretici Fiyat Endeksi, üreticilerin ürettikleri mal ve hizmetlerin yurt içi satış fiyatlarında zaman içinde meydana gelen ortalama değişimi ölçen bir fiyat endeksidir. 2003 yılı, bu endeksin baz yılıdır. 2003 yılında endeks değeri 100 olarak kabul edilmiştir. Sonraki yıllardaki değişimler bu baz yıla göre hesaplanır. ÜFE tarım, madencilik, imalat, elektrik, gaz ve su üretimi gibi üretim sektörlerini kapsar. Üretim sürecinde malın üretici tarafından satış fiyatı esas alınır (KDV, nakliye, bayi kârı vb. hariçtir). Aşağıda YD-ÜFE değişim oranları tablosu gösterilmiştir.",
     afterDescription: null,
     tableData: {
-      headers: ["", "Eylül 2025", "Eylül 2024", "Eylül 2023"],
+      headers: ["Açıklama", "Eylül 2025", "Eylül 2024", "Eylül 2023"],
       rows: [
         ["Bir önceki aya göre değişim oranı", "2,01", "2,25", "-0,59"],
         [
@@ -737,20 +726,20 @@ const practicalInfoData = [
     afterDescription: null,
     tableData: {
       headers: [
-        "Ay",
+        "Ay(2025)",
         "Aylık Artış(%)",
         "Yıllık Artış(%)",
         "Yıllık Aralık Ayına Göre Artış(%)",
       ],
       rows: [
-        ["Ocak 2025", "-", "-", "-"],
-        ["Mart 2025", "1,88", "23,50", "7,23"],
-        ["Nisan 2025", "2,76", "-", "10,19"],
-        ["Mayıs 2025", "-", "-", "-"],
-        ["Haziran 2025", "2,46", "-", "15,71"],
-        ["Temmuz 2025", "1,73", "-", "17,70"],
-        ["Ağustos 2025", "2,48", "-", "20,62"],
-        ["Eylül 2025", "2,52", "-", "23,66"],
+        ["Ocak", "-", "-", "-"],
+        ["Mart", "1,88", "23,50", "7,23"],
+        ["Nisan", "2,76", "-", "10,19"],
+        ["Mayıs", "-", "-", "-"],
+        ["Haziran", "2,46", "-", "15,71"],
+        ["Temmuz", "1,73", "-", "17,70"],
+        ["Ağustos ", "2,48", "-", "20,62"],
+        ["Eylül", "2,52", "-", "23,66"],
       ],
     },
     year: currentYear,
@@ -766,21 +755,21 @@ const practicalInfoData = [
     afterDescription: null,
     tableData: {
       headers: [
-        "Ay",
+        "Ay(2025)",
         "Aylık Artış(%)",
         "Yıllık Artış(%)",
         "Yıllık Aralık Ayına Göre Artış(%)",
       ],
       rows: [
-        ["Ocak 2025", "5,03", "42,12", "5,03"],
-        ["Şubat 2025", "2,27", "39,05", "7,42"],
-        ["Mart 2025", "2,46", "37,66", "%0,06"],
-        ["Nisan 2025", "3,00", "35,41", "13,36"],
-        ["Mayıs 2025", "1,53", "33,29", "15,71"],
-        ["Haziran 2025", "1,37", "31,67", "16,67"],
-        ["Temmuz 2025", "2,06", "29,08", "19,08"],
-        ["Ağustos 2025", "2,04", "27,50", "21,50"],
-        ["Eylül 2025", "3,23", "25,43", "23,66"],
+        ["Ocak", "5,03", "42,12", "5,03"],
+        ["Şubat", "2,27", "39,05", "7,42"],
+        ["Mart", "2,46", "37,66", "%0,06"],
+        ["Nisan", "3,00", "35,41", "13,36"],
+        ["Mayıs", "1,53", "33,29", "15,71"],
+        ["Haziran", "1,37", "31,67", "16,67"],
+        ["Temmuz", "2,06", "29,08", "19,08"],
+        ["Ağustos", "2,04", "27,50", "21,50"],
+        ["Eylül", "3,23", "25,43", "23,66"],
       ],
     },
     year: currentYear,

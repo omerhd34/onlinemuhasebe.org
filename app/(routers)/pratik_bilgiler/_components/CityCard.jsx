@@ -35,7 +35,7 @@ const CityCard = ({ image, title, description, afterDescription, table, link }) 
    </div>
 
    {afterDescription && (
-    <div className="px-5 py-2 text-card-foreground text-sm leading-relaxed">
+    <div className="px-5 pb-2 font-bold text-card-foreground text-sm text-center leading-relaxed">
      <p>{afterDescription}</p>
     </div>
    )}
@@ -48,7 +48,7 @@ const CityCard = ({ image, title, description, afterDescription, table, link }) 
         {table.headers.map((header, idx) => (
          <th
           key={idx}
-          className="px-2 py-2 text-left border-b-2 border-border font-medium dark:border-gray-500"
+          className="px-2 py-2 text-left border-b-2 border-r-2 border-border font-medium dark:border-gray-500 last:border-r-0"
          >
           {header}
          </th>
@@ -61,7 +61,7 @@ const CityCard = ({ image, title, description, afterDescription, table, link }) 
          {row.map((cell, cellIndex) => (
           <td
            key={cellIndex}
-           className="px-2 py-1 border-b-2 border-border text-card-foreground dark:border-gray-500"
+           className="px-2 py-1 border-b-2 border-r-2 border-border text-card-foreground dark:border-gray-500 last:border-r-0"
           >
            {cell}
           </td>
