@@ -5,7 +5,7 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 import "./globals.css";
 
 export const metadata = {
-  title: "Serbest Muhasebeci Mali Müşavir Şahin Demir",
+  title: "Mali Müşavir Şahin Demir",
   description: "Profesyonel muhasebe ve mali danışmanlık hizmetleri.",
   icons: {
     icon: "/images/turmob.png",
