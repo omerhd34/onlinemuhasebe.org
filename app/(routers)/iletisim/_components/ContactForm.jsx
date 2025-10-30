@@ -35,8 +35,8 @@ export default function ContactForm({ onSuccess }) {
  };
 
  return (
-  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
-   <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-100 flex items-center">
+  <div className="bg-card rounded-xl shadow-lg p-4 sm:p-6 md:p-8 border border-border/60 dark:border-white/20 dark:border-2 dark:border-border/80 hover:shadow-xl transition-all duration-300">
+   <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-4 sm:mb-6 text-foreground flex items-center">
     <Send className="mr-2 text-primary" size={24} /> Bize Mesaj Gönderin
    </h2>
    <form className="grid grid-cols-1 gap-5" onSubmit={handleSubmit}>
@@ -46,8 +46,8 @@ export default function ContactForm({ onSuccess }) {
      { id: "subject", label: "Konu", placeholder: "Mesaj konusu", required: false },
     ].map((field) => (
      <div key={field.id}>
-      <Label htmlFor={field.id} className="mb-2 block text-gray-800 dark:text-gray-100">
-       {field.label}: {field.id === "subject" && <span className="text-sm text-gray-400">(Opsiyonel)</span>}
+      <Label htmlFor={field.id} className="mb-2 block text-foreground">
+       {field.label}: {field.id === "subject" && <span className="text-sm text-muted-foreground">(Opsiyonel)</span>}
       </Label>
       <Input
        id={field.id}
@@ -57,13 +57,13 @@ export default function ContactForm({ onSuccess }) {
        value={formData[field.id]}
        onChange={handleChange}
        required={field.required}
-       className="bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-300 dark:border-gray-600 focus:border-primary focus:ring focus:ring-primary/20 transition"
+       className="bg-background text-foreground border border-border focus:border-primary focus:ring focus:ring-primary/20 transition"
       />
      </div>
     ))}
 
     <div>
-     <Label htmlFor="message" className="mb-2 block text-gray-800 dark:text-gray-100">Mesaj:</Label>
+     <Label htmlFor="message" className="mb-2 block text-foreground">Mesaj:</Label>
      <Textarea
       id="message"
       name="message"
@@ -71,7 +71,7 @@ export default function ContactForm({ onSuccess }) {
       value={formData.message}
       onChange={handleChange}
       required
-      className="h-32 resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 border border-gray-300 dark:border-gray-600 focus:border-primary focus:ring focus:ring-primary/20 transition"
+      className="h-32 resize-none bg-background text-foreground border border-border focus:border-primary focus:ring focus:ring-primary/20 transition"
      />
     </div>
 

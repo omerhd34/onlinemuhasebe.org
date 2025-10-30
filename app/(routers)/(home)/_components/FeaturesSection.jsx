@@ -24,40 +24,50 @@ export default function FeaturesSection() {
 
  if (loading) {
   return (
-   <section className="container mx-auto px-4 md:px-8 py-16">
-    <div className="text-center text-muted-foreground">Yükleniyor...</div>
+   <section className="container mx-auto px-2 sm:px-4 md:px-8 py-8 sm:py-12 md:py-16 w-full max-w-full overflow-x-hidden">
+    <div className="max-w-7xl mx-auto bg-card rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 border border-border/60 dark:border-white/20  shadow-lg">
+     <div className="text-center text-muted-foreground">Yükleniyor...</div>
+    </div>
    </section>
   );
  }
 
  return (
-  <section id="features" className="container mx-auto px-4 md:px-8 py-16 scroll-mt-24">
-   <div className="text-center mb-12">
-    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-     Neden Bizi Tercih Etmelisiniz?
-    </h2>
-    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-     Müşteri memnuniyeti odaklı yaklaşımımız ve profesyonel hizmetlerimizle fark yaratıyoruz.
-    </p>
-   </div>
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    {features.map((feature) => {
-     const Icon = Icons[feature.icon] || Icons.CheckCircle;
-     return (
-      <div
-       key={feature.id}
-       className="text-center p-6 bg-card rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-border"
-      >
-       <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-        <Icon className="w-8 h-8 text-primary" />
+  <section id="features" className="container mx-auto px-2 sm:px-4 md:px-8 py-8 sm:py-12 md:py-16 scroll-mt-24 w-full max-w-full overflow-x-hidden">
+   <div className="max-w-7xl mx-auto bg-card rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 border border-border/60 dark:border-white/20  shadow-lg hover:shadow-xl transition-all duration-300 my-4 sm:my-6 md:my-8">
+    <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl sm:rounded-2xl md:rounded-3xl pointer-events-none" />
+
+    <div className="relative text-center mb-6 sm:mb-8 md:mb-12">
+     <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-foreground px-2">
+      Neden Bizi Tercih Etmelisiniz?
+     </h2>
+     <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
+      Müşteri memnuniyeti odaklı yaklaşımımız ve profesyonel hizmetlerimizle fark yaratıyoruz.
+     </p>
+    </div>
+
+    <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+     {features.map((feature) => {
+      const Icon = Icons[feature.icon] || Icons.CheckCircle;
+      return (
+       <div
+        key={feature.id}
+        className="group relative text-center p-4 sm:p-5 md:p-6 bg-card rounded-xl sm:rounded-2xl border border-border/60 dark:border-white/20  hover:border-primary/40 hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+       >
+        <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl sm:rounded-2xl" />
+
+        <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-primary transition-colors duration-300 shadow-sm group-hover:shadow-md">
+         <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+        </div>
+
+        <h3 className="relative text-sm sm:text-base md:text-lg lg:text-xl font-semibold mb-2 text-card-foreground group-hover:text-primary transition-colors duration-300">
+         {feature.title}
+        </h3>
+        <p className="relative text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">{feature.description}</p>
        </div>
-       <h3 className="text-lg font-semibold mb-2 text-card-foreground">
-        {feature.title}
-       </h3>
-       <p className="text-sm text-muted-foreground">{feature.description}</p>
-      </div>
-     );
-    })}
+      );
+     })}
+    </div>
    </div>
   </section>
  );

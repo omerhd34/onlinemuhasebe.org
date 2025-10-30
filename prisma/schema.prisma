@@ -29,7 +29,6 @@ model Shortcut {
   url         String
   icon        String?  
   imageUrl    String?
-  description String
   order       Int      @default(0)
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())

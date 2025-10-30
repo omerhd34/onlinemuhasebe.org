@@ -28,9 +28,9 @@ export default function CTASection() {
  return (
   <section className="container mx-auto px-4 md:px-8 py-16">
    <div className="bg-primary rounded-3xl p-8 md:p-12 text-center text-primary-foreground shadow-2xl max-w-4xl mx-auto">
-    <Users className="w-16 h-16 mx-auto mb-6 opacity-90" />
-    <h2 className="text-3xl md:text-4xl font-bold mb-4">Birlikte Çalışmaya Hazır mısınız?</h2>
-    <p className="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+    <Users className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-6 opacity-90" />
+    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4">Birlikte Çalışmaya Hazır mısınız?</h2>
+    <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 opacity-90 max-w-2xl mx-auto">
      {loading ? "Yükleniyor..." : text}
     </p>
     <div className="flex flex-col sm:flex-row gap-4 justify-center">

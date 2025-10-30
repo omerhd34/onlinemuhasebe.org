@@ -32,20 +32,20 @@ export default function ContactInfo() {
  }, []);
 
  return (
-  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300 h-full">
-   <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+  <div className="bg-card rounded-xl shadow-lg p-4 sm:p-6 md:p-8 border border-border/60 dark:border-white/20 dark:border-2 dark:border-border/80 hover:shadow-xl transition-all duration-300 h-full">
+   <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-4 sm:mb-6 text-foreground">
     İletişim Bilgileri
    </h1>
-   <p className="text-gray-500 dark:text-gray-300 mb-8">
+   <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground mb-6 sm:mb-8">
     {loading ? "Yükleniyor..." : text1}
    </p>
-   <div className="space-y-5">
+   <div className="space-y-4 sm:space-y-5">
     {infoItems.map((item, idx) => (
      <div className="flex items-start" key={idx}>
       <item.icon className="text-primary mr-3 mt-1 shrink-0" size={20} />
       <div>
-       <h3 className="font-semibold text-gray-800 dark:text-gray-100">{item.title}:</h3>
-       <p className="text-gray-500 dark:text-gray-300">{item.text}</p>
+       <h3 className="text-sm sm:text-base md:text-lg font-semibold text-foreground">{item.title}:</h3>
+       <p className="text-xs sm:text-sm md:text-base text-muted-foreground">{item.text}</p>
       </div>
      </div>
     ))}
