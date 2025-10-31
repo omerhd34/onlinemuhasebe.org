@@ -65,7 +65,7 @@ export default function TeamSection() {
         <li>İstanbul Serbest Muhasebeci Mali Müşavirler Odası (İSMMO) Üyesi</li>
         <li>
          TÜRMOB (Türkiye Serbest Muhasebeci Mali Müşavirler ve Yeminli Mali Müşavirler
-         Odaları Birliği) Kayıtlı Üye
+         Odaları Birliği) Üyesi
         </li>
         <li>Kurumsal Yönetim ve Risk Yönetimi Uzmanı</li>
        </ul>

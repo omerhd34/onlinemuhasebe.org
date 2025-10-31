@@ -33,10 +33,10 @@ export default function CTASection() {
     <div className="absolute inset-0 bg-linear-to-br from-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
     <div className="relative">
-     <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 px-2">
+     <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-5 md:mb-6 px-2">
       Mali Danışmanlık İhtiyacınız mı Var?
      </h2>
-     <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-4 sm:mb-6 md:mb-8 opacity-90 max-w-2xl mx-auto px-2">
+     <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-4 sm:mb-5 md:mb-6 opacity-90 max-w-2xl mx-auto px-2">
       {loading ? "Yükleniyor..." : text1}
      </p>
      <Button asChild size="lg" variant="secondary" className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold h-9 sm:h-11 md:h-12 lg:h-14 hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">

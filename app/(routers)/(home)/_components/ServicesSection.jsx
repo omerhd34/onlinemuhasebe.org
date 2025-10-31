@@ -8,6 +8,8 @@ export default function ServicesSection() {
  const [loading, setLoading] = useState(true);
 
  useEffect(() => {
+  let isMounted = true;
+
   async function fetchData() {
    try {
     const [servicesRes, contentRes] = await Promise.all([
@@ -22,15 +24,26 @@ export default function ServicesSection() {
     const servicesData = await servicesRes.json();
     const contentData = await contentRes.json();
 
-    setServices(servicesData);
-    setText1(contentData?.content);
+    if (isMounted) {
+     setServices(servicesData);
+     setText1(contentData?.content);
+    }
    } catch (error) {
-    console.error("Veriler yüklenemedi:", error);
+    if (isMounted) {
+     console.error("Veriler yüklenemedi:", error);
+    }
    } finally {
-    setLoading(false);
+    if (isMounted) {
+     setLoading(false);
+    }
    }
   }
+
   fetchData();
+
+  return () => {
+   isMounted = false;
+  };
  }, []);
 
  if (loading) {
@@ -48,11 +61,11 @@ export default function ServicesSection() {
    <div className="max-w-7xl mx-auto bg-card rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 border border-border/60 dark:border-white/20  shadow-lg hover:shadow-xl transition-all duration-300 my-4 sm:my-6 md:my-8 scroll-mt-24">
     <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl sm:rounded-2xl md:rounded-3xl pointer-events-none" />
 
-    <div className="relative text-center mb-6 sm:mb-8 md:mb-12">
-     <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-foreground px-2">
+    <div className="relative text-center mb-6 sm:mb-8 md:mb-10">
+     <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-5 md:mb-6 text-foreground px-2">
       Hizmetlerimiz
      </h2>
-     <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-2xl mx-auto px-2">{text1}</p>
+     <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-3xl mx-auto px-2 mb-4 sm:mb-5 md:mb-6">{text1}</p>
     </div>
 
     <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">

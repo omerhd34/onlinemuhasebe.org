@@ -37,11 +37,11 @@ export default function FeaturesSection() {
    <div className="max-w-7xl mx-auto bg-card rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 border border-border/60 dark:border-white/20  shadow-lg hover:shadow-xl transition-all duration-300 my-4 sm:my-6 md:my-8">
     <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-xl sm:rounded-2xl md:rounded-3xl pointer-events-none" />
 
-    <div className="relative text-center mb-6 sm:mb-8 md:mb-12">
-     <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-foreground px-2">
+    <div className="relative text-center mb-6 sm:mb-8 md:mb-10">
+     <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-5 md:mb-6 text-foreground px-2">
       Neden Bizi Tercih Etmelisiniz?
      </h2>
-     <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
+     <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-2xl mx-auto px-2 mb-4 sm:mb-5 md:mb-6">
       Müşteri memnuniyeti odaklı yaklaşımımız ve profesyonel hizmetlerimizle fark yaratıyoruz.
      </p>
     </div>

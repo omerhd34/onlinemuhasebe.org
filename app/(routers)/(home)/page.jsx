@@ -10,9 +10,9 @@ export default function HomePage() {
   <div className="min-h-screen bg-background">
    <HeroSection />
    <ServicesSection />
+   <PracticalInfo />
    <FeaturesSection />
    <CTASection />
-   <PracticalInfo />
    <StatsSection />
   </div>
  );

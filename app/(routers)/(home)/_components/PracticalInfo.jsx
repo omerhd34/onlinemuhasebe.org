@@ -132,24 +132,20 @@ const PracticalInfoNavbar = () => {
 
  return (
   <section className="container mx-auto px-2 sm:px-4 md:px-8 py-8 sm:py-12 md:py-16 w-full max-w-full overflow-x-hidden">
-   <div className="max-w-7xl mx-auto rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 shadow-2xl my-4 sm:my-6 md:my-8 scroll-mt-24 bg-blue-200 text-gray-900 dark:bg-blue-900 dark:text-gray-100 border-2 border-blue-300/50 dark:border-blue-700/50 hover:border-blue-400/70 dark:hover:border-blue-600/70 hover:shadow-3xl  transition-all duration-300 relative overflow-hidden">
-    <div className="absolute inset-0 bg-linear-to-br from-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+   <div className="max-w-7xl mx-auto rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 shadow-2xl my-4 sm:my-6 md:my-8 scroll-mt-24 bg-blue-200 text-gray-900 dark:bg-linear-to-br dark:from-slate-800 dark:to-slate-900 dark:text-gray-50 border-2 border-blue-300/50 dark:border-slate-600/50 hover:border-blue-400/70 dark:hover:border-blue-500/60 hover:shadow-3xl transition-all duration-300 relative overflow-hidden">
+    <div className="absolute inset-0 bg-linear-to-br from-white/10 to-transparent dark:from-blue-500/5 dark:to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
     <div className="relative">
      <div className="text-center mb-6 sm:mb-8 md:mb-10">
-      <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 px-2">
+      <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-5 md:mb-6 px-2">
        Pratik Bilgiler
       </h2>
-      <p className="text-xs sm:text-sm md:text-base lg:text-lg mb-3 sm:mb-4 text-blue-800 dark:text-blue-200 px-2">
+      <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-4 sm:mb-5 md:mb-6 text-blue-800 dark:text-blue-300 dark:opacity-90 px-2">
        İlgilendiğiniz konuya hızlıca ulaşın.
       </p>
      </div>
 
-     <div
-      className="relative group"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-     >
+     <div className="relative group" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
       <div className="overflow-hidden rounded-2xl">
        <div
         className="flex transition-transform duration-700 ease-in-out"
@@ -162,20 +158,20 @@ const PracticalInfoNavbar = () => {
             <button
              key={info.id}
              onClick={() => handleNavClick(info.id)}
-             className="group relative h-full p-3 sm:p-4 md:p-6 bg-white/80 dark:bg-blue-400 border border-border/60 dark:border-white/20 dark:border-2 rounded-lg sm:rounded-xl 
-                      hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-left flex flex-col hover:border-primary/40"
+             className="group relative h-full p-3 sm:p-4 md:p-6 bg-white/80 dark:bg-slate-700/90 dark:text-gray-50 border border-border/60 dark:border-slate-500/40 rounded-lg sm:rounded-xl 
+                      hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-left flex flex-col hover:border-primary/40 dark:hover:border-blue-400/60"
             >
-             <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg sm:rounded-xl" />
+             <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent dark:from-blue-500/10 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg sm:rounded-xl" />
 
-             <span className="relative shrink-0 w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-blue-200 text-blue-900 dark:bg-blue-700 dark:text-blue-100 
-                           rounded-lg flex items-center justify-center text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-2 sm:mb-3 md:mb-4 shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all duration-300">
+             <span className="relative shrink-0 w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-blue-200 text-blue-900 dark:bg-blue-500 dark:text-white 
+                           rounded-lg flex items-center justify-center text-xs sm:text-sm md:text-base lg:text-lg font-bold mb-2 sm:mb-3 md:mb-4 shadow-sm dark:shadow-md group-hover:shadow-md dark:group-hover:shadow-lg group-hover:scale-110 transition-all duration-300">
               {slideIndex * itemsPerSlide + itemIndex + 1}
              </span>
-             <span className="relative text-xs sm:text-sm md:text-base lg:text-lg font-semibold leading-snug line-clamp-3 grow  transition-colors duration-300">
+             <span className="relative text-xs sm:text-sm md:text-base lg:text-lg font-semibold leading-snug line-clamp-3 grow transition-colors duration-300 dark:text-gray-100">
               {info.title}
              </span>
              <div className="relative mt-2 sm:mt-3 md:mt-4 flex items-center justify-end">
-              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 transition-all duration-300 transform group-hover:translate-x-1 text-primary dark:text-blue-100 " />
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 transition-all duration-300 transform group-hover:translate-x-1 text-primary dark:text-blue-300 dark:group-hover:text-blue-400" />
              </div>
             </button>
            ))}
@@ -188,7 +184,7 @@ const PracticalInfoNavbar = () => {
       <div className="flex justify-center items-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 mt-4 sm:mt-6 md:mt-8">
        <button
         onClick={goToPreviousSlide}
-        className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 rounded-full bg-white dark:bg-blue-700 shadow-md hover:shadow-lg hover:bg-blue-500 dark:hover:bg-blue-600 hover:text-white transition-all duration-300 border border-border/20 shrink-0"
+        className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 rounded-full bg-white dark:bg-slate-600 dark:text-gray-100 shadow-md hover:shadow-lg hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white transition-all duration-300 border border-border/20 dark:border-slate-500/40 shrink-0"
        >
         <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
        </button>
@@ -201,8 +197,8 @@ const PracticalInfoNavbar = () => {
            setCurrentSlideIndex(index);
           }}
           className={`rounded-full transition-all duration-300 ease-in-out shrink-0 ${currentSlideIndex === index
-           ? "bg-blue-500 dark:bg-blue-300 h-2.5 w-6 sm:h-3 sm:w-8 md:h-3.5 md:w-10 shadow-sm"
-           : "bg-blue-300/60 dark:bg-blue-700/60 h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 hover:bg-blue-400/80 dark:hover:bg-blue-600/80"
+           ? "bg-blue-500 dark:bg-blue-400 dark:shadow-lg h-2.5 w-6 sm:h-3 sm:w-8 md:h-3.5 md:w-10 shadow-sm"
+           : "bg-blue-300/60 dark:bg-slate-500/60 h-2.5 w-2.5 sm:h-3 sm:w-3 md:h-3.5 md:w-3.5 hover:bg-blue-400/80 dark:hover:bg-slate-400/80"
            }`}
           aria-label={`Slide ${index + 1}`}
          />
@@ -210,7 +206,7 @@ const PracticalInfoNavbar = () => {
        </div>
        <button
         onClick={goToNextSlide}
-        className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 rounded-full bg-white dark:bg-blue-700 shadow-md hover:shadow-lg hover:bg-blue-500 dark:hover:bg-blue-600 hover:text-white transition-all duration-300 border border-border/20 shrink-0"
+        className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 rounded-full bg-white dark:bg-slate-600 dark:text-gray-100 shadow-md hover:shadow-lg hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white transition-all duration-300 border border-border/20 dark:border-slate-500/40 shrink-0"
        >
         <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
        </button>
