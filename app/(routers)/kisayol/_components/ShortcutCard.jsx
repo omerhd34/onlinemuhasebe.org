@@ -47,7 +47,7 @@ export default function ShortcutCard({ shortcut }) {
       </div>
      )}
     </div>
-    <h3 className="text-xs sm:text-sm md:text-base font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-tight min-h-10 sm:min-h-12 flex items-center justify-center">
+    <h3 className="text-xs sm:text-sm md:text-base font-semibold text-card-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2 leading-tight min-h-5 sm:min-h-10 flex items-center justify-center">
      {shortcut.title}
     </h3>
    </Link>

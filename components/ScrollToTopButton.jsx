@@ -28,7 +28,7 @@ export default function ScrollToTopButton() {
  return (
   <button
    onClick={scrollToTop}
-   className={`fixed bottom-12 right-6 p-3 rounded-full bg-primary text-white shadow-lg transition-opacity duration-300 ${visible ? "opacity-100" : "opacity-0 pointer-events-none"
+   className={`fixed bottom-12 right-6 p-2 rounded-full bg-primary text-white shadow-lg transition-opacity duration-300 ${visible ? "opacity-100" : "opacity-0 pointer-events-none"
     } hover:bg-primary-dark`}
    aria-label="Sayfanın üstüne git"
   >

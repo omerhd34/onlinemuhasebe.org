@@ -10,7 +10,7 @@ export default function Footer() {
   <footer className="w-full max-w-full border-t border-border bg-card mt-16 overflow-x-hidden">
    <div className="container mx-auto px-2 sm:px-4 md:px-8 py-10 w-full max-w-full overflow-x-hidden">
     <div className="max-w-7xl mx-auto">
-     <div className="grid grid-cols-1 md:grid-cols-3 gap-x-30 gap-y-10">
+     <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10">
       <div className="text-left">
        <h3 className="font-semibold mb-3 text-lg text-card-foreground">Mali Müşavir Şahin Demir</h3>
        <p className="text-sm text-muted-foreground">
@@ -70,9 +70,9 @@ export default function Footer() {
 
      <Separator className="my-6" />
 
-     <div className="text-xs text-muted-foreground flex justify-between w-full">
-      <p className="text-left">© {year} Serbest Muhasebeci Mali Müşavir Şahin Demir</p>
-      <p className="text-right">Tüm hakları saklıdır.</p>
+     <div className="text-xs text-muted-foreground flex flex-col sm:flex-row justify-between items-center sm:items-start gap-2 sm:gap-0 w-full">
+      <p className="text-center sm:text-left">© {year} Serbest Muhasebeci Mali Müşavir Şahin Demir</p>
+      <p className="text-center sm:text-right">Tüm hakları saklıdır.</p>
      </div>
     </div>
    </div>
