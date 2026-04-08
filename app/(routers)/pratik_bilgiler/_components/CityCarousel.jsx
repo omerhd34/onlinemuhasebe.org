@@ -175,7 +175,7 @@ const CityCarousel = () => {
       <div className="mt-5 sm:mt-6 pt-5 sm:pt-6 border-t border-border/50">
        <button
         onClick={toggleToc}
-        className="w-full py-2.5 sm:py-3 px-4 bg-primary/10 hover:bg-primary/20 text-primary font-semibold rounded-lg transition-all duration-300 hover:shadow-md text-sm sm:text-base"
+        className="w-full py-2.5 sm:py-3 px-4 bg-primary/10 hover:bg-primary/20 text-primary font-semibold rounded-lg transition-all duration-300 hover:shadow-md text-sm sm:text-base cursor-pointer"
        >
         + {practicalInfos.length - maxItems} Konu Daha Göster
        </button>
