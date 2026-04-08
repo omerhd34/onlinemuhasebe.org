@@ -29,7 +29,7 @@ export default function NotFoundPage() {
      <Button
       size="lg"
       variant="outline"
-      className="w-full max-w-xs"
+      className="w-full max-w-xs cursor-pointer"
       onClick={() => router.back()}
      >
       <ArrowLeft className="mr-2 h-5 w-5" />
