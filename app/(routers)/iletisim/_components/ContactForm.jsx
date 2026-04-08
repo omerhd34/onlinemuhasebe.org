@@ -78,7 +78,7 @@ export default function ContactForm({ onSuccess }) {
     <Button
      type="submit"
      disabled={loading}
-     className="w-full bg-linear-to-r from-primary to-secondary text-white hover:from-secondary hover:to-primary transition-all duration-300"
+     className="w-full bg-linear-to-r from-primary to-secondary text-white hover:from-secondary hover:to-primary transition-all duration-300 cursor-pointer"
     >
      {loading ? (
       <span className="flex items-center justify-center">

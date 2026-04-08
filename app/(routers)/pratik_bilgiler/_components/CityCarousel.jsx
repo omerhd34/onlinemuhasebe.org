@@ -156,7 +156,7 @@ const CityCarousel = () => {
        <button
         key={info.id}
         onClick={() => handleTocClick(info.id)}
-        className="group relative flex items-center gap-3 sm:gap-3.5 md:gap-4 p-3 sm:p-3.5 md:p-4 text-left rounded-xl bg-background/50 backdrop-blur-sm hover:bg-background/70 transition-all duration-300 border border-primary/20 hover:border-primary/40 hover:shadow-md active:scale-[0.98]"
+        className="group relative flex items-center gap-3 sm:gap-3.5 md:gap-4 p-3 sm:p-3.5 md:p-4 text-left rounded-xl bg-background/50 backdrop-blur-sm hover:bg-background/70 transition-all duration-300 border border-primary/20 hover:border-primary/40 hover:shadow-md active:scale-[0.98] cursor-pointer"
        >
         <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
 

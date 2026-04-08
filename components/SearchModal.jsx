@@ -148,7 +148,7 @@ export default function SearchModal({ isOpen, onClose }) {
       size="icon-sm"
       variant="ghost"
       onClick={handleClose}
-      className="shrink-0"
+      className="shrink-0 cursor-pointer"
      >
       <X className="w-5 h-5" />
      </Button>

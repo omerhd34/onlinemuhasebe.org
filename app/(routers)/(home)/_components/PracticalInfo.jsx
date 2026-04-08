@@ -159,7 +159,7 @@ const PracticalInfoNavbar = () => {
              key={info.id}
              onClick={() => handleNavClick(info.id)}
              className="group relative h-full p-3 sm:p-4 md:p-6 bg-white/80 dark:bg-slate-700/90 dark:text-gray-50 border border-border/60 dark:border-slate-500/40 rounded-lg sm:rounded-xl 
-                      hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-left flex flex-col hover:border-primary/40 dark:hover:border-blue-400/60"
+                      hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-left flex flex-col hover:border-primary/40 dark:hover:border-blue-400/60 cursor-pointer"
             >
              <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent dark:from-blue-500/10 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg sm:rounded-xl" />
 

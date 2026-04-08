@@ -51,7 +51,7 @@ const ThemeToggle = ({ className }) => {
    variant="ghost"
    size="icon"
    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-   className={cn('hover:bg-primary/10 transition-colors', className)}
+   className={cn('hover:bg-primary/10 transition-colors cursor-pointer', className)}
    aria-label="Tema Değiştir"
   >
    {theme === 'dark' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
@@ -101,7 +101,7 @@ export default function Header() {
         variant="ghost"
         size="icon"
         onClick={() => setSearchOpen(true)}
-        className="hover:bg-primary/10 transition-colors max-[300px]:hidden"
+        className="hover:bg-primary/10 transition-colors max-[300px]:hidden cursor-pointer"
         aria-label="Arama"
        >
         <Search className="h-5 w-5" />
