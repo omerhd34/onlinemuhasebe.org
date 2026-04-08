@@ -184,7 +184,7 @@ const PracticalInfoNavbar = () => {
       <div className="flex justify-center items-center gap-2 sm:gap-3 md:gap-4 lg:gap-5 mt-4 sm:mt-6 md:mt-8">
        <button
         onClick={goToPreviousSlide}
-        className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 rounded-full bg-white dark:bg-slate-600 dark:text-gray-100 shadow-md hover:shadow-lg hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white transition-all duration-300 border border-border/20 dark:border-slate-500/40 shrink-0"
+        className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 rounded-full bg-white dark:bg-slate-600 dark:text-gray-100 shadow-md hover:shadow-lg hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white transition-all duration-300 border border-border/20 dark:border-slate-500/40 shrink-0 cursor-pointer"
        >
         <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
        </button>
@@ -206,7 +206,7 @@ const PracticalInfoNavbar = () => {
        </div>
        <button
         onClick={goToNextSlide}
-        className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 rounded-full bg-white dark:bg-slate-600 dark:text-gray-100 shadow-md hover:shadow-lg hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white transition-all duration-300 border border-border/20 dark:border-slate-500/40 shrink-0"
+        className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 rounded-full bg-white dark:bg-slate-600 dark:text-gray-100 shadow-md hover:shadow-lg hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-white transition-all duration-300 border border-border/20 dark:border-slate-500/40 shrink-0 cursor-pointer"
        >
         <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
        </button>
