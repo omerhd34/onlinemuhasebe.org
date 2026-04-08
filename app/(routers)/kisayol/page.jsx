@@ -1,29 +1,42 @@
 "use client";
 import { useState, useEffect } from "react";
 import ShortcutGrid from "./_components/ShortcutGrid";
+import { useClientLoading } from "@/components/ClientLoadingProvider";
 
 export default function ShortcutPage() {
  const [shortcuts, setShortcuts] = useState([]);
  const [loading, setLoading] = useState(true);
+ const { startLoading, stopLoading } = useClientLoading();
 
  useEffect(() => {
-  fetchShortcuts();
- }, []);
+  startLoading();
+  let completed = false;
+  const finish = () => {
+   if (!completed) {
+    completed = true;
+    stopLoading();
+   }
+  };
 
- const fetchShortcuts = async () => {
-  try {
-   setLoading(true);
-   const response = await fetch("/api/shortcuts?isActive=true");
-   if (!response.ok) throw new Error("API isteği başarısız");
-   const data = await response.json();
-   setShortcuts(data);
-  } catch (error) {
-   console.error("Kısayollar alınamadı:", error);
-   setShortcuts([]);
-  } finally {
-   setLoading(false);
-  }
- };
+  const fetchShortcuts = async () => {
+   try {
+    setLoading(true);
+    const response = await fetch("/api/shortcuts?isActive=true");
+    if (!response.ok) throw new Error("API isteği başarısız");
+    const data = await response.json();
+    setShortcuts(data);
+   } catch (error) {
+    console.error("Kısayollar alınamadı:", error);
+    setShortcuts([]);
+   } finally {
+    setLoading(false);
+    finish();
+   }
+  };
+
+  fetchShortcuts();
+  return finish;
+ }, [startLoading, stopLoading]);
 
  return (
   <div className="min-h-screen bg-background">
@@ -39,9 +52,7 @@ export default function ShortcutPage() {
      </div>
 
      {loading ? (
-      <div className="flex justify-center items-center min-h-[400px]">
-       <div className="text-sm sm:text-base md:text-lg text-muted-foreground">Yükleniyor...</div>
-      </div>
+      <div className="min-h-[400px]" aria-hidden />
      ) : (
       <ShortcutGrid shortcuts={shortcuts} />
      )}

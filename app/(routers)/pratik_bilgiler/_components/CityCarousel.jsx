@@ -2,10 +2,12 @@
 import { useState, useEffect } from "react";
 import CityCard from "./CityCard";
 import { AlertCircle, List } from "lucide-react";
+import { useClientLoading } from "@/components/ClientLoadingProvider";
 
 const CityCarousel = () => {
  const [practicalInfos, setPracticalInfos] = useState([]);
  const [loading, setLoading] = useState(true);
+ const { startLoading, stopLoading } = useClientLoading();
  const [error, setError] = useState(null);
  const [isTocExpanded, setIsTocExpanded] = useState(false);
  const [windowWidth, setWindowWidth] = useState(0);
@@ -18,6 +20,15 @@ const CityCarousel = () => {
  }, []);
 
  useEffect(() => {
+  startLoading();
+  let completed = false;
+  const finish = () => {
+   if (!completed) {
+    completed = true;
+    stopLoading();
+   }
+  };
+
   const fetchPracticalInfos = async () => {
    try {
     setLoading(true);
@@ -33,11 +44,13 @@ const CityCarousel = () => {
     setPracticalInfos([]);
    } finally {
     setLoading(false);
+    finish();
    }
   };
 
   fetchPracticalInfos();
- }, []);
+  return finish;
+ }, [startLoading, stopLoading]);
 
  useEffect(() => {
   const handleHashScroll = () => {
@@ -103,7 +116,6 @@ const CityCarousel = () => {
 
  const shouldShowToc = windowWidth >= 500;
 
-
  if (error) {
   return (
    <div className="text-center">
@@ -122,6 +134,10 @@ const CityCarousel = () => {
     </div>
    </div>
   );
+ }
+
+ if (loading && practicalInfos.length === 0) {
+  return null;
  }
 
  const maxItems = getMaxItems();
@@ -186,7 +202,7 @@ const CityCarousel = () => {
 
    {!practicalInfos.length ? (
     <div className="text-center text-muted-foreground py-20 flex flex-col items-center">
-     <p className="text-sm sm:text-base md:text-lg">Yükleniyor...</p>
+     <p className="text-sm sm:text-base md:text-lg">Henüz kayıt bulunmuyor.</p>
     </div>
    ) : (
     <div className="grid gap-6 sm:gap-7 md:gap-8 lg:gap-10">

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useClientLoading } from "@/components/ClientLoadingProvider";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -10,12 +11,21 @@ import { Send, RotateCcw } from "lucide-react";
 export default function ContactForm({ onSuccess }) {
  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
  const [loading, setLoading] = useState(false);
+ const { startLoading, stopLoading } = useClientLoading();
 
  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
  const handleSubmit = async (e) => {
   e.preventDefault();
   setLoading(true);
+  startLoading();
+  let completed = false;
+  const finish = () => {
+   if (!completed) {
+    completed = true;
+    stopLoading();
+   }
+  };
   try {
    const res = await fetch("/api/contact", {
     method: "POST",
@@ -31,6 +41,7 @@ export default function ContactForm({ onSuccess }) {
    toast.error(`Mesaj gönderilemedi: ${err.message}. Lütfen direkt email adresini kullanmayı deneyin.`);
   } finally {
    setLoading(false);
+   finish();
   }
  };
 

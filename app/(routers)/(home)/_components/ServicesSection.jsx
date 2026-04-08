@@ -1,14 +1,24 @@
 "use client";
 import { useEffect, useState } from "react";
 import * as Icons from "lucide-react";
+import { useClientLoading } from "@/components/ClientLoadingProvider";
 
 export default function ServicesSection() {
  const [services, setServices] = useState([]);
  const [text1, setText1] = useState("");
  const [loading, setLoading] = useState(true);
+ const { startLoading, stopLoading } = useClientLoading();
 
  useEffect(() => {
   let isMounted = true;
+  startLoading();
+  let completed = false;
+  const finish = () => {
+   if (!completed) {
+    completed = true;
+    stopLoading();
+   }
+  };
 
   async function fetchData() {
    try {
@@ -36,6 +46,7 @@ export default function ServicesSection() {
     if (isMounted) {
      setLoading(false);
     }
+    finish();
    }
   }
 
@@ -43,17 +54,12 @@ export default function ServicesSection() {
 
   return () => {
    isMounted = false;
+   finish();
   };
- }, []);
+ }, [startLoading, stopLoading]);
 
  if (loading) {
-  return (
-   <section className="container mx-auto px-2 sm:px-4 md:px-8 py-8 sm:py-12 md:py-16 w-full max-w-full overflow-x-hidden">
-    <div className="max-w-7xl mx-auto bg-card rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 border border-border/60 dark:border-white/20  shadow-lg">
-     <div className="text-center text-muted-foreground">Yükleniyor...</div>
-    </div>
-   </section>
-  );
+  return null;
  }
 
  return (

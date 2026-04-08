@@ -2,10 +2,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { useClientLoading } from "@/components/ClientLoadingProvider";
 
 const PracticalInfoNavbar = () => {
  const [practicalInfos, setPracticalInfos] = useState([]);
  const [loading, setLoading] = useState(true);
+ const { startLoading, stopLoading } = useClientLoading();
  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
  const [isPaused, setIsPaused] = useState(false);
  const intervalRef = useRef(null);
@@ -35,6 +37,15 @@ const PracticalInfoNavbar = () => {
  }, []);
 
  useEffect(() => {
+  startLoading();
+  let completed = false;
+  const finish = () => {
+   if (!completed) {
+    completed = true;
+    stopLoading();
+   }
+  };
+
   const fetchPracticalInfos = async () => {
    try {
     setLoading(true);
@@ -47,10 +58,12 @@ const PracticalInfoNavbar = () => {
     setPracticalInfos([]);
    } finally {
     setLoading(false);
+    finish();
    }
   };
   fetchPracticalInfos();
- }, []);
+  return finish;
+ }, [startLoading, stopLoading]);
 
  useEffect(() => {
   if (practicalInfos.length <= itemsPerSlide || isPaused) {
@@ -87,13 +100,7 @@ const PracticalInfoNavbar = () => {
  };
 
  if (loading) {
-  return (
-   <section className="w-full py-16">
-    <div className="max-w-4xl mx-auto px-4 text-center">
-     <div className="animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent mx-auto"></div>
-    </div>
-   </section>
-  );
+  return null;
  }
 
  if (!practicalInfos.length) return null;

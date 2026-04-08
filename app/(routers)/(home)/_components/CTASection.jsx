@@ -2,12 +2,23 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { useClientLoading } from "@/components/ClientLoadingProvider";
 
 export default function CTASection() {
  const [text1, setText1] = useState("");
  const [loading, setLoading] = useState(true);
+ const { startLoading, stopLoading } = useClientLoading();
 
  useEffect(() => {
+  startLoading();
+  let completed = false;
+  const finish = () => {
+   if (!completed) {
+    completed = true;
+    stopLoading();
+   }
+  };
+
   async function fetchContent() {
    try {
     const response = await fetch(
@@ -22,10 +33,12 @@ export default function CTASection() {
     console.error("Content yüklenemedi:", error);
    } finally {
     setLoading(false);
+    finish();
    }
   }
   fetchContent();
- }, []);
+  return finish;
+ }, [startLoading, stopLoading]);
 
  return (
   <section className="container mx-auto px-2 sm:px-4 md:px-8 py-8 sm:py-12 md:py-16 w-full max-w-full overflow-x-hidden">
@@ -36,8 +49,8 @@ export default function CTASection() {
      <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-5 md:mb-6 px-2">
       Mali Danışmanlık İhtiyacınız mı Var?
      </h2>
-     <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-4 sm:mb-5 md:mb-6 opacity-90 max-w-2xl mx-auto px-2">
-      {loading ? "Yükleniyor..." : text1}
+     <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-4 sm:mb-5 md:mb-6 opacity-90 max-w-2xl mx-auto px-2 min-h-[1.5em]">
+      {!loading && text1}
      </p>
      <Button asChild size="lg" variant="secondary" className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold h-9 sm:h-11 md:h-12 lg:h-14 hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
       <Link href="/iletisim">Görüşme Talep Edin</Link>

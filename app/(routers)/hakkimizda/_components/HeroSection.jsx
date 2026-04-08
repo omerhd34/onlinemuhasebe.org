@@ -1,11 +1,21 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useClientLoading } from "@/components/ClientLoadingProvider";
 
 export default function HeroSection() {
  const [text, setText] = useState("");
- const [loading, setLoading] = useState(true);
+ const { startLoading, stopLoading } = useClientLoading();
 
  useEffect(() => {
+  startLoading();
+  let completed = false;
+  const finish = () => {
+   if (!completed) {
+    completed = true;
+    stopLoading();
+   }
+  };
+
   async function fetchContent() {
    try {
     const response = await fetch(
@@ -17,11 +27,12 @@ export default function HeroSection() {
    } catch (error) {
     console.error("Content yüklenemedi:", error);
    } finally {
-    setLoading(false);
+    finish();
    }
   }
   fetchContent();
- }, []);
+  return finish;
+ }, [startLoading, stopLoading]);
 
  return (
   <section className="container mx-auto px-4 pt-12 mb-5">
@@ -29,8 +40,8 @@ export default function HeroSection() {
     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-gray-800 dark:text-gray-100">
      Hakkımızda
     </h2>
-    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-gray-600 dark:text-gray-400">
-     {loading ? "Yükleniyor..." : text}
+    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-gray-600 dark:text-gray-400 min-h-[1.5em]">
+     {text}
     </p>
    </div>
   </section>

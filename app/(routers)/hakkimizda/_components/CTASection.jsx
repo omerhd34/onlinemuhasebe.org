@@ -2,12 +2,23 @@
 import { Users } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useClientLoading } from "@/components/ClientLoadingProvider";
 
 export default function CTASection() {
  const [text, setText] = useState("");
  const [loading, setLoading] = useState(true);
+ const { startLoading, stopLoading } = useClientLoading();
 
  useEffect(() => {
+  startLoading();
+  let completed = false;
+  const finish = () => {
+   if (!completed) {
+    completed = true;
+    stopLoading();
+   }
+  };
+
   async function fetchContent() {
    try {
     const response = await fetch(
@@ -20,18 +31,20 @@ export default function CTASection() {
     console.error("Content yüklenemedi:", error);
    } finally {
     setLoading(false);
+    finish();
    }
   }
   fetchContent();
- }, []);
+  return finish;
+ }, [startLoading, stopLoading]);
 
  return (
   <section className="container mx-auto px-4 md:px-8 py-16">
    <div className="bg-primary rounded-3xl p-8 md:p-12 text-center text-primary-foreground shadow-2xl max-w-4xl mx-auto">
     <Users className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-6 opacity-90" />
     <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4">Birlikte Çalışmaya Hazır mısınız?</h2>
-    <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-     {loading ? "Yükleniyor..." : text}
+    <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 opacity-90 max-w-2xl mx-auto min-h-[1.5em]">
+     {!loading && text}
     </p>
     <div className="flex flex-col sm:flex-row gap-4 justify-center">
      <Link

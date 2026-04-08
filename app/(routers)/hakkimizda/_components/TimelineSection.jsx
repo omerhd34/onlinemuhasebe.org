@@ -1,11 +1,22 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useClientLoading } from "@/components/ClientLoadingProvider";
 
 export default function TimelineSection() {
  const [timeline, setTimeline] = useState([]);
  const [loading, setLoading] = useState(true);
+ const { startLoading, stopLoading } = useClientLoading();
 
  useEffect(() => {
+  startLoading();
+  let completed = false;
+  const finish = () => {
+   if (!completed) {
+    completed = true;
+    stopLoading();
+   }
+  };
+
   async function fetchTimeline() {
    try {
     const response = await fetch("/api/timeline");
@@ -16,19 +27,15 @@ export default function TimelineSection() {
     console.error("Timeline yüklenemedi:", error);
    } finally {
     setLoading(false);
+    finish();
    }
   }
   fetchTimeline();
- }, []);
+  return finish;
+ }, [startLoading, stopLoading]);
 
  if (loading) {
-  return (
-   <section className="container mx-auto px-2 sm:px-4 md:px-8 py-8 sm:py-12 md:py-16 w-full max-w-full overflow-x-hidden">
-    <div className="max-w-7xl mx-auto bg-card rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 border border-border/60 dark:border-white/20 shadow-lg">
-     <div className="text-center text-sm sm:text-base text-muted-foreground">Yükleniyor...</div>
-    </div>
-   </section>
-  );
+  return null;
  }
 
  if (timeline.length === 0) {

@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { ClientLoadingProvider } from "../components/ClientLoadingProvider";
 import { ThemeProvider } from "../components/theme-provider";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import "./globals.css";
@@ -17,12 +18,14 @@ export default function RootLayout({ children }) {
     <html lang="tr" suppressHydrationWarning>
       <body className="min-h-screen flex flex-col bg-background text-foreground w-full max-w-full overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header />
-          <main className="flex-1 w-full max-w-full overflow-x-hidden">
-            {children}
-          </main>
-          <Footer />
-          <ScrollToTopButton />
+          <ClientLoadingProvider>
+            <Header />
+            <main className="flex-1 w-full max-w-full overflow-x-hidden">
+              {children}
+            </main>
+            <Footer />
+            <ScrollToTopButton />
+          </ClientLoadingProvider>
         </ThemeProvider>
       </body>
     </html>

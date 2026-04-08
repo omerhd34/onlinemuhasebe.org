@@ -1,6 +1,7 @@
 "use client";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useClientLoading } from "@/components/ClientLoadingProvider";
 
 const infoItems = [
  { icon: MapPin, title: "Konum", text: "İstanbul/Türkiye" },
@@ -12,8 +13,18 @@ const infoItems = [
 export default function ContactInfo() {
  const [text1, setText1] = useState("");
  const [loading, setLoading] = useState(true);
+ const { startLoading, stopLoading } = useClientLoading();
 
  useEffect(() => {
+  startLoading();
+  let completed = false;
+  const finish = () => {
+   if (!completed) {
+    completed = true;
+    stopLoading();
+   }
+  };
+
   async function fetchContent() {
    try {
     const response = await fetch(
@@ -26,18 +37,20 @@ export default function ContactInfo() {
     console.error("Content yüklenemedi:", error);
    } finally {
     setLoading(false);
+    finish();
    }
   }
   fetchContent();
- }, []);
+  return finish;
+ }, [startLoading, stopLoading]);
 
  return (
   <div className="bg-card dark:bg-card rounded-xl shadow-lg p-4 sm:p-6 md:p-8 border border-border/60 dark:border-2 dark:border-border/80 hover:shadow-xl transition-all duration-300 h-full">
    <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-4 sm:mb-6 text-foreground dark:text-foreground">
     İletişim Bilgileri
    </h1>
-   <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground dark:text-muted-foreground mb-6 sm:mb-8">
-    {loading ? "Yükleniyor..." : text1}
+   <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground dark:text-muted-foreground mb-6 sm:mb-8 min-h-[1.5em]">
+    {!loading && text1}
    </p>
    <div className="space-y-4 sm:space-y-5">
     {infoItems.map((item, idx) => (

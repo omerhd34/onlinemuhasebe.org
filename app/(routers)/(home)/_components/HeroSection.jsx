@@ -3,13 +3,24 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Mail, Info } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useClientLoading } from "@/components/ClientLoadingProvider";
 
 export default function HeroSection() {
  const [text1, setText1] = useState("");
  const [loading, setLoading] = useState(true);
  const [error, setError] = useState(null);
+ const { startLoading, stopLoading } = useClientLoading();
 
  useEffect(() => {
+  startLoading();
+  let completed = false;
+  const finish = () => {
+   if (!completed) {
+    completed = true;
+    stopLoading();
+   }
+  };
+
   async function fetchContent() {
    try {
     const response = await fetch(
@@ -35,10 +46,12 @@ export default function HeroSection() {
     setText1("İçerik yüklenirken bir hata oluştu");
    } finally {
     setLoading(false);
+    finish();
    }
   }
   fetchContent();
- }, []);
+  return finish;
+ }, [startLoading, stopLoading]);
 
  return (
   <section className="container mx-auto px-2 sm:px-4 md:px-8 min-h-screen flex items-center justify-center w-full max-w-full overflow-x-hidden">
@@ -49,13 +62,11 @@ export default function HeroSection() {
       <span className="text-primary font-extrabold block sm:inline">Mali Müşavirlik</span>
      </h1>
 
-     <p className="text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl text-muted-foreground mb-4 sm:mb-6 md:mb-8 px-2">
-      {loading ? (
-       <span className="inline-block animate-pulse">Yükleniyor...</span>
-      ) : error ? (
+     <p className="text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl text-muted-foreground mb-4 sm:mb-6 md:mb-8 px-2 min-h-[1.5em]">
+      {!loading && error ? (
        <span className="text-destructive text-xs sm:text-sm">Hata: {error}</span>
       ) : (
-       text1
+       !loading && text1
       )}
      </p>
      {!loading && !text1 && (
