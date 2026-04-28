@@ -8,7 +8,7 @@ Profesyonel muhasebe ve mali danışmanlık hizmetlerini tanıtan, içerikleri v
 - **İletişim formu:** E-posta gönderimi için API route ve Nodemailer entegrasyonu.
 - **Tema:** Açık / koyu / sistem teması (`next-themes`).
 - **Erişilebilir bileşenler:** Radix UI tabanlı UI bileşenleri.
-- **Özel sunucu:** İsteğe bağlı `server.js` ile hostname ve port yapılandırması.
+- **Dağıtım:** Vercel üzerinde standart Next.js akışı ile deploy.
 
 ## Sayfalar
 
@@ -46,11 +46,6 @@ npm install
 Proje kökünde `.env` dosyası oluşturun. Örnek:
 
 ```env
-NODE_ENV=development
-HOSTNAME=localhost
-PORT=3000
-NEXT_TELEMETRY_DISABLED=1
-
 # MongoDB (Prisma)
 DATABASE_URL="mongodb+srv://KULLANICI:SIFRE@CLUSTER.mongodb.net/VERITABANI_ADI?retryWrites=true&w=majority"
 
@@ -87,20 +82,26 @@ npm run dev
 
 Varsayılan adres: [http://localhost:3000](http://localhost:3000)
 
-## Üretim
+## Üretim (lokal test)
 
 ```bash
 npm run build
 npm run start
 ```
+Bu komutlar Next.js'in yerleşik üretim sunucusunu (`next start`) çalıştırır.
 
-İsteğe bağlı olarak özel sunucu ile:
+## Vercel'e dağıtım
 
-```bash
-NODE_ENV=production node server.js
-```
-
-`server.js`, `HOSTNAME` ve `PORT` ortam değişkenlerini okur (belirtilmezse `localhost:3000`).
+1. Depoyu GitHub'a gönderin.
+2. Vercel'de **New Project** ile repoyu içe aktarın.
+3. Vercel Project Settings > Environment Variables alanına en az şunları ekleyin:
+   - `DATABASE_URL`
+   - `EMAIL_HOST`
+   - `EMAIL_PORT`
+   - `EMAIL_USER`
+   - `EMAIL_PASS`
+   - `EMAIL_TO`
+4. Deploy edin.
 
 ## Yararlı komutlar
 
@@ -121,7 +122,6 @@ NODE_ENV=production node server.js
 - `prisma/` — Şema ve seed betikleri
 - `components/` — Ortak bileşenler (header, footer, tema vb.)
 - `lib/` — Yardımcılar (ör. Prisma singleton)
-- `server.js` — İsteğe bağlı özel HTTP sunucusu
 
 ## Lisans
 
