@@ -9,7 +9,7 @@ export default function SuccessMessage({ onReset }) {
     <p>Şahin Demir Mali Müşavirlik en kısa sürede sizinle iletişime geçecektir. Teşekkür ederiz!</p>
    </div>
    {onReset && (
-    <button onClick={onReset} className="ml-4 text-sm text-green-700 dark:text-green-200 underline">
+    <button onClick={onReset} className="ml-4 text-sm text-green-700 dark:text-green-200 underline cursor-pointer">
      Yeni Mesaj Gönder
     </button>
    )}
