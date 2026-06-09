@@ -1,4 +1,12 @@
+import { createPageMetadata } from "@/lib/seo";
 import CityCarousel from "./_components/CityCarousel";
+
+export const metadata = createPageMetadata({
+  title: "Pratik Bilgiler",
+  description:
+    "Güncel vergi, SGK, asgari ücret ve mali mevzuat bilgileri. Mali Müşavir Şahin Demir pratik bilgiler arşivi.",
+  path: "/pratik_bilgiler",
+});
 
 const PratikBilgiler = () => {
  return (
